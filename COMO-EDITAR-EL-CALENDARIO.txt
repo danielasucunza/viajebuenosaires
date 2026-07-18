@@ -1,0 +1,95 @@
+COMO EDITAR EL CALENDARIO
+
+Archivo que puede abrirse como planilla:
+CALENDARIO-PLANTILLA.tsv
+
+Ese archivo se abre con Excel o Google Sheets. Cada fila es un plan.
+
+Columnas:
+
+fecha
+Dia del plan, en formato AAAA-MM-DD.
+Ejemplo: 2026-09-14
+
+hora
+Hora aproximada del plan.
+Ejemplo: 20:30
+
+momento
+Etiqueta visual: Llegada, Manana, Tarde, Noche, Postre, Dulce o Dia.
+
+titulo
+Nombre del plan. Si sorpresa = si, Camilo no lo ve hasta que se desbloquee.
+
+zona
+Lugar orientativo que Camilo puede ver incluso si esta bloqueado.
+Ejemplo: Belgrano, Adrogue, Centro de Buenos Aires.
+
+descripcion
+Texto real del plan. Si sorpresa = si, Camilo no lo ve hasta que se desbloquee.
+
+sorpresa
+Usa si o no.
+si = queda bloqueado hasta la fecha de desbloqueo o hasta resolver la pista.
+no = se ve desde el principio.
+
+desbloqueo
+Fecha y hora en que se revela solo.
+Formato exacto:
+2026-09-14T10:00:00-03:00
+
+pista
+Id de la adivinanza relacionada.
+Si no hay pista, dejalo vacio.
+
+Pistas disponibles:
+
+azul-oro          La Bombonera
+aguja-blanca      Obelisco
+plaza-memoria     Plaza de Mayo / Casa Rosada / Cabildo
+fachada-canta     Teatro Colon
+portal-sabores    Barrio Chino
+norte-rio         Nunez
+mapa-pan          Danke
+frio-palito       Lucciano's / helado
+ocho-compases     Tango
+mesa-celeste      Juntada tematica argentina
+capas-dulces      Mundial de alfajores
+uvas-copa         Vinos
+brasas-amigos     Asado
+diez-caen         Bowling
+otra-escena       Cine o experiencia inmersiva
+
+COMO PASAR LA PLANILLA AL HTML
+
+1. Edita CALENDARIO-PLANTILLA.tsv en Excel o Google Sheets.
+2. Copia solo las filas de planes, sin la primera fila de encabezados.
+3. En camilo-app-html.html busca:
+
+const ITINERARY_CSV = `
+
+4. Reemplaza las filas que estan entre las comillas invertidas.
+5. Antes de pegar en el HTML, cada fila debe quedar con columnas separadas por este simbolo:
+|
+
+Ejemplo final:
+
+2026-09-14|20:30|Noche|Mapa entre dos panes|Danke|Una hamburgueseria con sabores viajeros y nombres de paises.|si|2026-09-14T10:00:00-03:00|mapa-pan
+
+Atajo practico:
+Si editas la planilla y no queres convertir nada, mandame el archivo actualizado y yo te devuelvo el HTML listo.
+
+Para mover un plan de dia:
+Cambia solo la fecha.
+
+Para mover un plan de horario:
+Cambia solo la hora.
+
+Para que algo deje de ser sorpresa:
+Cambia si por no.
+
+Para que se desbloquee antes:
+Cambia la fecha de desbloqueo.
+
+La vista mensual de septiembre se actualiza sola con esas fechas.
+No hay que editar el calendario visual a mano.

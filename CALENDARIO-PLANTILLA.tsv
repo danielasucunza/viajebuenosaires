@@ -1,0 +1,20 @@
+fecha	hora	momento	titulo	zona	descripcion	sorpresa	desbloqueo	pista
+2026-09-12	05:00	Llegada	Llegada a Buenos Aires	Ezeiza / Adrogue	Llegada abrazo descanso y bienvenida tranquila en casa.	no	2026-09-12T05:00:00-03:00	
+2026-09-12	11:00	Manana	Bienvenida tranquila	Adrogue	Desayuno tarde paseo suave y primer dia sin apuro.	no	2026-09-12T05:00:00-03:00	
+2026-09-13	10:00	Manana	La casa azul y oro	La Boca	Plan futbolero para conocer uno de los lugares mas intensos de Buenos Aires.	si	2026-09-13T08:00:00-03:00	azul-oro
+2026-09-13	14:30	Tarde	La aguja blanca	Centro de Buenos Aires	Un clasico porteno en una avenida imposible de ignorar.	si	2026-09-13T09:00:00-03:00	aguja-blanca
+2026-09-13	15:30	Tarde	Balcones plaza y piedra antigua	Plaza de Mayo	Recorrido por Plaza de Mayo Casa Rosada y Cabildo.	si	2026-09-13T09:30:00-03:00	plaza-memoria
+2026-09-13	17:00	Tarde	Una fachada que canta	Centro de Buenos Aires	Pasada por uno de los teatros mas famosos del mundo.	si	2026-09-13T10:00:00-03:00	fachada-canta
+2026-09-13	21:00	Noche	Ocho pasos sin decirlo	A confirmar	Una noche donde la ciudad cuenta historias con el cuerpo y la musica.	si	2026-09-13T12:00:00-03:00	ocho-compases
+2026-09-14	20:30	Noche	Mapa entre dos panes	Danke	Una hamburgueseria con sabores viajeros y nombres de paises.	si	2026-09-14T10:00:00-03:00	mapa-pan
+2026-09-14	22:00	Postre	Frio dulce en palito	Lucciano's	Una parada de postre que ya estaba prometida pero igual suma emocion.	si	2026-09-14T12:00:00-03:00	frio-palito
+2026-09-15	19:00	Noche	Diez esperando caer	A confirmar	Un juego de punteria ruido y zapatos raros.	si	2026-09-15T10:00:00-03:00	diez-caen
+2026-09-16	12:30	Dia	Humo brasas y amigos	Cerca de Adrogue	Asado con amigos cerca de casa.	si	2026-09-16T09:00:00-03:00	brasas-amigos
+2026-09-16	20:00	Noche	Copas con acento mendocino	Adrogue	Un momento para probar vinos y descubrir sabores argentinos.	si	2026-09-16T12:00:00-03:00	uvas-copa
+2026-09-17	19:00	Noche	Entrar en otra escena	A confirmar	Tal vez cine o una experiencia inmersiva para hacer algo distinto.	si	2026-09-17T10:00:00-03:00	otra-escena
+2026-09-18	20:30	Noche	Mesa celeste y blanca	Adrogue	Juntada tematica argentina con mis amigos.	si	2026-09-18T09:00:00-03:00	mesa-celeste
+2026-09-18	22:00	Dulce	Copa de capas dulces	Adrogue	Un mundial muy serio de algo redondo dulce y argentino.	si	2026-09-18T12:00:00-03:00	capas-dulces
+2026-09-19	13:00	Tarde	Un portal a otra ciudad	Belgrano	Arcos sabores nuevos y calles llenas de colores.	si	2026-09-19T09:00:00-03:00	portal-sabores
+2026-09-19	18:30	Tarde	Parada al norte	Nunez	Una vuelta por una zona al norte de la ciudad.	si	2026-09-19T11:00:00-03:00	norte-rio
+2026-09-20	12:00	Dia	Despedida tranquila	Adrogue	Ultimo dia para bajar un cambio repasar historias y preparar el regreso.	no	2026-09-20T09:00:00-03:00	
+2026-09-21	08:00	Dia	Viaje de regreso	Adrogue / Aeropuerto	Cierre del viaje y vuelta a casa.	no	2026-09-20T20:00:00-03:00	

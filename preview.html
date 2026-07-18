@@ -1,0 +1,1774 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Camilo viene a Buenos Aires</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <style>
+      :root {
+        --cream: #f4fbff;
+        --paper: #ffffff;
+        --sky: #73c5ea;
+        --sky-soft: #dff4ff;
+        --yellow: #f7c948;
+        --navy: #102a56;
+        --ink: #26324a;
+        --red: #d45b55;
+        --green: #8fd0ad;
+        --line: rgba(20, 33, 61, 0.13);
+        --shadow: 0 18px 48px rgba(20, 33, 61, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(180deg, rgba(223, 244, 255, 0.92), rgba(255, 255, 255, 0.64) 28rem),
+          linear-gradient(135deg, rgba(115, 197, 234, 0.22), transparent 34rem),
+          radial-gradient(circle at 92% 2%, rgba(247, 201, 72, 0.2), transparent 18rem),
+          var(--cream);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      main {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+        padding: 18px 16px 96px;
+      }
+
+      .hero,
+      .two,
+      .three {
+        display: grid;
+        gap: 16px;
+      }
+
+      .panel,
+      .card,
+      .day-card {
+        border: 1px solid rgba(255, 255, 255, 0.78);
+        background: rgba(255, 253, 247, 0.84);
+        box-shadow: var(--shadow);
+      }
+
+      .panel {
+        border-radius: 32px;
+        padding: 24px;
+      }
+
+      .hero-panel {
+        position: relative;
+        overflow: hidden;
+        min-height: 100%;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .hero-mascot {
+        width: clamp(92px, 28vw, 148px);
+        flex: 0 0 auto;
+        align-self: flex-start;
+        border-radius: 24px;
+        background: transparent;
+        padding: 0;
+      }
+
+      .hero-mascot img {
+        filter: drop-shadow(0 16px 24px rgba(16, 42, 86, 0.16));
+      }
+
+      .hero-mascot img,
+      .mini-mascot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .hero-mascot span {
+        display: block;
+        margin-top: 4px;
+        color: rgba(20, 33, 61, 0.76);
+        font-size: 10px;
+        font-weight: 950;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .card {
+        border-radius: 23px;
+        padding: 18px;
+      }
+
+      .mini-label,
+      .tag {
+        color: var(--red);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 34px;
+        border-radius: 999px;
+        background: rgba(115, 197, 234, 0.28);
+        padding: 0 13px;
+        color: var(--navy);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        color: var(--navy);
+        line-height: 1.06;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        margin-top: 20px;
+        max-width: 820px;
+        font-size: clamp(42px, 10vw, 76px);
+      }
+
+      h2 {
+        font-size: 29px;
+      }
+
+      h3 {
+        font-size: 20px;
+      }
+
+      p {
+        line-height: 1.64;
+      }
+
+      .subtitle {
+        max-width: 640px;
+        margin: 16px 0 0;
+        color: rgba(38, 50, 74, 0.76);
+        font-size: 18px;
+      }
+
+      .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-top: 28px;
+        border-radius: 24px;
+        background: var(--navy);
+        padding: 10px;
+        color: white;
+      }
+
+      .unit {
+        min-height: 92px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.1);
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+
+      .unit strong {
+        display: block;
+        font-size: clamp(25px, 7vw, 46px);
+        line-height: 1;
+      }
+
+      .unit span {
+        display: block;
+        margin-top: 7px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .progress {
+        margin-top: 18px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(20, 33, 61, 0.1);
+      }
+
+      .bar {
+        height: 12px;
+        width: 0;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--sky), #ffffff, var(--yellow));
+        transition: width 0.4s ease;
+      }
+
+      .progress-summary {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+        margin-top: 12px;
+      }
+
+      .progress-summary .subtitle {
+        margin: 0;
+      }
+
+      .progress-percent {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        border-radius: 999px;
+        background: rgba(115, 197, 234, 0.24);
+        padding: 0 11px;
+        color: var(--navy);
+        font-size: 12px;
+        font-weight: 950;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 34px 0 16px;
+      }
+
+      .section-title p {
+        margin: 6px 0 0;
+        color: rgba(38, 50, 74, 0.65);
+        font-size: 14px;
+      }
+
+      .day-card {
+        border-radius: 26px;
+        padding: 16px;
+        margin-bottom: 14px;
+        background: rgba(255, 255, 255, 0.47);
+      }
+
+      .day-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 13px;
+      }
+
+      .date {
+        margin: 0 0 4px;
+        color: var(--red);
+        font-size: 14px;
+        font-weight: 900;
+        text-transform: capitalize;
+      }
+
+      .plan-list,
+      .stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .plan,
+      .egg {
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        background: rgba(255, 255, 255, 0.82);
+        padding: 18px;
+        box-shadow: 0 10px 28px rgba(20, 33, 61, 0.08);
+      }
+
+      .locked {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.83), rgba(185, 222, 242, 0.34));
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 31px;
+        border-radius: 999px;
+        background: rgba(115, 197, 234, 0.22);
+        padding: 0 11px;
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .chip.yellow {
+        background: rgba(244, 201, 93, 0.38);
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--navy);
+        padding: 0 16px;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        background: white;
+        color: var(--navy);
+        box-shadow: inset 0 0 0 1px var(--line);
+      }
+
+      .button:disabled {
+        background: rgba(20, 33, 61, 0.18);
+        color: rgba(20, 33, 61, 0.54);
+        cursor: not-allowed;
+      }
+
+      .answer {
+        width: 100%;
+        min-height: 44px;
+        border: 0;
+        border-radius: 16px;
+        background: white;
+        padding: 0 14px;
+        color: var(--navy);
+        cursor: pointer;
+        text-align: left;
+        box-shadow: inset 0 0 0 1px var(--line);
+        font-weight: 850;
+      }
+
+      input.answer-input {
+        width: 100%;
+        min-height: 44px;
+        border: 0;
+        border-radius: 16px;
+        background: white;
+        padding: 0 14px;
+        color: var(--navy);
+        box-shadow: inset 0 0 0 1px var(--line);
+        font-weight: 850;
+      }
+
+      input.answer-input:disabled {
+        background: rgba(255, 255, 255, 0.62);
+        color: rgba(20, 33, 61, 0.46);
+        cursor: not-allowed;
+      }
+
+      .answer.correct {
+        background: rgba(143, 208, 173, 0.34);
+        box-shadow: inset 0 0 0 2px var(--green);
+      }
+
+      .answer.wrong {
+        background: rgba(212, 91, 85, 0.12);
+        box-shadow: inset 0 0 0 2px rgba(212, 91, 85, 0.48);
+      }
+
+      .result {
+        margin-top: 12px;
+        border-radius: 16px;
+        background: rgba(115, 197, 234, 0.18);
+        padding: 12px;
+        font-size: 14px;
+        font-weight: 850;
+      }
+
+      .clue-date {
+        margin-top: 10px;
+        color: rgba(38, 50, 74, 0.68);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .month-card {
+        margin-top: 18px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(244, 251, 255, 0.86)),
+          radial-gradient(circle at 100% 0, rgba(115, 197, 234, 0.24), transparent 18rem);
+      }
+
+      .month-head,
+      .month-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .month-head {
+        margin-bottom: 7px;
+        color: rgba(38, 50, 74, 0.58);
+        font-size: 11px;
+        font-weight: 950;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .month-day {
+        min-height: 58px;
+        border-radius: 15px;
+        border: 1px solid rgba(20, 33, 61, 0.08);
+        background: rgba(255, 255, 255, 0.62);
+        padding: 8px;
+        color: rgba(38, 50, 74, 0.58);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .month-day.locked-day,
+      .month-day.unlocked-day,
+      .month-day.away {
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+      }
+
+      .month-day.empty {
+        border-color: transparent;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .month-day.away {
+        background: rgba(115, 197, 234, 0.14);
+        color: rgba(38, 50, 74, 0.44);
+      }
+
+      .month-day.locked-day {
+        background: rgba(16, 42, 86, 0.1);
+        color: var(--navy);
+      }
+
+      .month-day.unlocked-day {
+        border-color: rgba(244, 201, 93, 0.82);
+        background: rgba(244, 201, 93, 0.42);
+        color: var(--navy);
+      }
+
+      .month-day.today {
+        box-shadow: inset 0 0 0 2px var(--red);
+      }
+
+      .day-number {
+        display: block;
+        font-size: 15px;
+      }
+
+      .day-state {
+        display: block;
+        margin-top: 5px;
+        font-size: 10px;
+        line-height: 1.2;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .timeline-item {
+        border-left: 4px solid var(--yellow);
+        border-radius: 0 18px 18px 0;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 14px 16px;
+      }
+
+      .mascot-strip {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 14px;
+        margin-top: 14px;
+        border-radius: 22px;
+        background: rgba(115, 197, 234, 0.14);
+        padding: 12px;
+      }
+
+      .mini-mascot {
+        width: 72px;
+        overflow: hidden;
+        border-radius: 18px;
+        background: transparent;
+      }
+
+      .tabs {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        display: flex;
+        gap: 8px;
+        margin: 0 -16px 16px;
+        overflow-x: auto;
+        border-bottom: 1px solid rgba(16, 42, 86, 0.08);
+        background: rgba(244, 251, 255, 0.92);
+        padding: 10px 16px;
+        backdrop-filter: blur(16px);
+      }
+
+      .tab-button,
+      .nav button {
+        border: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.74);
+        color: rgba(16, 42, 86, 0.7);
+        cursor: pointer;
+        font-weight: 950;
+        white-space: nowrap;
+        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08);
+      }
+
+      .tab-button {
+        min-height: 38px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .tab-button.active,
+      .nav button.active {
+        background: var(--navy);
+        color: white;
+        box-shadow: 0 10px 24px rgba(16, 42, 86, 0.16);
+      }
+
+      .tab-section {
+        display: none;
+      }
+
+      .tab-section.active {
+        display: block;
+      }
+
+      .tab-section.hero.active,
+      .tab-section.two.active,
+      .tab-section.three.active {
+        display: grid;
+      }
+
+      .photo-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .photo-card {
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        background: white;
+        box-shadow: var(--shadow);
+      }
+
+      .photo-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        background: var(--sky-soft);
+      }
+
+      .photo-card div {
+        padding: 14px;
+      }
+
+      .photo-card p {
+        margin: 8px 0 0;
+        color: rgba(38, 50, 74, 0.68);
+        font-size: 14px;
+      }
+
+      .photo-fallback {
+        display: grid;
+        place-items: center;
+        min-height: 210px;
+        aspect-ratio: 4 / 3;
+        background:
+          linear-gradient(180deg, rgba(115, 197, 234, 0.42), rgba(255, 255, 255, 0.76)),
+          linear-gradient(90deg, #73c5ea 0 33%, white 33% 66%, #73c5ea 66% 100%);
+        color: var(--navy);
+        font-size: 48px;
+      }
+
+      .message-box {
+        width: 100%;
+        min-height: 170px;
+        resize: vertical;
+        border: 0;
+        border-radius: 22px;
+        background: white;
+        padding: 16px;
+        color: var(--navy);
+        box-shadow: inset 0 0 0 1px var(--line);
+      }
+
+      .flag-band {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0 0;
+      }
+
+      .mini-flag {
+        display: inline-grid;
+        place-items: center;
+        width: 42px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(180deg, #73c5ea 0 33%, #ffffff 33% 66%, #73c5ea 66% 100%);
+        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08), 0 8px 18px rgba(16, 42, 86, 0.08);
+        color: #f7c948;
+        font-size: 12px;
+        font-weight: 950;
+      }
+
+      .mini-flag::before {
+        content: "✦";
+      }
+
+      .history-year {
+        color: var(--red);
+        font-size: 13px;
+        font-weight: 950;
+      }
+
+      .nav {
+        position: fixed;
+        inset: auto 10px 10px;
+        z-index: 20;
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 22px;
+        background: rgba(20, 33, 61, 0.96);
+        padding: 8px;
+        color: white;
+        box-shadow: 0 18px 48px rgba(20, 33, 61, 0.22);
+      }
+
+      .nav button {
+        flex: 0 0 auto;
+        min-width: 74px;
+        border-radius: 16px;
+        padding: 8px 2px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 10.5px;
+        font-weight: 950;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: none;
+      }
+
+      .nav button.active {
+        background: white;
+        color: var(--navy);
+      }
+
+      @media (min-width: 860px) {
+        main {
+          padding: 36px 28px 56px;
+          width: min(1240px, 100%);
+        }
+
+        .hero {
+          grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
+          align-items: stretch;
+          gap: 18px;
+        }
+
+        .panel {
+          padding: 32px;
+        }
+
+        .card {
+          padding: 24px;
+        }
+
+        .countdown {
+          gap: 10px;
+          padding: 12px;
+        }
+
+        .month-card {
+          padding: 28px;
+        }
+
+        .month-head,
+        .month-grid {
+          gap: 8px;
+        }
+
+        .month-head {
+          font-size: 13px;
+        }
+
+        .month-day {
+          min-height: 92px;
+          border-radius: 18px;
+          padding: 12px;
+          font-size: 14px;
+        }
+
+        .day-number {
+          font-size: 20px;
+        }
+
+        .day-state {
+          margin-top: 9px;
+          font-size: 12px;
+        }
+
+        .two {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .three {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .tabs {
+          margin-right: 0;
+          margin-left: 0;
+          border: 1px solid rgba(255, 255, 255, 0.72);
+          border-radius: 999px;
+          box-shadow: 0 14px 32px rgba(16, 42, 86, 0.08);
+        }
+
+        .photo-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav class="tabs" aria-label="Secciones principales">
+        <button class="tab-button active" type="button" data-tab="inicio">Inicio</button>
+        <button class="tab-button" type="button" data-tab="mes">Mes</button>
+        <button class="tab-button" type="button" data-tab="viaje">Viaje</button>
+        <button class="tab-button" type="button" data-tab="cultura">Cultura</button>
+        <button class="tab-button" type="button" data-tab="historia">Historia</button>
+        <button class="tab-button" type="button" data-tab="pistas">Pistas</button>
+        <button class="tab-button" type="button" data-tab="fotos">Fotos</button>
+        <button class="tab-button" type="button" data-tab="arg-col">Arg/Col</button>
+        <button class="tab-button" type="button" data-tab="mensaje">Mensaje</button>
+      </nav>
+
+      <section class="hero tab-section active" id="inicio">
+        <div class="panel hero-panel">
+          <div class="hero-content">
+            <div class="hero-top">
+              <span class="pill">✈️ Colombia → Buenos Aires</span>
+              <div class="hero-mascot" aria-label="Carpincho guía con camiseta de Argentina">
+                <img src="assets/carpincho-argentina.png" alt="Carpincho con camiseta de Argentina" />
+                <span>Guía oficial</span>
+              </div>
+            </div>
+            <h1>Camilo viene a Buenos Aires</h1>
+            <p class="subtitle">Una cuenta regresiva, pistas secretas y una mini inmersión cultural antes de aterrizar.</p>
+            <div class="flag-band" aria-label="Banderas de Argentina">
+              <span class="mini-flag"></span>
+              <span class="mini-flag"></span>
+              <span class="mini-flag"></span>
+              <span class="mini-flag"></span>
+            </div>
+            <div class="countdown" aria-label="Cuenta regresiva">
+              <div class="unit"><p><strong id="days">--</strong><span>Días</span></p></div>
+              <div class="unit"><p><strong id="hours">--</strong><span>Horas</span></p></div>
+              <div class="unit"><p><strong id="minutes">--</strong><span>Min</span></p></div>
+              <div class="unit"><p><strong id="seconds">--</strong><span>Seg</span></p></div>
+            </div>
+            <div class="progress" aria-label="Progreso de la espera"><div class="bar" id="bar"></div></div>
+            <div class="progress-summary">
+              <p id="progressText" class="subtitle" style="font-size: 14px">Calculando aventura...</p>
+              <span id="progressPercent" class="progress-percent">0% completado</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="stack">
+          <section class="card">
+            <div class="mini-label">Frase del día</div>
+            <h3 id="quoteTitle">Modo aventura</h3>
+            <p id="quoteText">Los mejores viajes empiezan mucho antes de subirse al avión.</p>
+          </section>
+          <section class="card">
+            <div class="mini-label">Fun fact argentino</div>
+            <h3 id="factTitle">Dato argentino</h3>
+            <p id="factText">Argentina tiene 23 provincias y una ciudad autónoma: Buenos Aires.</p>
+            <div class="mascot-strip">
+              <div class="mini-mascot">
+                <img src="assets/carpincho-boca.png" alt="Carpincho con camiseta de Boca" />
+              </div>
+              <p style="margin: 0"><strong>Modo carpincho chill:</strong> cada día aparece algo nuevo para ir entrando en clima.</p>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section id="mes" class="card month-card tab-section">
+        <div class="section-title" style="margin-top: 0">
+          <div>
+            <h2>Septiembre 2026</h2>
+            <p>Los días del viaje aparecen bloqueados hasta que se revelen las actividades. Los demás días quedan en otro color.</p>
+          </div>
+        </div>
+        <div class="month-head" aria-hidden="true">
+          <span>Lun</span>
+          <span>Mar</span>
+          <span>Mié</span>
+          <span>Jue</span>
+          <span>Vie</span>
+          <span>Sáb</span>
+          <span>Dom</span>
+        </div>
+        <div class="month-grid" id="monthCalendar"></div>
+        <div class="chips">
+          <span class="chip">Fuera del viaje</span>
+          <span class="chip">Día bloqueado</span>
+          <span class="chip yellow">Con algo desbloqueado</span>
+        </div>
+      </section>
+
+      <section id="viaje" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Calendario bloqueado</h2>
+            <p>Se ven los días y la pista asociada, pero no el plan hasta que se desbloquee.</p>
+          </div>
+        </div>
+        <div id="calendar"></div>
+      </section>
+
+      <section id="cultura" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Cultura diaria</h2>
+            <p>Un poquito de Argentina cada día, sin hacerlo clase eterna.</p>
+          </div>
+        </div>
+        <div class="three">
+          <article class="card">
+            <div class="mini-label">Quiz argentino</div>
+            <h3 id="quizQuestion">Pregunta del día</h3>
+            <div class="stack" id="quizAnswers" style="margin-top: 14px"></div>
+            <div class="result" id="quizResult" hidden></div>
+          </article>
+
+          <article class="card">
+            <div class="mini-label">Lunfardo del día</div>
+            <h3 id="lunfardoWord">Bondi</h3>
+            <p id="lunfardoMeaning">Colectivo, bus.</p>
+            <p class="chip yellow" id="lunfardoExample">Ejemplo</p>
+          </article>
+
+          <article class="card">
+            <div class="mini-label">Canción del día</div>
+            <h3 id="songTitle">Canción</h3>
+            <p id="songContext">Una canción para ir entrando en clima.</p>
+            <a class="button secondary" id="songLink" href="#" target="_blank" rel="noreferrer">Escuchar</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="arg-col" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Argentina vs Colombia</h2>
+            <p>Diferencias simpáticas para llegar con radar cultural.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="mini-label" id="comparisonTopic">Tema del día</div>
+          <div class="two" style="margin-top: 12px">
+            <div>
+              <h3>Argentina</h3>
+              <p id="comparisonArgentina"></p>
+            </div>
+            <div>
+              <h3>Colombia</h3>
+              <p id="comparisonColombia"></p>
+            </div>
+          </div>
+          <p class="result" id="comparisonNote"></p>
+        </div>
+      </section>
+
+      <section id="historia" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Historia argentina del día</h2>
+            <p>Un dato histórico distinto cada día, cortito y sin clase eterna.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="mini-label" id="historyEra">Historia</div>
+          <h3 id="historyTitle">Dato histórico</h3>
+          <p id="historyText">Cada día aparece un episodio diferente.</p>
+        </div>
+      </section>
+
+      <section id="pistas" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Easter eggs</h2>
+            <p>Pistas que se desbloquean a medida que se acerca el viaje.</p>
+          </div>
+          <span class="pill">🕵️ desbloqueo gradual</span>
+        </div>
+        <div class="two" id="eggList"></div>
+      </section>
+
+      <section id="fotos" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Buenos Aires en fotos</h2>
+            <p>Una selección distinta cada día para ir entrando en clima, sin prometer exactamente qué pasa cada día.</p>
+          </div>
+        </div>
+        <div class="photo-grid" id="photoGrid"></div>
+      </section>
+
+      <section id="mensaje" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Mensaje para Dani</h2>
+            <p>Un espacio para dejar un recuerdo, una nota o una teoría del viaje.</p>
+          </div>
+        </div>
+        <article class="card">
+          <div class="mini-label">Bitácora privada</div>
+          <h3>Escribí algo para guardar este momento</h3>
+          <p>El mensaje no se envía solo: queda guardado en este navegador. Para que Dani lo vea, hay que copiarlo y mandárselo por WhatsApp, mail o donde prefieras.</p>
+          <div class="stack">
+            <textarea class="message-box" id="messageText" placeholder="Escribí tu mensaje..." aria-label="Mensaje para Dani"></textarea>
+            <button class="button" id="saveMessage" type="button">Guardar mensaje</button>
+            <button class="button secondary" id="copyMessage" type="button">Copiar para enviar</button>
+            <button class="button secondary" id="emailMessage" type="button">Preparar mail</button>
+            <div class="result" id="messageResult" hidden></div>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <nav class="nav" aria-label="Navegación">
+      <button class="active" type="button" data-tab="inicio">Inicio</button>
+      <button type="button" data-tab="mes">Mes</button>
+      <button type="button" data-tab="viaje">Viaje</button>
+      <button type="button" data-tab="cultura">Cultura</button>
+      <button type="button" data-tab="pistas">Pistas</button>
+      <button type="button" data-tab="fotos">Fotos</button>
+      <button type="button" data-tab="mensaje">Mensaje</button>
+    </nav>
+
+    <script>
+      // ============================================================
+      // EDITAR SOLO ESTA PARTE PARA CAMBIAR EL CALENDARIO
+      // Formato:
+      // fecha|hora|momento|titulo|zona|descripcion|sorpresa|desbloqueo|pista
+      //
+      // sorpresa: si / no
+      // desbloqueo: fecha y hora en formato 2026-09-12T09:00:00-03:00
+      // pista: id de Easter egg relacionado, por ejemplo ocho-compases, azul-oro, aguja-blanca
+      // ============================================================
+      const ITINERARY_CSV = `
+2026-09-12|05:00|Llegada|Llegada a Buenos Aires|Ezeiza / Adrogué|Llegada, abrazo, descanso y bienvenida tranquila en casa.|no|2026-09-12T05:00:00-03:00|
+2026-09-12|11:00|Mañana|Bienvenida tranquila|Adrogué|Desayuno tarde, paseo suave y primer día sin apuro.|no|2026-09-12T05:00:00-03:00|
+2026-09-13|10:00|Mañana|La casa azul y oro|La Boca|Plan futbolero para conocer uno de los lugares más intensos de Buenos Aires.|si|2026-09-13T08:00:00-03:00|azul-oro
+2026-09-13|14:30|Tarde|La aguja blanca|Centro de Buenos Aires|Un clásico porteño en una avenida imposible de ignorar.|si|2026-09-13T09:00:00-03:00|aguja-blanca
+2026-09-13|15:30|Tarde|Balcones, plaza y piedra antigua|Plaza de Mayo|Recorrido por Plaza de Mayo, Casa Rosada y Cabildo.|si|2026-09-13T09:30:00-03:00|plaza-memoria
+2026-09-13|17:00|Tarde|Una fachada que canta|Centro de Buenos Aires|Pasada por uno de los teatros más famosos del mundo.|si|2026-09-13T10:00:00-03:00|fachada-canta
+2026-09-13|21:00|Noche|Ocho pasos sin decirlo|A confirmar|Una noche donde la ciudad cuenta historias con el cuerpo y la música.|si|2026-09-13T12:00:00-03:00|ocho-compases
+2026-09-14|20:30|Noche|Mapa entre dos panes|Danke|Una hamburguesería con sabores viajeros y nombres de países.|si|2026-09-14T10:00:00-03:00|mapa-pan
+2026-09-14|22:00|Postre|Frío dulce en palito|Lucciano's|Una parada de postre que ya estaba prometida, pero igual suma emoción.|si|2026-09-14T12:00:00-03:00|frio-palito
+2026-09-15|19:00|Noche|Diez esperando caer|A confirmar|Un juego de puntería, ruido y zapatos raros.|si|2026-09-15T10:00:00-03:00|diez-caen
+2026-09-16|12:30|Día|Humo, brasas y amigos|Cerca de Adrogué|Asado con amigos cerca de casa.|si|2026-09-16T09:00:00-03:00|brasas-amigos
+2026-09-16|20:00|Noche|Copas con acento mendocino|Adrogué|Un momento para probar vinos y descubrir sabores argentinos.|si|2026-09-16T12:00:00-03:00|uvas-copa
+2026-09-17|19:00|Noche|Entrar en otra escena|A confirmar|Tal vez cine o una experiencia inmersiva para hacer algo distinto.|si|2026-09-17T10:00:00-03:00|otra-escena
+2026-09-18|20:30|Noche|Mesa celeste y blanca|Adrogué|Juntada temática argentina con mis amigos.|si|2026-09-18T09:00:00-03:00|mesa-celeste
+2026-09-18|22:00|Dulce|Copa de capas dulces|Adrogué|Un mundial muy serio de algo redondo, dulce y argentino.|si|2026-09-18T12:00:00-03:00|capas-dulces
+2026-09-19|13:00|Tarde|Un portal a otra ciudad|Belgrano|Arcos, sabores nuevos y calles llenas de colores.|si|2026-09-19T09:00:00-03:00|portal-sabores
+2026-09-19|18:30|Tarde|Parada al norte|Núñez|Una vuelta por una zona al norte de la ciudad.|si|2026-09-19T11:00:00-03:00|norte-rio
+2026-09-20|12:00|Día|Despedida tranquila|Adrogué|Último día para bajar un cambio, repasar historias y preparar el regreso.|no|2026-09-20T09:00:00-03:00|
+2026-09-21|08:00|Día|Viaje de regreso|Adrogué / Aeropuerto|Cierre del viaje y vuelta a casa.|no|2026-09-20T20:00:00-03:00|
+      `.trim();
+
+      const ARRIVAL_AT = new Date("2026-09-12T05:00:00-03:00");
+      const CONTENT_START = new Date("2026-07-17T00:00:00-03:00");
+
+      const quotes = [
+        ["Modo aventura", "Los mejores viajes empiezan mucho antes de subirse al avión."],
+        ["Curiosidad prendida", "Cada día que falta también es parte de la historia."],
+        ["Paso a paso", "No hace falta conocer todo el camino para disfrutar el próximo paso."],
+        ["Buenos Aires espera", "Una ciudad nueva se descubre mejor con los ojos bien abiertos."],
+        ["Casi en ruta", "Una buena aventura se arma con planes, curiosidad y buenos amigos."],
+        ["Posta", "Lo lindo de viajar es volver con historias que antes no existían."]
+      ];
+
+      const facts = [
+        ["Subte pionero", "Buenos Aires tuvo el primer subte de América Latina, inaugurado en 1913."],
+        ["Provincias", "Argentina tiene 23 provincias y una ciudad autónoma: Buenos Aires."],
+        ["Mafalda", "Mafalda, el personaje de Quino, es uno de los íconos argentinos más queridos."],
+        ["Dulce de leche", "El dulce de leche aparece en alfajores, helados, tortas y facturas."],
+        ["Fileteado porteño", "El fileteado porteño es un estilo decorativo típico de Buenos Aires, lleno de líneas, flores y colores."],
+        ["Río de la Plata", "Buenos Aires mira al Río de la Plata, uno de los estuarios más anchos del mundo."],
+        ["Mate compartido", "El mate suele circular en ronda: una persona ceba y el resto toma por turnos."],
+        ["Avenida larguísima", "La Avenida Rivadavia cruza gran parte de Buenos Aires y sigue hacia el oeste del conurbano."],
+        ["Teatro Colón", "El Teatro Colón es famoso por su acústica y por ser una de las salas líricas más importantes del mundo."],
+        ["Alfajor serio", "El alfajor tiene discusiones de alto nivel: chocolate, maicena, glaseado, fruta, mousse y mil variantes más."],
+        ["Colectivos de colores", "Muchas líneas de colectivos porteños mantienen colores muy reconocibles, casi como identidad visual propia."],
+        ["Fútbol omnipresente", "En Buenos Aires es normal que una conversación casual termine hablando de fútbol en menos de cinco minutos."]
+      ];
+
+      const quiz = [
+        {
+          q: "¿Cuál es la capital de Argentina?",
+          a: ["Buenos Aires", "Córdoba", "Mendoza"],
+          correct: 0,
+          note: "Correcto: Buenos Aires es la capital del país."
+        },
+        {
+          q: "¿Qué significa 'bondi' en Argentina?",
+          a: ["Colectivo o bus", "Avión", "Bicicleta"],
+          correct: 0,
+          note: "Sí: bondi es una forma muy argentina de decir colectivo."
+        },
+        {
+          q: "¿Cuántas provincias tiene Argentina?",
+          a: ["23", "12", "32"],
+          correct: 0,
+          note: "Correcto: son 23 provincias más la Ciudad Autónoma de Buenos Aires."
+        },
+        {
+          q: "¿Qué dulce argentino aparece muchísimo en alfajores y postres?",
+          a: ["Dulce de leche", "Mermelada de guayaba", "Arequipe salado"],
+          correct: 0,
+          note: "Sí: dulce de leche, institución nacional no oficial."
+        }
+      ];
+
+      const lunfardo = [
+        ["bondi", "Colectivo, bus.", "Nos tomamos el bondi hasta el centro."],
+        ["laburo", "Trabajo.", "Hoy tengo mucho laburo."],
+        ["guita", "Dinero.", "No gastes toda la guita el primer día."],
+        ["fiaca", "Pereza.", "Tengo fiaca, pero igual salimos."],
+        ["quilombo", "Lío, caos o problema.", "El tránsito es un quilombo."],
+        ["posta", "En serio, de verdad.", "Posta, Buenos Aires te va a gustar."]
+      ];
+
+      const songs = [
+        ["De música ligera", "Soda Stereo", "Un clásico enorme del rock argentino.", "https://www.youtube.com/results?search_query=Soda+Stereo+De+musica+ligera"],
+        ["11 y 6", "Fito Páez", "Una canción narrativa, porteña, sensible.", "https://www.youtube.com/results?search_query=Fito+Paez+11+y+6"],
+        ["Nos siguen pegando abajo", "Charly García", "Charly en modo rock argentino inoxidable.", "https://www.youtube.com/results?search_query=Charly+Garcia+Nos+siguen+pegando+abajo"],
+        ["Matador", "Los Fabulosos Cadillacs", "Energía latina con sello argentino.", "https://www.youtube.com/results?search_query=Los+Fabulosos+Cadillacs+Matador"],
+        ["Alfonsina y el mar", "Mercedes Sosa", "Una voz fundamental de la música argentina.", "https://www.youtube.com/results?search_query=Mercedes+Sosa+Alfonsina+y+el+mar"],
+        ["Muchachos", "La Mosca", "Canción de cancha reciente, mundialera y muy argentina.", "https://www.youtube.com/results?search_query=La+Mosca+Muchachos"]
+      ];
+
+      const comparisons = [
+        ["Horarios", "Se cena tarde: muchas veces después de las 21:00.", "La cena suele ser más temprano.", "Si a las 20:00 nadie tiene hambre, no es falla del sistema."],
+        ["Saludo", "Un beso en la mejilla es común incluso entre conocidos.", "También hay cercanía, pero cambia según región y contexto.", "Argentina tiene modo confianza bastante rápido."],
+        ["Bus", "En Buenos Aires se dice colectivo o bondi.", "En Colombia puede ser bus, buseta o colectivo según la zona.", "Palabra clave para desbloquear ciudad: bondi."],
+        ["Fútbol", "La conversación puede ponerse intensa muy rápido.", "También hay pasión fuerte por el fútbol.", "Tema recomendado: preguntar, escuchar y no subestimar rivalidades."],
+        ["Café", "El café notable y la merienda tienen vida propia.", "El café colombiano tiene identidad mundial.", "Este cruce cultural se resuelve probando ambos, obvio."]
+      ];
+
+      const historyFacts = [
+        ["1810", "Revolución de Mayo", "En mayo de 1810 se formó el primer gobierno patrio. No fue todavía la independencia formal, pero sí un paso enorme."],
+        ["1816", "Independencia", "El 9 de julio de 1816 se declaró la independencia en Tucumán. Por eso el 9 de Julio es fecha patria."],
+        ["1812", "Bandera argentina", "Manuel Belgrano creó la bandera argentina en 1812. Celeste y blanco: imposible que no aparezcan en algún plan."],
+        ["1853", "Constitución", "La Constitución Nacional se sancionó en 1853 y organizó las bases institucionales del país."],
+        ["1880-1930", "Inmigración", "Argentina recibió millones de inmigrantes, especialmente europeos. Buenos Aires cambió muchísimo por esa mezcla."],
+        ["1912", "Ley Sáenz Peña", "Esta ley estableció el voto secreto y obligatorio para varones, un cambio clave para la democracia argentina."],
+        ["1945", "17 de octubre", "El 17 de octubre de 1945 es una fecha central para entender el nacimiento del peronismo como movimiento político."],
+        ["1955", "Golpes y crisis", "La historia argentina del siglo XX tuvo varios golpes de Estado. Entender eso ayuda a leer muchas conversaciones actuales."],
+        ["1976-1983", "Dictadura", "La última dictadura fue un período de terrorismo de Estado. Es una herida muy importante en la memoria argentina."],
+        ["1983", "Vuelta de la democracia", "En 1983 Argentina recuperó la democracia con la elección de Raúl Alfonsín."],
+        ["1985", "Juicio a las Juntas", "Argentina juzgó a los líderes de la dictadura en democracia. Fue un hecho histórico enorme en derechos humanos."],
+        ["2001", "Crisis de 2001", "La crisis de 2001 marcó mucho a la sociedad argentina. Todavía aparece en relatos familiares y cultura popular."],
+        ["2010", "Bicentenario", "En 2010 Argentina celebró 200 años de la Revolución de Mayo con festejos masivos en Buenos Aires."]
+      ];
+
+      const photoItems = [
+        {
+          area: "La Boca",
+          title: "Caminito",
+          text: "Colores, conventillos y una de las postales más reconocibles de la ciudad.",
+          image: "https://upload.wikimedia.org/wikipedia/commons/1/1e/El_Caminito_de_La_Boca_-_Buenos-Aires.jpg"
+        },
+        {
+          area: "Centro",
+          title: "9 de Julio y Obelisco",
+          text: "Una avenida gigante, ritmo de ciudad y una aguja imposible de no mirar.",
+          image: "https://upload.wikimedia.org/wikipedia/commons/1/11/Avenida_9_de_Julio_y_Obelisco.jpg"
+        },
+        {
+          area: "Plaza de Mayo",
+          title: "Casa Rosada",
+          text: "Uno de los puntos históricos y políticos más importantes del país.",
+          image: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Casa_Rosada%2C_Buenos_Aires%2C_Argentina.jpg"
+        },
+        {
+          area: "San Nicolás",
+          title: "Teatro Colón",
+          text: "Una fachada elegante y una sala famosa por su acústica.",
+          image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg/960px-Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg"
+        },
+        {
+          area: "Belgrano",
+          title: "Barrio Chino",
+          text: "Arcos, locales, sabores nuevos y una mini vuelta cultural dentro de la ciudad.",
+          image: "https://upload.wikimedia.org/wikipedia/commons/3/38/BarrioChino2.jpg"
+        }
+      ];
+
+      const eggs = [
+        {
+          id: "azul-oro",
+          title: "La casa de dos colores",
+          mode: "answer",
+          riddle: "Hay una casa que no vive en silencio: tiembla, canta y se viste con dos colores. No es un museo cualquiera, pero guarda pasión como si fuera historia.",
+          hint: "Dos colores: azul y oro.",
+          answers: ["bombonera", "la bombonera", "boca", "boca juniors"],
+          unlockAt: "2026-07-20T09:00:00-03:00",
+          reward: "Bien. Hay una parada futbolera con mucho volumen emocional."
+        },
+        {
+          id: "aguja-blanca",
+          title: "La aguja quieta",
+          mode: "answer",
+          riddle: "No marca la hora, pero todos la usan para ubicarse. Está parada en una avenida enorme y mira pasar la ciudad sin moverse.",
+          hint: "Blanca, alta y muy porteña.",
+          answers: ["obelisco", "el obelisco"],
+          unlockAt: "2026-07-23T09:00:00-03:00",
+          reward: "Exacto. Hay un clásico de Buenos Aires en el mapa."
+        },
+        {
+          id: "plaza-memoria",
+          title: "El tablero donde empezó mucho",
+          mode: "think",
+          riddle: "Una plaza, una casa de color imposible, un edificio antiguo y mucha historia junta. No es una sola parada: es como mirar varias capas del país al mismo tiempo.",
+          hint: "Pensá en poder, revolución y centro histórico.",
+          answers: [],
+          unlockAt: "2026-07-26T09:00:00-03:00",
+          reward: "Teoría guardada. Este día viene con historia argentina concentrada."
+        },
+        {
+          id: "fachada-canta",
+          title: "La fachada que canta",
+          mode: "answer",
+          riddle: "Por fuera parece un palacio. Por dentro, dicen que una sola voz puede llenar toda la sala. Capaz no entremos, pero igual merece mirar hacia arriba.",
+          hint: "No todo teatro es cualquier teatro.",
+          answers: ["teatro colon", "teatro colón", "colon", "colón"],
+          unlockAt: "2026-07-29T09:00:00-03:00",
+          reward: "Sí. Hay una joya de la ciudad esperando ser vista."
+        },
+        {
+          id: "portal-sabores",
+          title: "El portal de colores",
+          mode: "answer",
+          riddle: "Sin salir de Buenos Aires, cruzamos una puerta simbólica. Hay arcos, colores, sabores nuevos y una sensación de mini viaje dentro del viaje.",
+          hint: "Queda por Belgrano.",
+          answers: ["barrio chino", "chinatown", "belgrano"],
+          unlockAt: "2026-08-01T09:00:00-03:00",
+          reward: "Correcto. Ese paseo viene con cambio de mundo incluido."
+        },
+        {
+          id: "norte-rio",
+          title: "Una coordenada al norte",
+          mode: "think",
+          riddle: "No todo Buenos Aires es centro. A veces hay que subir un poco en el mapa, acercarse al río y dejar que la ciudad cambie de ritmo.",
+          hint: "Zona norte de la ciudad.",
+          answers: [],
+          unlockAt: "2026-08-04T09:00:00-03:00",
+          reward: "Teoría guardada. Hay una parada porteña más al norte."
+        },
+        {
+          id: "mapa-pan",
+          title: "El mapa entre dos panes",
+          mode: "answer",
+          riddle: "No hace falta pasaporte para elegir país. Esta vez el viaje puede venir con papas, salsa y nombres internacionales entre dos panes.",
+          hint: "El lugar se llama como una palabra de agradecimiento en alemán.",
+          answers: ["danke", "hamburgueseria danke", "hamburguesería danke"],
+          unlockAt: "2026-08-07T09:00:00-03:00",
+          reward: "Eso. Hay una hamburguesa viajera en el futuro cercano."
+        },
+        {
+          id: "frio-palito",
+          title: "El frío prometido",
+          mode: "answer",
+          riddle: "Ya te dijeron que esto iba a pasar, así que no cuenta como spoiler total. Puede venir en palito, puede venir bañado, y suele mejorar cualquier caminata.",
+          hint: "Postre frío, bastante universal.",
+          answers: ["helado", "luccianos", "lucciano's", "lucciano"],
+          unlockAt: "2026-08-10T09:00:00-03:00",
+          reward: "Sí. Esa promesa dulce sigue en pie."
+        },
+        {
+          id: "ocho-compases",
+          title: "Ocho compases sin nombrarlo",
+          mode: "answer",
+          riddle: "Dos personas se entienden sin explicar nada. Una ciudad respira lento, el piso se vuelve escenario y la historia se cuenta con pasos.",
+          hint: "No lo digo en el título porque sería demasiado fácil.",
+          answers: ["tango", "milonga", "show de tango", "bailar tango"],
+          unlockAt: "2026-08-13T09:00:00-03:00",
+          reward: "Ajá. La ciudad también se escucha con los pies."
+        },
+        {
+          id: "mesa-celeste",
+          title: "La mesa celeste y blanca",
+          mode: "think",
+          riddle: "Hay reuniones que no son solo reuniones. Esta tiene colores, guiños locales y gente lista para convertir una noche en bienvenida.",
+          hint: "No es salida turística: es plan con personas.",
+          answers: [],
+          unlockAt: "2026-08-16T09:00:00-03:00",
+          reward: "Teoría guardada. Esta sorpresa tiene bastante Argentina encima."
+        },
+        {
+          id: "capas-dulces",
+          title: "Mundial de círculos",
+          mode: "answer",
+          riddle: "No se juega con pelota, pero hay competencia. Hay capas, dulce, chocolate, debate serio y una misión: probar para decidir.",
+          hint: "Redondos, argentinos y peligrosamente adictivos.",
+          answers: ["alfajor", "alfajores", "mundial de alfajores"],
+          unlockAt: "2026-08-19T09:00:00-03:00",
+          reward: "Correcto. Se viene una competencia dulce muy importante."
+        },
+        {
+          id: "uvas-copa",
+          title: "Geografía en una copa",
+          mode: "answer",
+          riddle: "Un país también se puede probar de a sorbos. A veces aparece Mendoza, a veces aparece el sur, y de pronto una copa cuenta paisaje.",
+          hint: "Uvas, charla y brindis.",
+          answers: ["vino", "vinos", "cata de vinos", "probar vinos"],
+          unlockAt: "2026-08-22T09:00:00-03:00",
+          reward: "Sí. Habrá copas con acento argentino."
+        },
+        {
+          id: "brasas-amigos",
+          title: "Humo bueno",
+          mode: "answer",
+          riddle: "Si ves humo, no siempre hay problema. A veces hay amigos, fuego, paciencia y una mesa que tarda porque así debe ser.",
+          hint: "Plan clásico argentino con parrilla.",
+          answers: ["asado", "parrilla", "asadito"],
+          unlockAt: "2026-08-25T09:00:00-03:00",
+          reward: "Exacto. Hay brasas y amigos cerca."
+        },
+        {
+          id: "diez-caen",
+          title: "Diez esperando caer",
+          mode: "answer",
+          riddle: "Hay una pista, pero no es de adivinanza. Hay zapatos raros, una bola pesada y diez que esperan su destino al fondo.",
+          hint: "Ruido satisfactorio cuando sale bien.",
+          answers: ["bowling", "bolos", "jugar bowling"],
+          unlockAt: "2026-08-28T09:00:00-03:00",
+          reward: "Sí. Se viene puntería y posible humillación amistosa."
+        },
+        {
+          id: "otra-escena",
+          title: "Entrar en otra escena",
+          mode: "think",
+          riddle: "A veces no mirás algo: entrás. Las paredes, la luz y el sonido pueden hacer que un plan parezca otro mundo por un rato.",
+          hint: "No es cine normal, no es museo normal.",
+          answers: [],
+          unlockAt: "2026-08-31T09:00:00-03:00",
+          reward: "Teoría guardada. Tal vez haya una experiencia para meterse adentro."
+        }
+      ];
+
+      function normalize(text) {
+        return text
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .trim()
+          .toLowerCase()
+          .replace(/\s+/g, " ");
+      }
+
+      function dayKey(date = new Date()) {
+        return new Intl.DateTimeFormat("en-CA", {
+          timeZone: "America/Argentina/Buenos_Aires",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit"
+        }).format(date);
+      }
+
+      function dayIndex() {
+        const today = new Date(`${dayKey()}T00:00:00-03:00`);
+        return Math.max(0, Math.floor((today - CONTENT_START) / 86400000));
+      }
+
+      function formatDate(dateString) {
+        return new Intl.DateTimeFormat("es-AR", {
+          timeZone: "America/Argentina/Buenos_Aires",
+          weekday: "long",
+          day: "numeric",
+          month: "long"
+        }).format(new Date(`${dateString}T12:00:00-03:00`));
+      }
+
+      function parseItinerary() {
+        return ITINERARY_CSV.split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean)
+          .map((line, index) => {
+            const [date, time, period, title, zone, description, surprise, unlockAt, eggId] = line.split("|").map((item) => item.trim());
+            return {
+              id: `plan-${index}`,
+              date,
+              time,
+              period,
+              title,
+              zone,
+              description,
+              surprise: surprise === "si",
+              unlockAt,
+              eggId
+            };
+          });
+      }
+
+      function solvedEggs() {
+        return JSON.parse(localStorage.getItem("solved-eggs") || "[]");
+      }
+
+      function setSolvedEgg(id) {
+        const solved = new Set(solvedEggs());
+        solved.add(id);
+        localStorage.setItem("solved-eggs", JSON.stringify([...solved]));
+      }
+
+      function isEggSolved(id) {
+        return solvedEggs().includes(id);
+      }
+
+      function isTimeUnlocked(unlockAt) {
+        return Boolean(unlockAt && new Date(unlockAt) <= new Date());
+      }
+
+      function isPlanUnlocked(plan) {
+        if (!plan.surprise) return true;
+        return isTimeUnlocked(plan.unlockAt) || (plan.eggId && isEggSolved(plan.eggId));
+      }
+
+      function eggById(id) {
+        return eggs.find((egg) => egg.id === id);
+      }
+
+      function plansByDate() {
+        return parseItinerary().reduce((acc, plan) => {
+          acc[plan.date] = acc[plan.date] || [];
+          acc[plan.date].push(plan);
+          return acc;
+        }, {});
+      }
+
+      function updateCountdown() {
+        const diff = Math.max(ARRIVAL_AT - new Date(), 0);
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById("days").textContent = String(days).padStart(2, "0");
+        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+
+        const total = ARRIVAL_AT - CONTENT_START;
+        const elapsed = Math.min(Math.max(new Date() - CONTENT_START, 0), total);
+        const progress = total > 0 ? Math.round((elapsed / total) * 100) : 100;
+        const remaining = Math.max(100 - progress, 0);
+        document.getElementById("bar").style.width = `${progress}%`;
+        document.getElementById("progressText").textContent =
+          diff === 0 ? "¡Llegaste a Buenos Aires! La aventura empieza ahora." : `Faltan ${days} días, ${hours} horas y ${minutes} minutos.`;
+        document.getElementById("progressPercent").textContent =
+          diff === 0 ? "100% llegó la aventura" : `${progress}% completado · falta ${remaining}%`;
+      }
+
+      function renderDailyCulture() {
+        const index = dayIndex();
+        const quote = quotes[index % quotes.length];
+        const fact = facts[index % facts.length];
+        const word = lunfardo[index % lunfardo.length];
+        const song = songs[index % songs.length];
+        const comparison = comparisons[index % comparisons.length];
+
+        document.getElementById("quoteTitle").textContent = quote[0];
+        document.getElementById("quoteText").textContent = quote[1];
+        document.getElementById("factTitle").textContent = fact[0];
+        document.getElementById("factText").textContent = fact[1];
+        document.getElementById("lunfardoWord").textContent = word[0];
+        document.getElementById("lunfardoMeaning").textContent = word[1];
+        document.getElementById("lunfardoExample").textContent = word[2];
+        document.getElementById("songTitle").textContent = `${song[0]} - ${song[1]}`;
+        document.getElementById("songContext").textContent = song[2];
+        document.getElementById("songLink").href = song[3];
+        document.getElementById("comparisonTopic").textContent = comparison[0];
+        document.getElementById("comparisonArgentina").textContent = comparison[1];
+        document.getElementById("comparisonColombia").textContent = comparison[2];
+        document.getElementById("comparisonNote").textContent = comparison[3];
+      }
+
+      function renderQuiz() {
+        const current = quiz[dayIndex() % quiz.length];
+        const answers = document.getElementById("quizAnswers");
+        const result = document.getElementById("quizResult");
+        document.getElementById("quizQuestion").textContent = current.q;
+        answers.innerHTML = "";
+        result.hidden = true;
+
+        current.a.forEach((answer, index) => {
+          const button = document.createElement("button");
+          button.className = "answer";
+          button.type = "button";
+          button.textContent = answer;
+          button.addEventListener("click", () => {
+            document.querySelectorAll("#quizAnswers .answer").forEach((item) => item.classList.remove("correct", "wrong"));
+            button.classList.add(index === current.correct ? "correct" : "wrong");
+            result.hidden = false;
+            result.textContent = index === current.correct ? current.note : "Cerca, pero no. Probá otra opción.";
+          });
+          answers.appendChild(button);
+        });
+      }
+
+      function renderHistory() {
+        const current = historyFacts[dayIndex() % historyFacts.length];
+        document.getElementById("historyEra").textContent = current[0];
+        document.getElementById("historyTitle").textContent = current[1];
+        document.getElementById("historyText").textContent = current[2];
+      }
+
+      function renderMonthCalendar() {
+        const container = document.getElementById("monthCalendar");
+        const grouped = plansByDate();
+        const today = dayKey();
+        const firstWeekday = 1; // 1 de septiembre de 2026 cae martes; lunes = 0.
+        const cells = [];
+
+        for (let index = 0; index < firstWeekday; index += 1) {
+          cells.push('<div class="month-day empty" aria-hidden="true"></div>');
+        }
+
+        for (let day = 1; day <= 30; day += 1) {
+          const date = `2026-09-${String(day).padStart(2, "0")}`;
+          const dayPlans = grouped[date] || [];
+          const isVisitDay = date >= "2026-09-12" && date <= "2026-09-21";
+          const hasUnlocked = dayPlans.some((plan) => isPlanUnlocked(plan));
+          const stateClass = !isVisitDay ? "away" : hasUnlocked ? "unlocked-day" : "locked-day";
+          const stateText = !isVisitDay ? "fuera" : hasUnlocked ? "revelado" : "bloqueado";
+          const countText = dayPlans.length > 0 ? `${dayPlans.length} pista${dayPlans.length === 1 ? "" : "s"}` : "";
+          cells.push(`
+            <div class="month-day ${stateClass} ${date === today ? "today" : ""}">
+              <span class="day-number">${day}</span>
+              <span class="day-state">${stateText}${countText ? `<br>${countText}` : ""}</span>
+            </div>
+          `);
+        }
+
+        container.innerHTML = cells.join("");
+      }
+
+      function renderEggs() {
+        const list = document.getElementById("eggList");
+        list.innerHTML = "";
+
+        eggs.forEach((egg) => {
+          const unlocked = isTimeUnlocked(egg.unlockAt);
+          const solved = isEggSolved(egg.id);
+          const article = document.createElement("article");
+          article.className = `egg ${unlocked ? "" : "locked"}`;
+
+          if (!unlocked) {
+            article.innerHTML = `
+              <div class="mini-label">Pista escondida</div>
+              <h3>${egg.title}</h3>
+              <p>Esta pista todavía está escondida. Se desbloqueará más cerca del viaje.</p>
+              <div class="stack" style="margin-top: 12px">
+                <input class="answer-input" value="Disponible el ${new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long" }).format(new Date(egg.unlockAt))}" aria-label="Respuesta bloqueada para ${egg.title}" disabled />
+                <button class="button" type="button" disabled>Responder después</button>
+              </div>
+            `;
+            list.appendChild(article);
+            return;
+          }
+
+          article.innerHTML = `
+            <div class="mini-label">${solved ? "Pista resuelta" : "Pista secreta"}</div>
+            <h3>${egg.title}</h3>
+            <div class="clue-date">Pista disponible desde el ${new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long" }).format(new Date(egg.unlockAt))}</div>
+            <p><strong>${egg.riddle}</strong></p>
+            <p>${egg.hint}</p>
+            ${
+              solved
+                ? `<div class="result">${egg.reward}</div>`
+                : egg.mode === "think"
+                  ? `<div class="stack" style="margin-top: 12px">
+                    <button class="button save-theory" type="button">Guardar mi teoría</button>
+                    <div class="result" hidden></div>
+                  </div>`
+                : `<div class="stack" style="margin-top: 12px">
+                    <input class="answer-input" placeholder="Tu respuesta" aria-label="Respuesta para ${egg.title}" />
+                    <button class="button check-egg" type="button">Responder</button>
+                    <div class="result" hidden></div>
+                  </div>`
+            }
+          `;
+
+          if (!solved && egg.mode === "think") {
+            article.querySelector(".save-theory").addEventListener("click", () => {
+              const result = article.querySelector(".result");
+              setSolvedEgg(egg.id);
+              result.hidden = false;
+              result.textContent = egg.reward;
+              renderEggs();
+              renderMonthCalendar();
+              renderCalendar();
+            });
+          }
+
+          if (!solved && egg.mode !== "think") {
+            article.querySelector(".check-egg").addEventListener("click", () => {
+              const input = article.querySelector(".answer-input");
+              const result = article.querySelector(".result");
+              const ok = egg.answers.some((answer) => normalize(answer) === normalize(input.value));
+              result.hidden = false;
+              if (ok) {
+                setSolvedEgg(egg.id);
+                result.textContent = egg.reward;
+                renderEggs();
+                renderMonthCalendar();
+                renderCalendar();
+              } else {
+                result.textContent = "Todavía no. Probá con otra idea.";
+              }
+            });
+          }
+
+          list.appendChild(article);
+        });
+      }
+
+      function renderCalendar() {
+        const calendar = document.getElementById("calendar");
+        const plans = parseItinerary();
+        const grouped = plansByDate();
+
+        calendar.innerHTML = Object.entries(grouped)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([date, dayPlans]) => {
+            const plansHtml = dayPlans
+              .map((plan) => {
+                const unlocked = isPlanUnlocked(plan);
+                if (!unlocked) {
+                  const egg = eggById(plan.eggId);
+                  return `
+                    <article class="plan locked">
+                      <div class="mini-label">Bloqueado</div>
+                      <h3>${egg ? egg.title : "Hay una pista para este momento"}</h3>
+                      <p>El plan todavía no se revela. Lugar orientativo: <strong>${plan.zone}</strong>.</p>
+                      <div class="chips">
+                        <span class="chip yellow">${plan.period}</span>
+                        <span class="chip">${egg ? "Pista vinculada" : "Se revela pronto"}</span>
+                      </div>
+                    </article>
+                  `;
+                }
+
+                return `
+                  <article class="plan">
+                    <div class="mini-label">${plan.period}</div>
+                    <h3>${plan.title}</h3>
+                    <div class="chips">
+                      <span class="chip yellow">${plan.time}</span>
+                      <span class="chip">${plan.zone}</span>
+                    </div>
+                    <p>${plan.description}</p>
+                  </article>
+                `;
+              })
+              .join("");
+
+            return `
+              <section class="day-card">
+                <div class="day-head">
+                  <div>
+                    <p class="date">${formatDate(date)}</p>
+                    <h3>${dayPlans.length} plan${dayPlans.length === 1 ? "" : "es"}</h3>
+                  </div>
+                  <span class="pill">${date}</span>
+                </div>
+                <div class="plan-list">${plansHtml}</div>
+              </section>
+            `;
+          })
+          .join("");
+      }
+
+      function renderPhotos() {
+        const grid = document.getElementById("photoGrid");
+        const start = dayIndex() % photoItems.length;
+        const selected = Array.from({ length: 3 }, (_, index) => photoItems[(start + index) % photoItems.length]);
+        grid.innerHTML = "";
+
+        selected.forEach((photo) => {
+          const card = document.createElement("article");
+          card.className = "photo-card";
+
+          const img = document.createElement("img");
+          img.src = photo.image;
+          img.alt = photo.title;
+          img.loading = "lazy";
+          img.referrerPolicy = "no-referrer";
+          img.addEventListener("error", () => {
+            img.replaceWith(Object.assign(document.createElement("div"), {
+              className: "photo-fallback",
+              textContent: "🇦🇷"
+            }));
+          });
+
+          const body = document.createElement("div");
+          body.innerHTML = `
+            <div class="mini-label">${photo.area}</div>
+            <h3>${photo.title}</h3>
+            <p>${photo.text}</p>
+          `;
+
+          card.append(img, body);
+          grid.appendChild(card);
+        });
+      }
+
+      function setActiveTab(tabId, updateHash = true) {
+        const target = document.getElementById(tabId) ? tabId : "inicio";
+        document.querySelectorAll(".tab-section").forEach((section) => {
+          section.classList.toggle("active", section.id === target);
+        });
+        document.querySelectorAll("[data-tab]").forEach((button) => {
+          button.classList.toggle("active", button.dataset.tab === target);
+        });
+        if (updateHash) {
+          history.replaceState(null, "", `#${target}`);
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function setupTabs() {
+        document.querySelectorAll("[data-tab]").forEach((button) => {
+          button.addEventListener("click", () => setActiveTab(button.dataset.tab));
+        });
+
+        const initialTab = window.location.hash.replace("#", "");
+        if (initialTab) {
+          setActiveTab(initialTab, false);
+        }
+      }
+
+      function setupMessageBox() {
+        const input = document.getElementById("messageText");
+        const save = document.getElementById("saveMessage");
+        const copy = document.getElementById("copyMessage");
+        const email = document.getElementById("emailMessage");
+        const result = document.getElementById("messageResult");
+        const stored = localStorage.getItem("camilo-message-to-dani") || "";
+        input.value = stored;
+
+        save.addEventListener("click", () => {
+          localStorage.setItem("camilo-message-to-dani", input.value.trim());
+          result.hidden = false;
+          result.textContent = input.value.trim()
+            ? "Mensaje guardado en este navegador."
+            : "El mensaje quedó vacío por ahora.";
+        });
+
+        copy.addEventListener("click", async () => {
+          const text = input.value.trim();
+          result.hidden = false;
+          if (!text) {
+            result.textContent = "Todavía no hay mensaje para copiar.";
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(text);
+            result.textContent = "Mensaje copiado. Ya se puede mandar.";
+          } catch {
+            result.textContent = "No pude copiarlo automáticamente. Seleccioná el texto y copialo manualmente.";
+          }
+        });
+
+        email.addEventListener("click", () => {
+          const text = input.value.trim();
+          result.hidden = false;
+          if (!text) {
+            result.textContent = "Todavía no hay mensaje para preparar.";
+            return;
+          }
+          const subject = encodeURIComponent("Mensaje para Dani desde la aventura BA");
+          const body = encodeURIComponent(text);
+          window.location.href = `mailto:Danielasucunza@hotmail.com?subject=${subject}&body=${body}`;
+          result.textContent = "Se abrió el mail con el mensaje. Falta elegir destinatario y enviarlo.";
+        });
+      }
+
+      setupTabs();
+      renderDailyCulture();
+      renderQuiz();
+      renderHistory();
+      renderMonthCalendar();
+      renderEggs();
+      renderCalendar();
+      renderPhotos();
+      setupMessageBox();
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
