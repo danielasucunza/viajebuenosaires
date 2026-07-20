@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>camiloneta BA</title>
+    <title>Camiloneta BA</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="manifest" href="manifest.webmanifest" />
@@ -90,21 +90,23 @@
       }
 
       .hero-top {
-        display: block;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+        gap: 8px;
         position: relative;
-        min-height: 48px;
-        padding-right: 112px;
+        min-height: 0;
+        padding-right: 0;
       }
 
       .hero-top .pill {
-        align-items: flex-start;
+        align-items: center;
+        line-height: 1.15;
       }
 
       .hero-mascot {
-        position: absolute;
-        top: -8px;
-        right: 0;
-        width: clamp(72px, 18vw, 104px);
+        width: clamp(70px, 19vw, 88px);
+        justify-self: end;
         border-radius: 24px;
         background: transparent;
         padding: 0;
@@ -168,9 +170,9 @@
       }
 
       h1 {
-        margin-top: 18px;
+        margin-top: 14px;
         max-width: 820px;
-        font-size: clamp(34px, 7vw, 58px);
+        font-size: clamp(30px, 9vw, 58px);
       }
 
       h2 {
@@ -541,6 +543,229 @@
         background: transparent;
       }
 
+      .geo-layout {
+        display: grid;
+        gap: 16px;
+      }
+
+      .geo-map-card {
+        margin-bottom: 16px;
+      }
+
+      .geo-map-card h3,
+      .province-card h3 {
+        margin-bottom: 18px;
+      }
+
+      .map-visual {
+        display: block;
+        gap: 14px;
+        margin-bottom: 18px;
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(115, 197, 234, 0.24), rgba(255, 255, 255, 0.84)),
+          white;
+        padding: 14px;
+      }
+
+      .map-frame {
+        position: relative;
+        width: min(620px, 100%);
+        margin: 0 auto;
+        border-radius: 22px;
+        background: white;
+        padding: 10px;
+        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08);
+      }
+
+      .map-visual img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 720px;
+        object-fit: contain;
+        border-radius: 16px;
+      }
+
+      .malvinas-marker {
+        position: absolute;
+        right: 8%;
+        bottom: 12%;
+        display: grid;
+        gap: 5px;
+        max-width: 150px;
+        border: 1px solid rgba(16, 42, 86, 0.16);
+        border-radius: 18px;
+        background: rgba(223, 244, 255, 0.94);
+        padding: 8px 10px;
+        color: var(--navy);
+        font-size: 11px;
+        font-weight: 950;
+        line-height: 1.2;
+        box-shadow: 0 10px 24px rgba(16, 42, 86, 0.12);
+      }
+
+      .malvinas-islands {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .malvinas-islands span {
+        display: block;
+        width: 18px;
+        height: 12px;
+        border-radius: 58% 42% 56% 44%;
+        background: var(--yellow);
+        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.16);
+        transform: rotate(-14deg);
+      }
+
+      .malvinas-islands span + span {
+        width: 14px;
+        height: 10px;
+        transform: rotate(18deg);
+      }
+
+      .map-error {
+        display: none;
+        border: 1px dashed rgba(16, 42, 86, 0.22);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 18px;
+        color: var(--navy);
+        font-weight: 900;
+        text-align: center;
+      }
+
+      .map-note {
+        margin: 12px auto 0;
+        width: min(620px, 100%);
+        color: rgba(38, 50, 74, 0.68);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .geo-map-board {
+        display: grid;
+        gap: 12px;
+      }
+
+      .geo-zone {
+        border: 1px solid rgba(16, 42, 86, 0.1);
+        border-radius: 24px;
+        background:
+          linear-gradient(135deg, rgba(115, 197, 234, 0.22), rgba(255, 255, 255, 0.82)),
+          white;
+        padding: 14px;
+        box-shadow: 0 12px 30px rgba(16, 42, 86, 0.08);
+      }
+
+      .geo-zone:nth-child(2n) {
+        background:
+          linear-gradient(135deg, rgba(247, 201, 72, 0.24), rgba(255, 255, 255, 0.84)),
+          white;
+      }
+
+      .geo-zone-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .geo-zone-title strong {
+        color: var(--navy);
+        font-size: 18px;
+      }
+
+      .geo-zone-title span {
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        padding: 5px 9px;
+        color: rgba(16, 42, 86, 0.72);
+        font-size: 11px;
+        font-weight: 950;
+      }
+
+      .geo-province-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 8px;
+      }
+
+      .geo-province {
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.74);
+        padding: 10px 11px;
+        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08);
+      }
+
+      .geo-province strong {
+        display: block;
+        color: var(--navy);
+        font-size: 14px;
+        line-height: 1.15;
+      }
+
+      .geo-province span {
+        display: block;
+        margin-top: 4px;
+        color: rgba(38, 50, 74, 0.68);
+        font-size: 12px;
+        font-weight: 850;
+        line-height: 1.25;
+      }
+
+      .argentina-map {
+        display: grid;
+        gap: 8px;
+        border-radius: 28px;
+        background:
+          linear-gradient(90deg, rgba(115, 197, 234, 0.2), rgba(255, 255, 255, 0.74), rgba(115, 197, 234, 0.2)),
+          white;
+        padding: 18px;
+      }
+
+      .map-region {
+        display: grid;
+        align-content: center;
+        min-height: 64px;
+        border: 1px solid rgba(16, 42, 86, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.78);
+        padding: 10px 14px;
+        color: var(--navy);
+        box-shadow: 0 10px 26px rgba(16, 42, 86, 0.08);
+      }
+
+      .map-region strong,
+      .province-item strong {
+        display: block;
+        color: var(--navy);
+      }
+
+      .map-region span,
+      .province-item span {
+        color: rgba(38, 50, 74, 0.66);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .province-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+        gap: 10px;
+      }
+
+      .province-item {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.72);
+        padding: 10px 12px;
+      }
+
       .tabs {
         position: sticky;
         top: 0;
@@ -739,6 +964,19 @@
           padding: 12px;
         }
 
+        .hero-top {
+          display: block;
+          min-height: 48px;
+          padding-right: 112px;
+        }
+
+        .hero-mascot {
+          position: absolute;
+          top: -8px;
+          right: 0;
+          width: clamp(84px, 8vw, 104px);
+        }
+
         .month-card {
           padding: 28px;
         }
@@ -791,6 +1029,23 @@
         .photo-grid {
           grid-template-columns: repeat(3, 1fr);
         }
+
+        .geo-layout {
+          grid-template-columns: 0.85fr 1.15fr;
+          align-items: start;
+        }
+
+        .map-visual {
+          padding: 20px;
+        }
+
+        .geo-map-board {
+          grid-template-columns: 1fr;
+        }
+
+        .geo-zone.patagonia {
+          grid-column: 1 / -1;
+        }
       }
     </style>
   </head>
@@ -801,6 +1056,7 @@
         <button class="tab-button" type="button" data-tab="mes">Mes</button>
         <button class="tab-button" type="button" data-tab="viaje">Viaje</button>
         <button class="tab-button" type="button" data-tab="cultura">Cultura</button>
+        <button class="tab-button" type="button" data-tab="geografia">Geografía</button>
         <button class="tab-button" type="button" data-tab="historia">Historia</button>
         <button class="tab-button" type="button" data-tab="pistas">Pistas</button>
         <button class="tab-button" type="button" data-tab="fotos">Fotos</button>
@@ -925,6 +1181,52 @@
         </div>
       </section>
 
+      <section id="geografia" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Geografía argentina</h2>
+            <p>Mapa, provincias, capitales y un dato diario para ubicarse mejor antes de aterrizar.</p>
+          </div>
+          <span class="pill">🇦🇷 mapa federal</span>
+        </div>
+        <article class="card geo-map-card">
+          <div class="mini-label">Mapa con provincias y capitales</div>
+          <h3>Argentina completa, de norte a sur</h3>
+          <div class="map-visual">
+            <div class="map-frame">
+              <img
+                class="argentina-real-map"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Argentina_-_mapa_de_las_provincias.svg/960px-Argentina_-_mapa_de_las_provincias.svg.png"
+                alt="Mapa de Argentina con nombres de provincias"
+                referrerpolicy="no-referrer"
+              />
+              <div class="map-error">El mapa no cargó en este navegador. Las provincias y capitales están abajo.</div>
+              <div class="malvinas-marker" aria-label="Islas Malvinas, capital Puerto Argentino">
+                <div class="malvinas-islands"><span></span><span></span></div>
+                <strong>Islas Malvinas</strong>
+                <span>Capital: Puerto Argentino</span>
+              </div>
+            </div>
+            <p class="map-note">
+              Mapa real de Argentina con provincias. Las tarjetas de abajo tienen el detalle completo de capitales.
+            </p>
+          </div>
+          <div class="geo-map-board" id="geoMapBoard" aria-label="Mapa guía de Argentina con provincias y capitales"></div>
+        </article>
+        <div class="geo-layout">
+          <article class="card">
+            <div class="mini-label">Dato geográfico del día</div>
+            <h3 id="geoFactTitle">Mapa mental</h3>
+            <p id="geoFactText">Cada día aparece una coordenada nueva.</p>
+          </article>
+          <article class="card province-card">
+            <div class="mini-label">Provincias y capitales</div>
+            <h3>Para no mirar el mapa como si fuera otro continente</h3>
+            <div class="province-grid" id="provinceGrid"></div>
+          </article>
+        </div>
+      </section>
+
       <section id="arg-col" class="tab-section">
         <div class="section-title">
           <div>
@@ -1011,6 +1313,7 @@
       <button type="button" data-tab="mes">Mes</button>
       <button type="button" data-tab="viaje">Viaje</button>
       <button type="button" data-tab="cultura">Cultura</button>
+      <button type="button" data-tab="geografia">Geo</button>
       <button type="button" data-tab="pistas">Pistas</button>
       <button type="button" data-tab="fotos">Fotos</button>
       <button type="button" data-tab="mensaje">Mensaje</button>
@@ -1144,6 +1447,110 @@
         ["2010", "Bicentenario", "En 2010 Argentina celebró 200 años de la Revolución de Mayo con festejos masivos en Buenos Aires."]
       ];
 
+      const geographyFacts = [
+        ["País larguísimo", "Argentina se estira de norte a sur más de 3.600 km: por eso puede tener selva, desierto, glaciares y playas en el mismo país."],
+        ["Capital nacional", "La capital del país es la Ciudad Autónoma de Buenos Aires. La provincia de Buenos Aires tiene otra capital: La Plata."],
+        ["Patagonia", "La Patagonia ocupa el sur del país e incluye paisajes de lagos, montañas, estepa, glaciares y mucho viento."],
+        ["Cuyo", "Mendoza, San Juan y San Luis forman Cuyo. Es una región muy asociada a montañas, vino y cercanía con la Cordillera."],
+        ["NOA", "El Noroeste Argentino tiene quebradas, cerros de colores, altura y mucha historia indígena y colonial."],
+        ["NEA", "El Noreste Argentino tiene ríos enormes, selva y las Cataratas del Iguazú, una de las maravillas naturales del país."],
+        ["Pampa húmeda", "La zona pampeana es una llanura enorme y fértil; ahí están Buenos Aires, Santa Fe, Córdoba y parte de La Pampa."],
+        ["Río de la Plata", "Buenos Aires está sobre el Río de la Plata, que parece mar por lo ancho, aunque técnicamente es un estuario."],
+        ["Cordillera", "Argentina comparte la Cordillera de los Andes con Chile. El Aconcagua, en Mendoza, es la montaña más alta de América."],
+        ["Tierra del Fuego", "Ushuaia, capital de Tierra del Fuego, está entre las ciudades más australes del mundo."],
+        ["Climas", "Argentina tiene climas muy distintos: subtropical en el norte, templado en el centro, árido en Cuyo y frío en el sur."],
+        ["Dos Buenos Aires", "CABA y Provincia de Buenos Aires no son lo mismo. CABA es la capital nacional; La Plata es la capital provincial."]
+      ];
+
+      const provinces = [
+        ["Buenos Aires", "La Plata"],
+        ["Catamarca", "San Fernando del Valle de Catamarca"],
+        ["Chaco", "Resistencia"],
+        ["Chubut", "Rawson"],
+        ["Córdoba", "Córdoba"],
+        ["Corrientes", "Corrientes"],
+        ["Entre Ríos", "Paraná"],
+        ["Formosa", "Formosa"],
+        ["Jujuy", "San Salvador de Jujuy"],
+        ["La Pampa", "Santa Rosa"],
+        ["La Rioja", "La Rioja"],
+        ["Mendoza", "Mendoza"],
+        ["Misiones", "Posadas"],
+        ["Neuquén", "Neuquén"],
+        ["Río Negro", "Viedma"],
+        ["Salta", "Salta"],
+        ["San Juan", "San Juan"],
+        ["San Luis", "San Luis"],
+        ["Santa Cruz", "Río Gallegos"],
+        ["Santa Fe", "Santa Fe"],
+        ["Santiago del Estero", "Santiago del Estero"],
+        ["Tierra del Fuego", "Ushuaia"],
+        ["Tucumán", "San Miguel de Tucumán"],
+        ["CABA", "Ciudad Autónoma de Buenos Aires"]
+      ];
+
+      const provinceRegions = [
+        {
+          name: "Noroeste",
+          note: "altura, quebradas y cerros",
+          className: "noa",
+          items: [
+            ["Jujuy", "San Salvador de Jujuy"],
+            ["Salta", "Salta"],
+            ["Tucumán", "San Miguel de Tucumán"],
+            ["Catamarca", "San Fernando del Valle de Catamarca"],
+            ["La Rioja", "La Rioja"],
+            ["Santiago del Estero", "Santiago del Estero"]
+          ]
+        },
+        {
+          name: "Noreste / Litoral",
+          note: "ríos, selva y calor",
+          className: "nea",
+          items: [
+            ["Misiones", "Posadas"],
+            ["Corrientes", "Corrientes"],
+            ["Chaco", "Resistencia"],
+            ["Formosa", "Formosa"],
+            ["Entre Ríos", "Paraná"]
+          ]
+        },
+        {
+          name: "Cuyo",
+          note: "Andes, vino y montaña",
+          className: "cuyo",
+          items: [
+            ["Mendoza", "Mendoza"],
+            ["San Juan", "San Juan"],
+            ["San Luis", "San Luis"]
+          ]
+        },
+        {
+          name: "Centro, Pampa y Buenos Aires",
+          note: "ciudades grandes y llanura",
+          className: "centro",
+          items: [
+            ["CABA", "Ciudad Autónoma de Buenos Aires"],
+            ["Buenos Aires", "La Plata"],
+            ["Córdoba", "Córdoba"],
+            ["Santa Fe", "Santa Fe"],
+            ["La Pampa", "Santa Rosa"]
+          ]
+        },
+        {
+          name: "Patagonia",
+          note: "sur, viento, lagos y glaciares",
+          className: "patagonia",
+          items: [
+            ["Neuquén", "Neuquén"],
+            ["Río Negro", "Viedma"],
+            ["Chubut", "Rawson"],
+            ["Santa Cruz", "Río Gallegos"],
+            ["Tierra del Fuego", "Ushuaia"]
+          ]
+        }
+      ];
+
       const photoItems = [
         {
           area: "La Boca",
@@ -1179,16 +1586,6 @@
 
       const eggs = [
         {
-          id: "cultura-argentina",
-          title: "Manual secreto de supervivencia",
-          mode: "think",
-          riddle: "Antes de salir a conquistar la ciudad, hay que aprender sus códigos: palabras raras, costumbres, comida, fútbol y pequeñas reglas no escritas.",
-          hint: "No es una salida: es una mini inducción para entender mejor dónde aterrizaste.",
-          answers: [],
-          unlockAt: "2026-08-02T09:00:00-03:00",
-          reward: "Teoría guardada. Este plan viene con modo Argentina intensivo."
-        },
-        {
           id: "azul-oro",
           title: "La casa de dos colores",
           mode: "answer",
@@ -1199,13 +1596,23 @@
           reward: "Bien. Hay una parada futbolera con mucho volumen emocional."
         },
         {
+          id: "cultura-argentina",
+          title: "Manual secreto de supervivencia",
+          mode: "think",
+          riddle: "Antes de salir a conquistar la ciudad, hay que aprender sus códigos: palabras raras, costumbres, comida, fútbol y pequeñas reglas no escritas.",
+          hint: "No es una salida: es una mini inducción para entender mejor dónde aterrizaste.",
+          answers: [],
+          unlockAt: "2026-07-23T09:00:00-03:00",
+          reward: "Teoría guardada. Este plan viene con modo Argentina intensivo."
+        },
+        {
           id: "aguja-blanca",
           title: "La aguja quieta",
           mode: "answer",
           riddle: "No marca la hora, pero todos la usan para ubicarse. Está parada en una avenida enorme y mira pasar la ciudad sin moverse.",
           hint: "No es una estatua común: funciona como punto de encuentro y brújula urbana.",
           answers: ["obelisco", "el obelisco"],
-          unlockAt: "2026-07-23T09:00:00-03:00",
+          unlockAt: "2026-07-26T09:00:00-03:00",
           reward: "Exacto. Hay un clásico de Buenos Aires en el mapa."
         },
         {
@@ -1215,7 +1622,7 @@
           riddle: "Una plaza, una casa de color imposible, un edificio antiguo y mucha historia junta. No es una sola parada: es como mirar varias capas del país al mismo tiempo.",
           hint: "Pensá en historia, balcones, decisiones grandes y muchas capas del país.",
           answers: [],
-          unlockAt: "2026-07-26T09:00:00-03:00",
+          unlockAt: "2026-07-29T09:00:00-03:00",
           reward: "Teoría guardada. Este día viene con historia argentina concentrada."
         },
         {
@@ -1225,7 +1632,7 @@
           riddle: "Por fuera parece un palacio. Por dentro, dicen que una sola voz puede llenar toda la sala. Capaz no entremos, pero igual merece mirar hacia arriba.",
           hint: "No todo teatro es cualquier teatro.",
           answers: ["teatro colon", "teatro colón", "colon", "colón"],
-          unlockAt: "2026-07-29T09:00:00-03:00",
+          unlockAt: "2026-08-01T09:00:00-03:00",
           reward: "Sí. Hay una joya de la ciudad esperando ser vista."
         },
         {
@@ -1235,7 +1642,7 @@
           riddle: "Sin salir de Buenos Aires, cruzamos una puerta simbólica. Hay arcos, colores, sabores nuevos y una sensación de mini viaje dentro del viaje.",
           hint: "Hay una puerta simbólica, colores fuertes y sabores que parecen cambiar de continente.",
           answers: ["barrio chino", "chinatown", "belgrano"],
-          unlockAt: "2026-08-01T09:00:00-03:00",
+          unlockAt: "2026-08-04T09:00:00-03:00",
           reward: "Correcto. Ese paseo viene con cambio de mundo incluido."
         },
         {
@@ -1245,7 +1652,7 @@
           riddle: "No todo Buenos Aires es centro. A veces hay que subir un poco en el mapa, acercarse al río y dejar que la ciudad cambie de ritmo.",
           hint: "El norte también tiene sus propias coordenadas y una visita pendiente.",
           answers: [],
-          unlockAt: "2026-08-04T09:00:00-03:00",
+          unlockAt: "2026-08-07T09:00:00-03:00",
           reward: "Teoría guardada. Hay una parada porteña más al norte."
         },
         {
@@ -1255,7 +1662,7 @@
           riddle: "No hace falta pasaporte para elegir país. Esta vez el viaje puede venir con papas, salsa y nombres internacionales entre dos panes.",
           hint: "Una pista: el nombre suena a agradecimiento, pero el plan se come.",
           answers: ["danke", "hamburgueseria danke", "hamburguesería danke"],
-          unlockAt: "2026-08-07T09:00:00-03:00",
+          unlockAt: "2026-08-10T09:00:00-03:00",
           reward: "Eso. Hay una hamburguesa viajera en el futuro cercano."
         },
         {
@@ -1265,7 +1672,7 @@
           riddle: "Ya te dijeron que esto iba a pasar, así que no cuenta como spoiler total. Puede venir en palito, puede venir bañado, y suele mejorar cualquier caminata.",
           hint: "Frío, dulce y prometido. No hace falta decir mucho más.",
           answers: ["helado", "luccianos", "lucciano's", "lucciano"],
-          unlockAt: "2026-08-10T09:00:00-03:00",
+          unlockAt: "2026-08-13T09:00:00-03:00",
           reward: "Sí. Esa promesa dulce sigue en pie."
         },
         {
@@ -1275,7 +1682,7 @@
           riddle: "Dos personas se entienden sin explicar nada. Una ciudad respira lento, el piso se vuelve escenario y la historia se cuenta con pasos.",
           hint: "No lo digo en el título porque sería demasiado fácil.",
           answers: ["tango", "milonga", "show de tango", "bailar tango"],
-          unlockAt: "2026-08-13T09:00:00-03:00",
+          unlockAt: "2026-08-16T09:00:00-03:00",
           reward: "Ajá. La ciudad también se escucha con los pies."
         },
         {
@@ -1285,7 +1692,7 @@
           riddle: "Hay reuniones que no son solo reuniones. Esta tiene colores, guiños locales y gente lista para convertir una noche en bienvenida.",
           hint: "No es salida turística: es plan con personas.",
           answers: [],
-          unlockAt: "2026-08-16T09:00:00-03:00",
+          unlockAt: "2026-08-19T09:00:00-03:00",
           reward: "Teoría guardada. Esta sorpresa tiene bastante Argentina encima."
         },
         {
@@ -1295,7 +1702,7 @@
           riddle: "No se juega con pelota, pero hay competencia. Hay capas, dulce, chocolate, debate serio y una misión: probar para decidir.",
           hint: "Redondos, argentinos y peligrosamente adictivos.",
           answers: ["alfajor", "alfajores", "mundial de alfajores"],
-          unlockAt: "2026-08-19T09:00:00-03:00",
+          unlockAt: "2026-08-22T09:00:00-03:00",
           reward: "Correcto. Se viene una competencia dulce muy importante."
         },
         {
@@ -1305,7 +1712,7 @@
           riddle: "Un país también se puede probar de a sorbos. A veces aparece Mendoza, a veces aparece el sur, y de pronto una copa cuenta paisaje.",
           hint: "Uvas, charla y brindis.",
           answers: ["vino", "vinos", "cata de vinos", "probar vinos"],
-          unlockAt: "2026-08-22T09:00:00-03:00",
+          unlockAt: "2026-08-25T09:00:00-03:00",
           reward: "Sí. Habrá copas con acento argentino."
         },
         {
@@ -1315,7 +1722,7 @@
           riddle: "Si ves humo, no siempre hay problema. A veces hay amigos, fuego, paciencia y una mesa que tarda porque así debe ser.",
           hint: "Plan clásico argentino con parrilla.",
           answers: ["asado", "parrilla", "asadito"],
-          unlockAt: "2026-08-25T09:00:00-03:00",
+          unlockAt: "2026-08-28T09:00:00-03:00",
           reward: "Exacto. Hay brasas y amigos cerca."
         },
         {
@@ -1325,7 +1732,7 @@
           riddle: "Hay una pista, pero no es de adivinanza. Hay zapatos raros, una bola pesada y diez que esperan su destino al fondo.",
           hint: "Ruido satisfactorio cuando sale bien.",
           answers: ["bowling", "bolos", "jugar bowling"],
-          unlockAt: "2026-08-28T09:00:00-03:00",
+          unlockAt: "2026-08-31T09:00:00-03:00",
           reward: "Sí. Se viene puntería y posible humillación amistosa."
         },
         {
@@ -1335,7 +1742,7 @@
           riddle: "A veces no mirás algo: entrás. Las paredes, la luz y el sonido pueden hacer que un plan parezca otro mundo por un rato.",
           hint: "No es cine normal, no es museo normal.",
           answers: [],
-          unlockAt: "2026-08-31T09:00:00-03:00",
+          unlockAt: "2026-09-03T09:00:00-03:00",
           reward: "Teoría guardada. Tal vez haya una experiencia para meterse adentro."
         }
       ];
@@ -1503,6 +1910,56 @@
         document.getElementById("historyEra").textContent = current[0];
         document.getElementById("historyTitle").textContent = current[1];
         document.getElementById("historyText").textContent = current[2];
+      }
+
+      function renderGeography() {
+        const current = geographyFacts[dayIndex() % geographyFacts.length];
+        document.getElementById("geoFactTitle").textContent = current[0];
+        document.getElementById("geoFactText").textContent = current[1];
+        document.getElementById("geoMapBoard").innerHTML = provinceRegions
+          .map((region) => `
+            <section class="geo-zone ${region.className}">
+              <div class="geo-zone-title">
+                <strong>${region.name}</strong>
+                <span>${region.note}</span>
+              </div>
+              <div class="geo-province-list">
+                ${region.items
+                  .map(([province, capital]) => `
+                    <div class="geo-province">
+                      <strong>${province}</strong>
+                      <span>${capital}</span>
+                    </div>
+                  `)
+                  .join("")}
+              </div>
+            </section>
+          `)
+          .join("");
+        document.getElementById("provinceGrid").innerHTML = provinces
+          .map(([province, capital]) => `
+            <div class="province-item">
+              <strong>${province}</strong>
+              <span>Capital: ${capital}</span>
+            </div>
+          `)
+          .join("");
+      }
+
+      function setupMapFallback() {
+        const map = document.querySelector(".argentina-real-map");
+        const fallback = document.querySelector(".map-error");
+        if (!map || !fallback) return;
+        map.addEventListener("error", () => {
+          map.style.display = "none";
+          fallback.style.display = "block";
+          document.querySelector(".malvinas-marker")?.style.setProperty("display", "none");
+        });
+        if (map.complete && map.naturalWidth === 0) {
+          map.style.display = "none";
+          fallback.style.display = "block";
+          document.querySelector(".malvinas-marker")?.style.setProperty("display", "none");
+        }
       }
 
       function renderMonthCalendar() {
@@ -1780,6 +2237,8 @@
       renderDailyCulture();
       renderQuiz();
       renderHistory();
+      renderGeography();
+      setupMapFallback();
       renderMonthCalendar();
       renderEggs();
       renderCalendar();
