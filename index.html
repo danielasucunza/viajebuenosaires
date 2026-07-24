@@ -135,11 +135,13 @@
 
       .card {
         border-radius: 23px;
-        padding: 18px;
+        padding: 20px;
       }
 
       .mini-label,
       .tag {
+        display: block;
+        margin-bottom: 8px;
         color: var(--red);
         font-size: 12px;
         font-weight: 900;
@@ -170,7 +172,7 @@
       }
 
       h1 {
-        margin-top: 14px;
+        margin-top: 18px;
         max-width: 820px;
         font-size: clamp(30px, 9vw, 58px);
       }
@@ -189,7 +191,7 @@
 
       .subtitle {
         max-width: 640px;
-        margin: 12px 0 0;
+        margin: 18px 0 0;
         color: rgba(38, 50, 74, 0.76);
         font-size: 18px;
       }
@@ -274,19 +276,19 @@
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        margin: 34px 0 16px;
+        margin: 42px 0 22px;
       }
 
       .section-title p {
-        margin: 6px 0 0;
+        margin: 10px 0 0;
         color: rgba(38, 50, 74, 0.65);
         font-size: 14px;
       }
 
       .day-card {
         border-radius: 26px;
-        padding: 16px;
-        margin-bottom: 14px;
+        padding: 18px;
+        margin-bottom: 18px;
         background: rgba(255, 255, 255, 0.47);
       }
 
@@ -317,8 +319,20 @@
         border-radius: 22px;
         border: 1px solid rgba(255, 255, 255, 0.82);
         background: rgba(255, 255, 255, 0.82);
-        padding: 18px;
+        padding: 20px;
         box-shadow: 0 10px 28px rgba(20, 33, 61, 0.08);
+      }
+
+      .plan h3,
+      .egg h3,
+      .card h3 {
+        margin-top: 2px;
+      }
+
+      .card h3 + p,
+      .plan h3 + p,
+      .egg h3 + p {
+        margin-top: 14px;
       }
 
       .locked {
@@ -821,7 +835,9 @@
 
       .photo-grid {
         display: grid;
-        gap: 14px;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        justify-content: center;
       }
 
       .photo-card {
@@ -841,11 +857,11 @@
       }
 
       .photo-card div {
-        padding: 14px;
+        padding: 18px;
       }
 
       .photo-card p {
-        margin: 8px 0 0;
+        margin: 10px 0 0;
         color: rgba(38, 50, 74, 0.68);
         font-size: 14px;
       }
@@ -859,7 +875,17 @@
           linear-gradient(180deg, rgba(115, 197, 234, 0.42), rgba(255, 255, 255, 0.76)),
           linear-gradient(90deg, #73c5ea 0 33%, white 33% 66%, #73c5ea 66% 100%);
         color: var(--navy);
-        font-size: 48px;
+        padding: 22px;
+        font-size: 18px;
+        font-weight: 950;
+        line-height: 1.25;
+        text-align: center;
+      }
+
+      .photo-fallback span {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 38px;
       }
 
       .message-box {
@@ -1027,7 +1053,8 @@
         }
 
         .photo-grid {
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          align-items: stretch;
         }
 
         .geo-layout {
@@ -1099,8 +1126,8 @@
         <aside class="stack">
           <section class="card">
             <div class="mini-label">Frase del día</div>
-            <h3 id="quoteTitle">Modo aventura</h3>
-            <p id="quoteText">Los mejores viajes empiezan mucho antes de subirse al avión.</p>
+            <h3 id="quoteTitle">Aventura</h3>
+            <p id="quoteText">“Todo gran viaje empieza mucho antes de subir al avión.”</p>
           </section>
           <section class="card">
             <div class="mini-label">Fun fact argentino</div>
@@ -1279,7 +1306,7 @@
         <div class="section-title">
           <div>
             <h2>Buenos Aires en fotos</h2>
-            <p>Una selección distinta cada día para ir entrando en clima.</p>
+            <p>Una postal distinta cada día para ir entrando en clima.</p>
           </div>
         </div>
         <div class="photo-grid" id="photoGrid"></div>
@@ -1330,7 +1357,7 @@
       // pista: id de Easter egg relacionado, por ejemplo ocho-compases, azul-oro, aguja-blanca
       // ============================================================
       const ITINERARY_CSV = `
-2026-09-12|05:00|Llegada|Llegada a Buenos Aires|Ezeiza / Adrogué|Llegada, besos, abrazos, descanso y cositas hot.|no|2026-09-12T05:00:00-03:00|
+2026-09-12|05:00|Llegada|Llegada a Buenos Aires|Aeroparque / Adrogué|Llegada, besos, abrazos, descanso y cositas hot.|no|2026-09-12T05:00:00-03:00|
 2026-09-12|21:00|Noche|Primera inmersión argentina|Adrogué|Una noche para entender mejor el país: costumbres, historia, palabras, fútbol, comida y códigos argentinos.|si|2026-09-12T18:00:00-03:00|cultura-argentina
 2026-09-13|10:00|Mañana|La casa azul y oro|La Boca|Plan futbolero para conocer uno de los lugares más intensos de Buenos Aires.|si|2026-09-13T08:00:00-03:00|azul-oro
 2026-09-13|14:30|Tarde|La aguja blanca|Centro de Buenos Aires|Un clásico porteño en una avenida imposible de ignorar.|si|2026-09-13T09:00:00-03:00|aguja-blanca
@@ -1355,111 +1382,3128 @@
       const CONTENT_START = new Date("2026-07-17T00:00:00-03:00");
 
       const quotes = [
-        ["Modo aventura", "Los mejores viajes empiezan mucho antes de subirse al avión."],
-        ["Curiosidad prendida", "Cada día que falta también es parte de la historia."],
-        ["Paso a paso", "No hace falta conocer todo el camino para disfrutar el próximo paso."],
-        ["Buenos Aires espera", "Una ciudad nueva se descubre mejor con los ojos bien abiertos."],
-        ["Casi en ruta", "Una buena aventura se arma con planes, curiosidad y buenos amigos."],
-        ["Posta", "Lo lindo de viajar es volver con historias que antes no existían."]
-      ];
+        [
+                "Aventura",
+                "“Todo gran viaje empieza mucho antes de subir al avión.”"
+        ],
+        [
+                "Curiosidad",
+                "“La mejor forma de llegar a un lugar nuevo es con curiosidad y buen humor.”"
+        ],
+        [
+                "Camino",
+                "“No hace falta conocer todo el camino para disfrutar el próximo paso.”"
+        ],
+        [
+                "Descubrimiento",
+                "“Una ciudad se descubre mejor cuando uno se anima a mirarla sin apuro.”"
+        ],
+        [
+                "Amistad",
+                "“Los mejores viajes también se construyen con buenos amigos y momentos inesperados.”"
+        ],
+        [
+                "Recuerdos",
+                "“Lo lindo de viajar es volver con historias que antes no existían.”"
+        ],
+        [
+                "Expectativa",
+                "“Cada día que falta también forma parte de la aventura.”"
+        ],
+        [
+                "Sorpresa",
+                "“Algunas sorpresas valen más cuando llegan en el momento justo.”"
+        ],
+        [
+                "Mirada nueva",
+                "“Viajar es aprender a mirar lo cotidiano como si fuera la primera vez.”"
+        ],
+        [
+                "Flexibilidad",
+                "“Cuando el plan cambia, a veces aparece la mejor parte del viaje.”"
+        ],
+        [
+                "Historias",
+                "“Un buen recuerdo suele empezar como un detalle chiquito.”"
+        ],
+        [
+                "Misterio",
+                "“La aventura sería menos aventura si todo estuviera explicado.”"
+        ],
+        [
+                "Ciudad",
+                "“Las ciudades grandes se entienden caminando, preguntando y dejándose sorprender.”"
+        ],
+        [
+                "Llegada",
+                "“A veces un viaje empieza el día en que alguien empieza a imaginarlo.”"
+        ],
+        [
+                "Presente",
+                "“Todavía no llegaste, pero la historia ya empezó.”"
+        ],
+        [
+                "Valija",
+                "“El equipaje más importante es venir con ganas de descubrir.”"
+        ],
+        [
+                "Calendario",
+                "“Cada día tachado en el calendario acerca una historia nueva.”"
+        ],
+        [
+                "Improvisar",
+                "“Los buenos viajes tienen planes, pero también espacio para improvisar.”"
+        ],
+        [
+                "Compañía",
+                "“Una ciudad nueva se disfruta distinto cuando alguien quiere mostrártela bien.”"
+        ],
+        [
+                "Distancia",
+                "“La distancia se achica cuando el viaje empieza a sentirse real.”"
+        ],
+        [
+                "Risas",
+                "“El plan perfecto deja lugar para reírse de lo que nadie esperaba.”"
+        ],
+        [
+                "Asombro",
+                "“La mejor forma de llegar es con ganas de sorprenderse.”"
+        ],
+        [
+                "Confianza",
+                "“No hace falta saberlo todo para disfrutar lo que viene.”"
+        ],
+        [
+                "Anécdotas",
+                "“Hay días normales que terminan convertidos en anécdotas para siempre.”"
+        ],
+        [
+                "Bienvenida",
+                "“Cada ciudad tiene su manera de decir bienvenido.”"
+        ],
+        [
+                "Preguntas",
+                "“Un buen viaje empieza con preguntas y termina con historias.”"
+        ],
+        [
+                "Buen humor",
+                "“Lo importante no es saber siempre el camino, sino caminarlo con buen humor.”"
+        ],
+        [
+                "Rumbo",
+                "“A veces la brújula más útil es la curiosidad.”"
+        ],
+        [
+                "Calles",
+                "“Falta menos para que las pistas se conviertan en calles reales.”"
+        ],
+        [
+                "Experiencia",
+                "“Una ciudad no se explica entera: se va entendiendo de a momentos.”"
+        ],
+        [
+                "Energía",
+                "“Guardar energía para lo inesperado también es parte del itinerario.”"
+        ],
+        [
+                "Proceso",
+                "“Las aventuras buenas se preparan lento y se recuerdan por mucho tiempo.”"
+        ],
+        [
+                "Turismo",
+                "“Un viaje con amigos nunca es solo turismo.”"
+        ],
+        [
+                "Cultura",
+                "“Cada lugar nuevo trae una forma distinta de entender el mundo.”"
+        ],
+        [
+                "Cuenta regresiva",
+                "“La espera también puede ser una parte linda del viaje.”"
+        ],
+        [
+                "Preparación",
+                "“La mejor preparación es llegar dispuesto a decir que sí a lo nuevo.”"
+        ],
+        [
+                "Memoria",
+                "“Algunos recuerdos empiezan mucho antes de vivirlos.”"
+        ],
+        [
+                "Cercanía",
+                "“Cada día que pasa acerca un poco más el abrazo de llegada.”"
+        ],
+        [
+                "Secreto",
+                "“Hay lugares que se disfrutan más cuando todavía guardan un poco de misterio.”"
+        ],
+        [
+                "Futuro",
+                "“La aventura ya está haciendo espacio en la memoria.”"
+        ],
+        [
+                "Excusa",
+                "“Viajar es una excusa hermosa para juntar historias.”"
+        ],
+        [
+                "Contar",
+                "“Un gran plan es el que después dan ganas de contar mil veces.”"
+        ],
+        [
+                "Cerca",
+                "“Hoy la ciudad está un poquito más cerca que ayer.”"
+        ],
+        [
+                "Emoción previa",
+                "“La emoción de antes también merece su propio recuerdo.”"
+        ],
+        [
+                "Sentido",
+                "“Cuando llegue el día, cada pista va a encontrar su lugar.”"
+        ],
+        [
+                "Puertas",
+                "“Cada pista abre una puerta chiquita hacia una aventura grande.”"
+        ],
+        [
+                "Actitud",
+                "“Venir con curiosidad es la mitad del viaje.”"
+        ],
+        [
+                "Paciencia",
+                "“Las sorpresas buenas saben esperar su momento.”"
+        ],
+        [
+                "Aprender",
+                "“La ciudad se aprende caminando, probando y escuchando.”"
+        ],
+        [
+                "Momento",
+                "“Algunos días se guardan para sorprender mejor.”"
+        ],
+        [
+                "Aeropuerto",
+                "“La cuenta regresiva ya empieza a sonar a aeropuerto.”"
+        ],
+        [
+                "Dejarse llevar",
+                "“Viajar también es animarse a dejarse llevar un poco.”"
+        ],
+        [
+                "Compartir",
+                "“Hay amistades que convierten cualquier ciudad en aventura.”"
+        ],
+        [
+                "Ilusión",
+                "“La expectativa también viaja: llega antes y se queda después.”"
+        ],
+        [
+                "Caos bonito",
+                "“Toda ciudad tiene su caos; lo lindo es descubrirle el ritmo.”"
+        ],
+        [
+                "Anécdota",
+                "“Un buen viaje empieza con ganas y termina con anécdotas.”"
+        ],
+        [
+                "Nuevo recuerdo",
+                "“El próximo gran recuerdo todavía no existe, pero ya viene en camino.”"
+        ],
+        [
+                "Paciencia viajera",
+                "“Esperar también es una forma de preparar el corazón para lo que viene.”"
+        ],
+        [
+                "Momento justo",
+                "“Cada sorpresa tiene su momento, y cada momento tiene su magia.”"
+        ],
+        [
+                "Brújula",
+                "“La curiosidad siempre encuentra alguna calle nueva.”"
+        ],
+        [
+                "Sonrisa",
+                "“Cada día nuevo trae una razón más para sonreír por lo que viene.”"
+        ],
+        [
+                "Ciudad viva",
+                "“Las ciudades no se conocen de golpe; se descubren de a pasos.”"
+        ],
+        [
+                "Preparar",
+                "“Una aventura empieza antes de llegar cuando alguien la prepara con cariño.”"
+        ],
+        [
+                "Estar ahí",
+                "“Hay planes que se entienden recién cuando estás parado en el lugar.”"
+        ],
+        [
+                "Sorpresa real",
+                "“Lo mejor de viajar es que siempre aparece algo que no estaba en la lista.”"
+        ],
+        [
+                "Aterrizar",
+                "“Falta cada vez menos para aterrizar en modo aventura.”"
+        ],
+        [
+                "Emoción",
+                "“La emoción de viajar también es parte del equipaje.”"
+        ],
+        [
+                "Encuentro",
+                "“Muy pronto los mensajes se cambian por abrazos, calles y recuerdos.”"
+        ],
+        [
+                "Fecha",
+                "“El viaje está dejando de ser una idea y empezando a ser una fecha.”"
+        ],
+        [
+                "Listo para salir",
+                "“La aventura está lista; solo falta que llegues.”"
+        ]
+];
 
       const facts = [
-        ["Subte pionero", "Buenos Aires tuvo el primer subte de América Latina, inaugurado en 1913."],
-        ["Provincias", "Argentina tiene 23 provincias y una ciudad autónoma: Buenos Aires."],
-        ["Mafalda", "Mafalda, el personaje de Quino, es uno de los íconos argentinos más queridos."],
-        ["Dulce de leche", "El dulce de leche aparece en alfajores, helados, tortas y facturas."],
-        ["Fileteado porteño", "El fileteado porteño es un estilo decorativo típico de Buenos Aires, lleno de líneas, flores y colores."],
-        ["Río de la Plata", "Buenos Aires mira al Río de la Plata, uno de los estuarios más anchos del mundo."],
-        ["Mate compartido", "El mate suele circular en ronda: una persona ceba y el resto toma por turnos."],
-        ["Avenida larguísima", "La Avenida Rivadavia cruza gran parte de Buenos Aires y sigue hacia el oeste del conurbano."],
-        ["Teatro Colón", "El Teatro Colón es famoso por su acústica y por ser una de las salas líricas más importantes del mundo."],
-        ["Alfajor serio", "El alfajor tiene discusiones de alto nivel: chocolate, maicena, glaseado, fruta, mousse y mil variantes más."],
-        ["Colectivos de colores", "Muchas líneas de colectivos porteños mantienen colores muy reconocibles, casi como identidad visual propia."],
-        ["Fútbol omnipresente", "En Buenos Aires es normal que una conversación casual termine hablando de fútbol en menos de cinco minutos."]
+              [
+                      "Subte pionero",
+                      "Buenos Aires tuvo el primer subte de America Latina, inaugurado en 1913."
+              ],
+              [
+                      "Provincias",
+                      "Argentina tiene 23 provincias y una ciudad autonoma: Buenos Aires."
+              ],
+              [
+                      "Mafalda",
+                      "Mafalda, el personaje de Quino, es uno de los iconos argentinos mas queridos."
+              ],
+              [
+                      "Dulce de leche",
+                      "El dulce de leche aparece en alfajores, helados, tortas y facturas."
+              ],
+              [
+                      "Fileteado porteño",
+                      "El fileteado porteño es un estilo decorativo tipico de Buenos Aires, lleno de lineas, flores y colores."
+              ],
+              [
+                      "Rio de la Plata",
+                      "Buenos Aires mira al Rio de la Plata, uno de los estuarios mas anchos del mundo."
+              ],
+              [
+                      "Mate compartido",
+                      "El mate suele circular en ronda: una persona ceba y el resto toma por turnos."
+              ],
+              [
+                      "Avenida Rivadavia",
+                      "La Avenida Rivadavia cruza gran parte de Buenos Aires y sigue hacia el oeste del conurbano."
+              ],
+              [
+                      "Teatro Colon",
+                      "El Teatro Colon es famoso por su acustica y por ser una de las salas liricas mas importantes del mundo."
+              ],
+              [
+                      "Alfajor serio",
+                      "El alfajor tiene discusiones de alto nivel: chocolate, maicena, glaseado, fruta, mousse y mil variantes mas."
+              ],
+              [
+                      "Colectivos de colores",
+                      "Muchas lineas de colectivos porteños mantienen colores muy reconocibles, casi como identidad visual propia."
+              ],
+              [
+                      "Futbol omnipresente",
+                      "En Buenos Aires es normal que una conversacion casual termine hablando de futbol en menos de cinco minutos."
+              ],
+              [
+                      "La Boca",
+                      "La Boca crecio alrededor del puerto y la inmigracion, por eso mezcla colores, futbol e historia popular."
+              ],
+              [
+                      "San Telmo",
+                      "San Telmo conserva calles antiguas, mercados, bares notables y mucho clima de domingo porteño."
+              ],
+              [
+                      "Palermo enorme",
+                      "Palermo es tan grande que se divide en subzonas: Soho, Hollywood, Chico, Viejo y mas etiquetas urbanas."
+              ],
+              [
+                      "Obelisco",
+                      "El Obelisco fue inaugurado en 1936 y se volvio uno de los puntos mas reconocibles de la ciudad."
+              ],
+              [
+                      "Casa Rosada",
+                      "La Casa Rosada es la sede del Poder Ejecutivo Nacional y esta frente a Plaza de Mayo."
+              ],
+              [
+                      "Cabildo",
+                      "El Cabildo fue protagonista de la Revolucion de Mayo de 1810 y hoy funciona como museo historico."
+              ],
+              [
+                      "Catedral",
+                      "La Catedral Metropolitana esta frente a Plaza de Mayo y fue iglesia del papa Francisco cuando era arzobispo."
+              ],
+              [
+                      "Avenida 9 de Julio",
+                      "La Avenida 9 de Julio es famosa por su ancho y por tener al Obelisco como postal central."
+              ],
+              [
+                      "Puerto Madero",
+                      "Puerto Madero reciclo viejos docks portuarios y hoy mezcla oficinas, restaurantes y costanera."
+              ],
+              [
+                      "Recoleta",
+                      "Recoleta combina arquitectura elegante, museos, plazas y uno de los cementerios mas visitados del pais."
+              ],
+              [
+                      "Barrio Chino",
+                      "El Barrio Chino esta en Belgrano y es una parada popular para comprar snacks, comer y pasear."
+              ],
+              [
+                      "Floralis",
+                      "La Floralis Generica es una escultura metalica gigante ubicada cerca de la Facultad de Derecho."
+              ],
+              [
+                      "Planetario",
+                      "El Planetario Galileo Galilei esta en Palermo y parece una nave estacionada en la ciudad."
+              ],
+              [
+                      "Bosques de Palermo",
+                      "Los Bosques de Palermo son uno de los pulmones verdes mas grandes de Buenos Aires."
+              ],
+              [
+                      "Rosedal",
+                      "El Rosedal tiene miles de rosales, lagos y puentes dentro de Palermo."
+              ],
+              [
+                      "Tango",
+                      "El tango nacio en la zona rioplatense y mezcla influencias populares, inmigrantes y urbanas."
+              ],
+              [
+                      "Milonga",
+                      "Una milonga puede ser tanto un genero musical como el lugar donde se va a bailar tango."
+              ],
+              [
+                      "Asado",
+                      "El asado argentino no es solo comida: tambien es ritual social, espera y debate de puntos de coccion."
+              ],
+              [
+                      "Empanadas",
+                      "Las empanadas cambian mucho segun la provincia: salteñas, tucumanas, mendocinas y mas estilos."
+              ],
+              [
+                      "Vino argentino",
+                      "Mendoza es la provincia mas asociada al vino argentino, especialmente al Malbec."
+              ],
+              [
+                      "Helado porteño",
+                      "Buenos Aires tiene una cultura fuerte de heladerias, con delivery de helado como practica totalmente normal."
+              ],
+              [
+                      "Facturas",
+                      "Las facturas son masas dulces de panaderia y tienen nombres muy argentinos: medialunas, vigilantes, cañoncitos."
+              ],
+              [
+                      "Cafe notable",
+                      "Los bares notables de Buenos Aires son cafes historicos protegidos por su valor cultural."
+              ],
+              [
+                      "Librerias",
+                      "Buenos Aires es conocida por su cantidad de librerias y vida cultural alrededor del libro."
+              ],
+              [
+                      "Ateneo Grand Splendid",
+                      "El Ateneo Grand Splendid funciona en un antiguo teatro y es una de las librerias mas famosas del mundo."
+              ],
+              [
+                      "Murales",
+                      "Buenos Aires tiene mucho arte urbano, especialmente en barrios como Palermo, Colegiales y Barracas."
+              ],
+              [
+                      "Subte A",
+                      "La linea A del subte fue la primera de America Latina y conserva parte de su identidad historica."
+              ],
+              [
+                      "Colectivo",
+                      "El colectivo porteño es clave para moverse, aunque entender recorridos puede parecer examen final."
+              ],
+              [
+                      "SUBE",
+                      "La SUBE es la tarjeta que se usa para pagar transporte publico en gran parte de Argentina."
+              ],
+              [
+                      "CABA",
+                      "CABA significa Ciudad Autonoma de Buenos Aires y no es lo mismo que la Provincia de Buenos Aires."
+              ],
+              [
+                      "La Plata",
+                      "La Plata es la capital de la Provincia de Buenos Aires, aunque muchas personas de afuera piensen otra cosa."
+              ],
+              [
+                      "Cordillera",
+                      "Argentina comparte la Cordillera de los Andes con Chile a lo largo del oeste del pais."
+              ],
+              [
+                      "Aconcagua",
+                      "El Aconcagua, en Mendoza, es la montaña mas alta de America."
+              ],
+              [
+                      "Iguazu",
+                      "Las Cataratas del Iguazu estan en Misiones y son una de las maravillas naturales mas famosas del pais."
+              ],
+              [
+                      "Patagonia",
+                      "La Patagonia argentina ocupa el sur del pais y combina lagos, montañas, estepa y glaciares."
+              ],
+              [
+                      "Ushuaia",
+                      "Ushuaia, en Tierra del Fuego, es una de las ciudades mas australes del mundo."
+              ],
+              [
+                      "Pampa",
+                      "La llanura pampeana es clave para la historia agricola y ganadera argentina."
+              ],
+              [
+                      "Gaucho",
+                      "La figura del gaucho forma parte importante de la cultura rural argentina."
+              ],
+              [
+                      "Martin Fierro",
+                      "El Martin Fierro es una obra literaria central para entender la figura del gaucho."
+              ],
+              [
+                      "Bandera",
+                      "La bandera argentina fue creada por Manuel Belgrano en 1812."
+              ],
+              [
+                      "Independencia",
+                      "La independencia argentina se declaro el 9 de julio de 1816 en Tucuman."
+              ],
+              [
+                      "Democracia",
+                      "El 10 de diciembre de 1983 marco el regreso de la democracia en Argentina."
+              ],
+              [
+                      "Carnaval",
+                      "El carnaval tiene expresiones muy distintas segun la region, desde murgas porteñas hasta celebraciones del norte."
+              ],
+              [
+                      "Folklore",
+                      "El folklore argentino incluye zambas, chacareras, gatos, carnavalitos y muchas musicas regionales."
+              ],
+              [
+                      "Rock nacional",
+                      "El rock argentino tiene peso cultural enorme desde los años sesenta y setenta."
+              ],
+              [
+                      "Cancha",
+                      "Ir a una cancha argentina puede sentirse mas como ritual colectivo que como simple evento deportivo."
+              ],
+              [
+                      "Boca y River",
+                      "Boca y River protagonizan uno de los clasicos futboleros mas intensos del mundo."
+              ],
+              [
+                      "Merienda",
+                      "La merienda puede ser cafe con leche, medialunas, tostados o cualquier excusa legitima para cortar la tarde."
+              ],
+              [
+                      "Kiosco",
+                      "El kiosco argentino es institucion: golosinas, alfajores, gaseosas, carga de SUBE y soluciones imprevistas."
+              ],
+              [
+                      "Parrilla",
+                      "Una parrilla puede ser restaurante, ritual familiar o plan de amigos con sobremesa larga."
+              ],
+              [
+                      "Sobremesa",
+                      "La sobremesa argentina puede durar mas que la comida y nadie deberia subestimarla."
+              ],
+              [
+                      "Feriados",
+                      "Argentina tiene feriados patrios y tambien fines de semana largos que se toman con mucha seriedad."
+              ],
+              [
+                      "Ñoquis del 29",
+                      "El 29 de cada mes muchas familias comen ñoquis, una costumbre popular heredada de inmigrantes italianos."
+              ],
+              [
+                      "Pizza porteña",
+                      "La pizza porteña suele ser alta, con mucho queso y a veces acompañada con faina."
+              ],
+              [
+                      "Faina",
+                      "La faina es una masa de harina de garbanzos que se come con pizza en muchas pizzerias porteñas."
+              ],
+              [
+                      "Voseo",
+                      "En Argentina se usa vos en lugar de tu: vos venis, vos queres, vos sabes."
+              ],
+              [
+                      "Che",
+                      "Che sirve para llamar la atencion, empezar una frase o marcar confianza sin demasiada ceremonia."
+              ],
+              [
+                      "Boliche",
+                      "En Argentina boliche suele significar lugar para salir a bailar, no una tienda pequeña."
+              ]
       ];
 
       const quiz = [
-        {
-          q: "¿Cuál es la capital de Argentina?",
-          a: ["Buenos Aires", "Córdoba", "Mendoza"],
-          correct: 0,
-          note: "Correcto: Buenos Aires es la capital del país."
-        },
-        {
-          q: "¿Qué significa 'bondi' en Argentina?",
-          a: ["Colectivo o bus", "Avión", "Bicicleta"],
-          correct: 0,
-          note: "Sí: bondi es una forma muy argentina de decir colectivo."
-        },
-        {
-          q: "¿Cuántas provincias tiene Argentina?",
-          a: ["23", "12", "32"],
-          correct: 0,
-          note: "Correcto: son 23 provincias más la Ciudad Autónoma de Buenos Aires."
-        },
-        {
-          q: "¿Qué dulce argentino aparece muchísimo en alfajores y postres?",
-          a: ["Dulce de leche", "Mermelada de guayaba", "Arequipe salado"],
-          correct: 0,
-          note: "Sí: dulce de leche, institución nacional no oficial."
-        }
+              {
+                      "q": "¿Cual es la capital de Buenos Aires?",
+                      "a": [
+                              "La Plata",
+                              "Mar del Plata",
+                              "Bahia Blanca"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Buenos Aires es La Plata."
+              },
+              {
+                      "q": "¿Cual es la capital de Catamarca?",
+                      "a": [
+                              "San Fernando del Valle de Catamarca",
+                              "Tinogasta",
+                              "Belen"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Catamarca es San Fernando del Valle de Catamarca."
+              },
+              {
+                      "q": "¿Cual es la capital de Chaco?",
+                      "a": [
+                              "Resistencia",
+                              "Saenz Peña",
+                              "Villa Angela"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Chaco es Resistencia."
+              },
+              {
+                      "q": "¿Cual es la capital de Chubut?",
+                      "a": [
+                              "Rawson",
+                              "Trelew",
+                              "Puerto Madryn"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Chubut es Rawson."
+              },
+              {
+                      "q": "¿Cual es la capital de Cordoba?",
+                      "a": [
+                              "Cordoba",
+                              "Villa Carlos Paz",
+                              "Rio Cuarto"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Cordoba es Cordoba."
+              },
+              {
+                      "q": "¿Cual es la capital de Corrientes?",
+                      "a": [
+                              "Corrientes",
+                              "Goya",
+                              "Mercedes"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Corrientes es Corrientes."
+              },
+              {
+                      "q": "¿Cual es la capital de Entre Rios?",
+                      "a": [
+                              "Parana",
+                              "Concordia",
+                              "Gualeguaychu"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Entre Rios es Parana."
+              },
+              {
+                      "q": "¿Cual es la capital de Formosa?",
+                      "a": [
+                              "Formosa",
+                              "Clorinda",
+                              "Pirané"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Formosa es Formosa."
+              },
+              {
+                      "q": "¿Cual es la capital de Jujuy?",
+                      "a": [
+                              "San Salvador de Jujuy",
+                              "Tilcara",
+                              "Humahuaca"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Jujuy es San Salvador de Jujuy."
+              },
+              {
+                      "q": "¿Cual es la capital de La Pampa?",
+                      "a": [
+                              "Santa Rosa",
+                              "General Pico",
+                              "Toay"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de La Pampa es Santa Rosa."
+              },
+              {
+                      "q": "¿Cual es la capital de La Rioja?",
+                      "a": [
+                              "La Rioja",
+                              "Chilecito",
+                              "Aimogasta"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de La Rioja es La Rioja."
+              },
+              {
+                      "q": "¿Cual es la capital de Mendoza?",
+                      "a": [
+                              "Mendoza",
+                              "San Rafael",
+                              "Godoy Cruz"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Mendoza es Mendoza."
+              },
+              {
+                      "q": "¿Cual es la capital de Misiones?",
+                      "a": [
+                              "Posadas",
+                              "Oberá",
+                              "Puerto Iguazu"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Misiones es Posadas."
+              },
+              {
+                      "q": "¿Cual es la capital de Neuquen?",
+                      "a": [
+                              "Neuquen",
+                              "San Martin de los Andes",
+                              "Zapala"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Neuquen es Neuquen."
+              },
+              {
+                      "q": "¿Cual es la capital de Rio Negro?",
+                      "a": [
+                              "Viedma",
+                              "Bariloche",
+                              "General Roca"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Rio Negro es Viedma."
+              },
+              {
+                      "q": "¿Cual es la capital de Salta?",
+                      "a": [
+                              "Salta",
+                              "Cafayate",
+                              "Tartagal"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Salta es Salta."
+              },
+              {
+                      "q": "¿Cual es la capital de San Juan?",
+                      "a": [
+                              "San Juan",
+                              "Jachal",
+                              "Caucete"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de San Juan es San Juan."
+              },
+              {
+                      "q": "¿Cual es la capital de San Luis?",
+                      "a": [
+                              "San Luis",
+                              "Villa Mercedes",
+                              "Merlo"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de San Luis es San Luis."
+              },
+              {
+                      "q": "¿Cual es la capital de Santa Cruz?",
+                      "a": [
+                              "Rio Gallegos",
+                              "El Calafate",
+                              "Puerto Deseado"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Santa Cruz es Rio Gallegos."
+              },
+              {
+                      "q": "¿Cual es la capital de Santa Fe?",
+                      "a": [
+                              "Santa Fe",
+                              "Rosario",
+                              "Rafaela"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Santa Fe es Santa Fe."
+              },
+              {
+                      "q": "¿Cual es la capital de Santiago del Estero?",
+                      "a": [
+                              "Santiago del Estero",
+                              "Termas de Rio Hondo",
+                              "La Banda"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Santiago del Estero es Santiago del Estero."
+              },
+              {
+                      "q": "¿Cual es la capital de Tierra del Fuego?",
+                      "a": [
+                              "Ushuaia",
+                              "Rio Grande",
+                              "Tolhuin"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Tierra del Fuego es Ushuaia."
+              },
+              {
+                      "q": "¿Cual es la capital de Tucuman?",
+                      "a": [
+                              "San Miguel de Tucuman",
+                              "Tafi Viejo",
+                              "Yerba Buena"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de Tucuman es San Miguel de Tucuman."
+              },
+              {
+                      "q": "¿Cual es la capital de CABA?",
+                      "a": [
+                              "Ciudad Autonoma de Buenos Aires",
+                              "La Plata",
+                              "San Isidro"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la capital de CABA es Ciudad Autonoma de Buenos Aires."
+              },
+              {
+                      "q": "¿En que provincia estan las Cataratas del Iguazu?",
+                      "a": [
+                              "Misiones",
+                              "Mendoza",
+                              "Santa Cruz"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: estan en Misiones."
+              },
+              {
+                      "q": "¿Que provincia es famosa por el Malbec?",
+                      "a": [
+                              "Mendoza",
+                              "Formosa",
+                              "Chubut"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Mendoza es la gran referencia del vino argentino."
+              },
+              {
+                      "q": "¿Que rio enorme bordea Buenos Aires?",
+                      "a": [
+                              "Rio de la Plata",
+                              "Rio Amazonas",
+                              "Rio Magdalena"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Buenos Aires mira al Rio de la Plata."
+              },
+              {
+                      "q": "¿Que significa CABA?",
+                      "a": [
+                              "Ciudad Autonoma de Buenos Aires",
+                              "Capital Argentina Bonaerense Actual",
+                              "Centro Administrativo Buenos Aires"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: CABA es Ciudad Autonoma de Buenos Aires."
+              },
+              {
+                      "q": "¿Donde queda el Aconcagua?",
+                      "a": [
+                              "Mendoza",
+                              "Buenos Aires",
+                              "Misiones"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: el Aconcagua esta en Mendoza."
+              },
+              {
+                      "q": "¿Que region esta al sur del pais?",
+                      "a": [
+                              "Patagonia",
+                              "NOA",
+                              "Litoral"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la Patagonia ocupa el sur argentino."
+              },
+              {
+                      "q": "¿Que tarjeta se usa para pagar transporte publico?",
+                      "a": [
+                              "SUBE",
+                              "DNI",
+                              "MateCard"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la SUBE se usa para transporte."
+              },
+              {
+                      "q": "¿Como se dice bus urbano en Buenos Aires?",
+                      "a": [
+                              "Colectivo",
+                              "Lancha",
+                              "Tren bala"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: colectivo, y tambien bondi."
+              },
+              {
+                      "q": "¿Que avenida porteña es famosa por el Obelisco?",
+                      "a": [
+                              "9 de Julio",
+                              "Corrientes de Colombia",
+                              "Las Ramblas"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Avenida 9 de Julio."
+              },
+              {
+                      "q": "¿Que barrio esta asociado a Caminito?",
+                      "a": [
+                              "La Boca",
+                              "Palermo",
+                              "Recoleta"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Caminito esta en La Boca."
+              },
+              {
+                      "q": "¿Que plaza esta frente a Casa Rosada?",
+                      "a": [
+                              "Plaza de Mayo",
+                              "Plaza Italia",
+                              "Plaza Serrano"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Plaza de Mayo."
+              },
+              {
+                      "q": "¿Que significa “vos” en Argentina?",
+                      "a": [
+                              "Tu",
+                              "Ustedes",
+                              "Nosotros"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: vos equivale a tu."
+              },
+              {
+                      "q": "¿Que es una milonga?",
+                      "a": [
+                              "Lugar o ritmo vinculado al tango",
+                              "Un tipo de avion",
+                              "Una provincia"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: puede ser baile, musica o lugar de tango."
+              },
+              {
+                      "q": "¿Que comida se asocia a parrilla y amigos?",
+                      "a": [
+                              "Asado",
+                              "Sushi",
+                              "Ajiaco"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: asado."
+              },
+              {
+                      "q": "¿Que dulce aparece en muchisimos alfajores?",
+                      "a": [
+                              "Dulce de leche",
+                              "Miel de maple",
+                              "Crema de mani salada"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: dulce de leche."
+              },
+              {
+                      "q": "¿Que equipo juega en La Bombonera?",
+                      "a": [
+                              "Boca Juniors",
+                              "Racing",
+                              "Velez"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Boca Juniors."
+              },
+              {
+                      "q": "¿Que teatro porteño es famoso por su acustica?",
+                      "a": [
+                              "Teatro Colon",
+                              "Teatro Municipal de Cali",
+                              "Teatro Romano"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Teatro Colon."
+              },
+              {
+                      "q": "¿Que se toma con bombilla?",
+                      "a": [
+                              "Mate",
+                              "Cerveza",
+                              "Sopa"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: mate."
+              },
+              {
+                      "q": "¿Que quiere decir “che”?",
+                      "a": [
+                              "Forma de llamar la atencion",
+                              "Una moneda",
+                              "Una estacion"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: che sirve para llamar o empezar una frase."
+              },
+              {
+                      "q": "¿Que es una factura en Argentina?",
+                      "a": [
+                              "Una masa dulce de panaderia",
+                              "Solo un recibo de compra",
+                              "Una multa de transito"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: tambien puede ser una masa dulce."
+              },
+              {
+                      "q": "¿Que es faina?",
+                      "a": [
+                              "Masa de harina de garbanzos para comer con pizza",
+                              "Un helado",
+                              "Un colectivo antiguo"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: faina acompaña la pizza en muchas pizzerias."
+              },
+              {
+                      "q": "¿Que se celebra el 9 de julio?",
+                      "a": [
+                              "La Independencia",
+                              "La Revolucion de Mayo",
+                              "El dia del mate"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: la Independencia."
+              },
+              {
+                      "q": "¿Que se recuerda el 25 de mayo?",
+                      "a": [
+                              "La Revolucion de Mayo",
+                              "El mundial de alfajores",
+                              "El dia del tango"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Revolucion de Mayo."
+              },
+              {
+                      "q": "¿Que provincia tiene capital Viedma?",
+                      "a": [
+                              "Rio Negro",
+                              "Chaco",
+                              "San Luis"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Viedma es capital de Rio Negro."
+              },
+              {
+                      "q": "¿Que provincia tiene capital Rawson?",
+                      "a": [
+                              "Chubut",
+                              "Mendoza",
+                              "Jujuy"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Rawson es capital de Chubut."
+              },
+              {
+                      "q": "¿Que ciudad es capital de Santa Cruz?",
+                      "a": [
+                              "Rio Gallegos",
+                              "El Calafate",
+                              "Ushuaia"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Rio Gallegos."
+              },
+              {
+                      "q": "¿Que region incluye Mendoza, San Juan y San Luis?",
+                      "a": [
+                              "Cuyo",
+                              "Patagonia",
+                              "Litoral"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Cuyo."
+              },
+              {
+                      "q": "¿Que region incluye Misiones, Corrientes, Chaco y Formosa?",
+                      "a": [
+                              "NEA",
+                              "Cuyo",
+                              "Pampa humeda"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: NEA."
+              },
+              {
+                      "q": "¿Que region incluye Jujuy, Salta y Tucuman?",
+                      "a": [
+                              "NOA",
+                              "Patagonia",
+                              "CABA"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: NOA."
+              },
+              {
+                      "q": "¿Que ciudad esta en Tierra del Fuego?",
+                      "a": [
+                              "Ushuaia",
+                              "Rosario",
+                              "Posadas"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Ushuaia."
+              },
+              {
+                      "q": "¿Que bebida se asocia a Mendoza?",
+                      "a": [
+                              "Vino",
+                              "Terere colombiano",
+                              "Cafe paisa"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: vino."
+              },
+              {
+                      "q": "¿Que significa “laburo”?",
+                      "a": [
+                              "Trabajo",
+                              "Comida",
+                              "Aeropuerto"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: laburo es trabajo."
+              },
+              {
+                      "q": "¿Que significa “guita”?",
+                      "a": [
+                              "Dinero",
+                              "Guitarra pequena",
+                              "Helado"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: guita es dinero."
+              },
+              {
+                      "q": "¿Que significa “fiaca”?",
+                      "a": [
+                              "Pereza",
+                              "Velocidad",
+                              "Amistad"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: fiaca es pereza."
+              },
+              {
+                      "q": "¿Que significa “posta”?",
+                      "a": [
+                              "De verdad",
+                              "Correo solamente",
+                              "Mentira elegante"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: posta es de verdad."
+              },
+              {
+                      "q": "¿Que significa “quilombo”?",
+                      "a": [
+                              "Lio o caos",
+                              "Barrio bonito",
+                              "Postre"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: quilombo es lio o caos."
+              },
+              {
+                      "q": "¿Que es un kiosco argentino?",
+                      "a": [
+                              "Lugar para golosinas y soluciones rapidas",
+                              "Banco nacional",
+                              "Restaurante formal"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: el kiosco salva muchas situaciones."
+              },
+              {
+                      "q": "¿Que suele pasar en una sobremesa?",
+                      "a": [
+                              "Se sigue charlando despues de comer",
+                              "Se lava el auto",
+                              "Se toma el avion"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: sobremesa es charla despues de comer."
+              },
+              {
+                      "q": "¿Que se come mucho el 29?",
+                      "a": [
+                              "Ñoquis",
+                              "Empanadas solamente",
+                              "Helado de limon"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: ñoquis del 29."
+              },
+              {
+                      "q": "¿Que acompaña a la pizza porteña?",
+                      "a": [
+                              "Faina",
+                              "Arepa",
+                              "Patacon"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: faina."
+              },
+              {
+                      "q": "¿Que significa “boliche”?",
+                      "a": [
+                              "Lugar para bailar",
+                              "Biblioteca",
+                              "Aeropuerto"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: en Argentina boliche suele ser disco."
+              },
+              {
+                      "q": "¿Que es el fileteado porteño?",
+                      "a": [
+                              "Estilo decorativo de Buenos Aires",
+                              "Corte de carne",
+                              "Tipo de boleto"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: es arte decorativo porteño."
+              },
+              {
+                      "q": "¿Que escritor creo a Mafalda?",
+                      "a": [
+                              "Quino",
+                              "Borges",
+                              "Cortazar"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Quino."
+              },
+              {
+                      "q": "¿Que instrumento cultural aparece en el mate?",
+                      "a": [
+                              "Bombilla",
+                              "Tenedor",
+                              "Pitillo de plastico"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: bombilla."
+              },
+              {
+                      "q": "¿Que ciudad es capital de Entre Rios?",
+                      "a": [
+                              "Parana",
+                              "Rosario",
+                              "Gualeguaychu"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Parana."
+              },
+              {
+                      "q": "¿Que ciudad es capital de Misiones?",
+                      "a": [
+                              "Posadas",
+                              "Obera",
+                              "Puerto Iguazu"
+                      ],
+                      "correct": 0,
+                      "note": "Correcto: Posadas."
+              }
       ];
 
       const lunfardo = [
-        ["bondi", "Colectivo, bus.", "Nos tomamos el bondi hasta el centro."],
-        ["laburo", "Trabajo.", "Hoy tengo mucho laburo."],
-        ["guita", "Dinero.", "No gastes toda la guita el primer día."],
-        ["fiaca", "Pereza.", "Tengo fiaca, pero igual salimos."],
-        ["quilombo", "Lío, caos o problema.", "El tránsito es un quilombo."],
-        ["posta", "En serio, de verdad.", "Posta, Buenos Aires te va a gustar."]
-      ];
+        [
+                "bondi",
+                "Colectivo, bus.",
+                "Nos tomamos el bondi hasta el centro."
+        ],
+        [
+                "laburo",
+                "Trabajo.",
+                "Hoy tengo mucho laburo."
+        ],
+        [
+                "guita",
+                "Dinero.",
+                "No gastes toda la guita el primer dia."
+        ],
+        [
+                "fiaca",
+                "Pereza.",
+                "Tengo fiaca, pero igual salimos."
+        ],
+        [
+                "quilombo",
+                "Lio, caos o problema.",
+                "El transito es un quilombo."
+        ],
+        [
+                "posta",
+                "En serio, de verdad.",
+                "Posta, Buenos Aires te va a gustar."
+        ],
+        [
+                "che",
+                "Forma de llamar la atencion.",
+                "Che, mira ese edificio."
+        ],
+        [
+                "pibe",
+                "Chico, muchacho.",
+                "Ese pibe no sabe donde queda Mendoza."
+        ],
+        [
+                "mina",
+                "Mujer o chica, coloquial.",
+                "Una mina pregunto por el colectivo."
+        ],
+        [
+                "chabon",
+                "Tipo, hombre, persona.",
+                "El chabon se perdio en Palermo."
+        ],
+        [
+                "morfar",
+                "Comer.",
+                "Vamos a morfar algo antes de salir."
+        ],
+        [
+                "morfi",
+                "Comida.",
+                "Este morfi merece respeto."
+        ],
+        [
+                "birra",
+                "Cerveza.",
+                "Despues del paseo pinta una birra."
+        ],
+        [
+                "fernet",
+                "Bebida amarga muy popular mezclada con cola.",
+                "El fernet divide opiniones fuertes."
+        ],
+        [
+                "mate",
+                "Infusion nacional no oficial.",
+                "El mate va pasando en ronda."
+        ],
+        [
+                "termo",
+                "Recipiente para llevar agua caliente.",
+                "Sin termo no hay operacion mate."
+        ],
+        [
+                "factura",
+                "Masa dulce de panaderia.",
+                "Traemos facturas para la merienda."
+        ],
+        [
+                "medialuna",
+                "Croissant argentino.",
+                "Una medialuna con cafe salva la mañana."
+        ],
+        [
+                "subte",
+                "Metro de Buenos Aires.",
+                "El subte puede acortar la caminata."
+        ],
+        [
+                "colectivo",
+                "Bus urbano.",
+                "El colectivo tarda pero llega."
+        ],
+        [
+                "boleto",
+                "Ticket o pasaje.",
+                "El boleto se paga con SUBE."
+        ],
+        [
+                "SUBE",
+                "Tarjeta de transporte.",
+                "Carga la SUBE antes de subir."
+        ],
+        [
+                "bancar",
+                "Aguantar o apoyar.",
+                "Te banco si queres descansar."
+        ],
+        [
+                "bancame",
+                "Esperame.",
+                "Bancame dos minutos."
+        ],
+        [
+                "dale",
+                "Ok, vamos, de acuerdo.",
+                "Dale, salimos a las ocho."
+        ],
+        [
+                "tipo",
+                "Aproximadamente o como.",
+                "Nos vemos tipo nueve."
+        ],
+        [
+                "re",
+                "Muy.",
+                "Esta caminata esta re buena."
+        ],
+        [
+                "mal",
+                "Mucho o intensamente.",
+                "Me rei mal."
+        ],
+        [
+                "copado",
+                "Bueno, lindo, buena onda.",
+                "Ese plan esta copado."
+        ],
+        [
+                "buena onda",
+                "Amable o agradable.",
+                "La gente fue buena onda."
+        ],
+        [
+                "trucho",
+                "Falso o de mala calidad.",
+                "Ese dato era medio trucho."
+        ],
+        [
+                "posta posta",
+                "Muy en serio.",
+                "Posta posta, no te pierdas."
+        ],
+        [
+                "mango",
+                "Peso, dinero.",
+                "No tengo un mango."
+        ],
+        [
+                "lucas",
+                "Mil pesos.",
+                "Eso sale varias lucas."
+        ],
+        [
+                "barato",
+                "De bajo precio.",
+                "Este lugar es barato."
+        ],
+        [
+                "caro",
+                "De precio alto.",
+                "Palermo puede ser caro."
+        ],
+        [
+                "zafar",
+                "Salir del paso.",
+                "Con este mapa zafamos."
+        ],
+        [
+                "mandarse",
+                "Animarse o equivocarse.",
+                "Nos mandamos a caminar."
+        ],
+        [
+                "colgado",
+                "Distraido.",
+                "No estes colgado con la direccion."
+        ],
+        [
+                "flashear",
+                "Imaginar o exagerar.",
+                "Estas flasheando que esto queda cerca."
+        ],
+        [
+                "chapar",
+                "Besarse.",
+                "Palabra util solo si aparece en conversacion."
+        ],
+        [
+                "joda",
+                "Fiesta o broma.",
+                "Era joda, no te asustes."
+        ],
+        [
+                "previa",
+                "Reunion antes de salir.",
+                "La previa empieza temprano."
+        ],
+        [
+                "boliche",
+                "Lugar para bailar.",
+                "El boliche abre tarde."
+        ],
+        [
+                "careta",
+                "Formal, rigido o poco espontaneo.",
+                "No seas careta con el plan."
+        ],
+        [
+                "hincha",
+                "Fanatico de un equipo.",
+                "Un hincha de Boca vive el partido fuerte."
+        ],
+        [
+                "cancha",
+                "Estadio.",
+                "La cancha puede ser una experiencia intensa."
+        ],
+        [
+                "fulbo",
+                "Futbol, dicho informalmente.",
+                "Se habla de fulbo en cualquier momento."
+        ],
+        [
+                "picada",
+                "Tabla de comida para compartir.",
+                "Armamos una picada antes de cenar."
+        ],
+        [
+                "parrilla",
+                "Lugar o estructura para asado.",
+                "La parrilla manda humo bueno."
+        ],
+        [
+                "asado",
+                "Comida y ritual con carne a la parrilla.",
+                "El asado no se apura."
+        ],
+        [
+                "sobremesa",
+                "Charla despues de comer.",
+                "La sobremesa puede durar horas."
+        ],
+        [
+                "merienda",
+                "Comida de la tarde.",
+                "La merienda es excusa seria."
+        ],
+        [
+                "cafecito",
+                "Cafe pequeño o plan de cafe.",
+                "Sale cafecito antes de caminar."
+        ],
+        [
+                "helado",
+                "Postre altamente respetado.",
+                "El helado se toma muy en serio."
+        ],
+        [
+                "alfajor",
+                "Dulce argentino de capas.",
+                "Un alfajor nunca viene mal."
+        ],
+        [
+                "kiosco",
+                "Local de golosinas y emergencias.",
+                "El kiosco salva la tarde."
+        ],
+        [
+                "changuito",
+                "Carrito de compras.",
+                "Agarramos un changuito en el super."
+        ],
+        [
+                "super",
+                "Supermercado.",
+                "Pasamos por el super."
+        ],
+        [
+                "guardapolvo",
+                "Delantal escolar.",
+                "Dato cultural random: muchos chicos usan guardapolvo."
+        ],
+        [
+                "macanudo",
+                "Agradable, buena persona.",
+                "El señor fue macanudo."
+        ],
+        [
+                "piola",
+                "Bueno, inteligente o simpatico.",
+                "Ese plan esta piola."
+        ],
+        [
+                "joya",
+                "Perfecto, todo bien.",
+                "Joya, quedamos asi."
+        ],
+        [
+                "listo",
+                "Ok, cerrado.",
+                "Listo, nos vemos alla."
+        ],
+        [
+                "ojo",
+                "Atencion, cuidado.",
+                "Ojo con cruzar sin mirar."
+        ],
+        [
+                "ni ahi",
+                "De ninguna manera.",
+                "Ni ahi caminamos veinte cuadras mas."
+        ],
+        [
+                "de una",
+                "Si, sin dudar.",
+                "De una, vamos."
+        ],
+        [
+                "tal cual",
+                "Exactamente.",
+                "Tal cual, eso era."
+        ],
+        [
+                "tranqui",
+                "Tranquilo, sin drama.",
+                "Tranqui, llegamos bien."
+        ],
+        [
+                "un montón",
+                "Muchísimo.",
+                "Caminamos un montón hoy."
+        ],
+        [
+                "de diez",
+                "Muy bien, excelente.",
+                "El plan salió de diez."
+        ],
+        [
+                "datazo",
+                "Dato muy útil o interesante.",
+                "Ese datazo salva el recorrido."
+        ]
+];
 
       const songs = [
-        ["De música ligera", "Soda Stereo", "Un clásico enorme del rock argentino.", "https://www.youtube.com/results?search_query=Soda+Stereo+De+musica+ligera"],
-        ["11 y 6", "Fito Páez", "Una canción narrativa, porteña, sensible.", "https://www.youtube.com/results?search_query=Fito+Paez+11+y+6"],
-        ["Nos siguen pegando abajo", "Charly García", "Charly en modo rock argentino inoxidable.", "https://www.youtube.com/results?search_query=Charly+Garcia+Nos+siguen+pegando+abajo"],
-        ["Matador", "Los Fabulosos Cadillacs", "Energía latina con sello argentino.", "https://www.youtube.com/results?search_query=Los+Fabulosos+Cadillacs+Matador"],
-        ["Alfonsina y el mar", "Mercedes Sosa", "Una voz fundamental de la música argentina.", "https://www.youtube.com/results?search_query=Mercedes+Sosa+Alfonsina+y+el+mar"],
-        ["Muchachos", "La Mosca", "Canción de cancha reciente, mundialera y muy argentina.", "https://www.youtube.com/results?search_query=La+Mosca+Muchachos"]
-      ];
+        [
+                "De música ligera",
+                "Soda Stereo",
+                "Un clásico enorme del rock argentino.",
+                "https://www.youtube.com/results?search_query=Soda%20Stereo%20De%20m%C3%BAsica%20ligera"
+        ],
+        [
+                "11 y 6",
+                "Fito Páez",
+                "Canción narrativa para entrar en clima porteño.",
+                "https://www.youtube.com/results?search_query=Fito%20P%C3%A1ez%2011%20y%206"
+        ],
+        [
+                "Nos siguen pegando abajo",
+                "Charly García",
+                "Charly en modo rock argentino inoxidable.",
+                "https://www.youtube.com/results?search_query=Charly%20Garc%C3%ADa%20Nos%20siguen%20pegando%20abajo"
+        ],
+        [
+                "Matador",
+                "Los Fabulosos Cadillacs",
+                "Energía latina con sello argentino.",
+                "https://www.youtube.com/results?search_query=Los%20Fabulosos%20Cadillacs%20Matador"
+        ],
+        [
+                "Alfonsina y el mar",
+                "Mercedes Sosa",
+                "Una voz fundamental de la música argentina.",
+                "https://www.youtube.com/results?search_query=Mercedes%20Sosa%20Alfonsina%20y%20el%20mar"
+        ],
+        [
+                "Muchachos",
+                "La Mosca",
+                "Canción de cancha reciente y mundialera.",
+                "https://www.youtube.com/results?search_query=La%20Mosca%20Muchachos"
+        ],
+        [
+                "Persiana americana",
+                "Soda Stereo",
+                "Rock argentino con ADN de estadios.",
+                "https://www.youtube.com/results?search_query=Soda%20Stereo%20Persiana%20americana"
+        ],
+        [
+                "Seminare",
+                "Serú Girán",
+                "Clásico sensible de Charly y compañía.",
+                "https://www.youtube.com/results?search_query=Ser%C3%BA%20Gir%C3%A1n%20Seminare"
+        ],
+        [
+                "El amor después del amor",
+                "Fito Páez",
+                "Himno argentino de optimismo cultural.",
+                "https://www.youtube.com/results?search_query=Fito%20P%C3%A1ez%20El%20amor%20despu%C3%A9s%20del%20amor"
+        ],
+        [
+                "Flaca",
+                "Andrés Calamaro",
+                "Canción enorme para entender parte del rock rioplatense.",
+                "https://www.youtube.com/results?search_query=Andr%C3%A9s%20Calamaro%20Flaca"
+        ],
+        [
+                "Mil horas",
+                "Los Abuelos de la Nada",
+                "Un clásico que aparece en cualquier playlist argentina.",
+                "https://www.youtube.com/results?search_query=Los%20Abuelos%20de%20la%20Nada%20Mil%20horas"
+        ],
+        [
+                "Lamento boliviano",
+                "Enanitos Verdes",
+                "Mendoza exportando rock cantable.",
+                "https://www.youtube.com/results?search_query=Enanitos%20Verdes%20Lamento%20boliviano"
+        ],
+        [
+                "Ji ji ji",
+                "Patricio Rey y sus Redonditos de Ricota",
+                "Ritual del rock argentino.",
+                "https://www.youtube.com/results?search_query=Patricio%20Rey%20y%20sus%20Redonditos%20de%20Ricota%20Ji%20ji%20ji"
+        ],
+        [
+                "Un vestido y un amor",
+                "Fito Páez",
+                "Melodía muy argentina para escuchar con calma.",
+                "https://www.youtube.com/results?search_query=Fito%20P%C3%A1ez%20Un%20vestido%20y%20un%20amor"
+        ],
+        [
+                "Crimen",
+                "Gustavo Cerati",
+                "Cerati en modo elegante y dramático.",
+                "https://www.youtube.com/results?search_query=Gustavo%20Cerati%20Crimen"
+        ],
+        [
+                "Zona de promesas",
+                "Soda Stereo",
+                "Una canción suave para entrar en clima.",
+                "https://www.youtube.com/results?search_query=Soda%20Stereo%20Zona%20de%20promesas"
+        ],
+        [
+                "Rezo por vos",
+                "Charly García y Luis Alberto Spinetta",
+                "Dos gigantes argentinos en una misma canción.",
+                "https://www.youtube.com/results?search_query=Charly%20Garc%C3%ADa%20y%20Luis%20Alberto%20Spinetta%20Rezo%20por%20vos"
+        ],
+        [
+                "Seguir viviendo sin tu amor",
+                "Luis Alberto Spinetta",
+                "Spinetta para entender otra sensibilidad local.",
+                "https://www.youtube.com/results?search_query=Luis%20Alberto%20Spinetta%20Seguir%20viviendo%20sin%20tu%20amor"
+        ],
+        [
+                "Bajan",
+                "Pescado Rabioso",
+                "Rock nacional de culto.",
+                "https://www.youtube.com/results?search_query=Pescado%20Rabioso%20Bajan"
+        ],
+        [
+                "Rasguña las piedras",
+                "Sui Generis",
+                "Un clásico de otra generación.",
+                "https://www.youtube.com/results?search_query=Sui%20Generis%20Rasgu%C3%B1a%20las%20piedras"
+        ],
+        [
+                "Canción para mi muerte",
+                "Sui Generis",
+                "Punto de partida obligatorio del rock argentino.",
+                "https://www.youtube.com/results?search_query=Sui%20Generis%20Canci%C3%B3n%20para%20mi%20muerte"
+        ],
+        [
+                "Costumbres argentinas",
+                "Los Abuelos de la Nada",
+                "El título ya viene haciendo el trabajo cultural.",
+                "https://www.youtube.com/results?search_query=Los%20Abuelos%20de%20la%20Nada%20Costumbres%20argentinas"
+        ],
+        [
+                "Demoliendo hoteles",
+                "Charly García",
+                "Charly con energía de ciudad.",
+                "https://www.youtube.com/results?search_query=Charly%20Garc%C3%ADa%20Demoliendo%20hoteles"
+        ],
+        [
+                "Promesas sobre el bidet",
+                "Charly García",
+                "Rareza brillante para sumar cultura musical.",
+                "https://www.youtube.com/results?search_query=Charly%20Garc%C3%ADa%20Promesas%20sobre%20el%20bidet"
+        ],
+        [
+                "Y dale alegría a mi corazón",
+                "Fito Páez",
+                "Canción de estadio emocional, versión rock.",
+                "https://www.youtube.com/results?search_query=Fito%20P%C3%A1ez%20Y%20dale%20alegr%C3%ADa%20a%20mi%20coraz%C3%B3n"
+        ],
+        [
+                "Mariposa tecknicolor",
+                "Fito Páez",
+                "Color, viaje y espíritu rosarino.",
+                "https://www.youtube.com/results?search_query=Fito%20P%C3%A1ez%20Mariposa%20tecknicolor"
+        ],
+        [
+                "El mató y un policía motorizado",
+                "El tesoro",
+                "Indie argentino contemporáneo.",
+                "https://www.youtube.com/results?search_query=El%20tesoro%20El%20mat%C3%B3%20y%20un%20polic%C3%ADa%20motorizado"
+        ],
+        [
+                "Un poco de amor francés",
+                "Patricio Rey y sus Redonditos de Ricota",
+                "Rock argentino con misterio.",
+                "https://www.youtube.com/results?search_query=Patricio%20Rey%20y%20sus%20Redonditos%20de%20Ricota%20Un%20poco%20de%20amor%20franc%C3%A9s"
+        ],
+        [
+                "La bestia pop",
+                "Patricio Rey y sus Redonditos de Ricota",
+                "Otro clásico ricotero.",
+                "https://www.youtube.com/results?search_query=Patricio%20Rey%20y%20sus%20Redonditos%20de%20Ricota%20La%20bestia%20pop"
+        ],
+        [
+                "Vasos vacíos",
+                "Los Fabulosos Cadillacs",
+                "Ska, rock y voz invitada inolvidable.",
+                "https://www.youtube.com/results?search_query=Los%20Fabulosos%20Cadillacs%20Vasos%20vac%C3%ADos"
+        ],
+        [
+                "Mal bicho",
+                "Los Fabulosos Cadillacs",
+                "Cadillacs con pulso fuerte.",
+                "https://www.youtube.com/results?search_query=Los%20Fabulosos%20Cadillacs%20Mal%20bicho"
+        ],
+        [
+                "Siguiendo la luna",
+                "Los Fabulosos Cadillacs",
+                "Una canción nocturna y rutera.",
+                "https://www.youtube.com/results?search_query=Los%20Fabulosos%20Cadillacs%20Siguiendo%20la%20luna"
+        ],
+        [
+                "El extraño de pelo largo",
+                "La Joven Guardia",
+                "Pop rock argentino de otra época.",
+                "https://www.youtube.com/results?search_query=La%20Joven%20Guardia%20El%20extra%C3%B1o%20de%20pelo%20largo"
+        ],
+        [
+                "La balsa",
+                "Los Gatos",
+                "Una piedra fundacional del rock argentino.",
+                "https://www.youtube.com/results?search_query=Los%20Gatos%20La%20balsa"
+        ],
+        [
+                "Presente",
+                "Vox Dei",
+                "Clásico argentino para escuchar con contexto.",
+                "https://www.youtube.com/results?search_query=Vox%20Dei%20Presente"
+        ],
+        [
+                "Sólo le pido a Dios",
+                "León Gieco",
+                "Canción social conocida en toda Argentina.",
+                "https://www.youtube.com/results?search_query=Le%C3%B3n%20Gieco%20S%C3%B3lo%20le%20pido%20a%20Dios"
+        ],
+        [
+                "Cinco siglos igual",
+                "León Gieco",
+                "Historia y música popular en una misma ruta.",
+                "https://www.youtube.com/results?search_query=Le%C3%B3n%20Gieco%20Cinco%20siglos%20igual"
+        ],
+        [
+                "Zamba para olvidar",
+                "Mercedes Sosa",
+                "Folklore argentino para bajar un cambio.",
+                "https://www.youtube.com/results?search_query=Mercedes%20Sosa%20Zamba%20para%20olvidar"
+        ],
+        [
+                "Gracias a la vida",
+                "Mercedes Sosa",
+                "Una interpretación argentina muy querida.",
+                "https://www.youtube.com/results?search_query=Mercedes%20Sosa%20Gracias%20a%20la%20vida"
+        ],
+        [
+                "Todo cambia",
+                "Mercedes Sosa",
+                "Canción viajera por definición.",
+                "https://www.youtube.com/results?search_query=Mercedes%20Sosa%20Todo%20cambia"
+        ],
+        [
+                "Luna tucumana",
+                "Atahualpa Yupanqui",
+                "Folklore del norte argentino.",
+                "https://www.youtube.com/results?search_query=Atahualpa%20Yupanqui%20Luna%20tucumana"
+        ],
+        [
+                "Los ejes de mi carreta",
+                "Atahualpa Yupanqui",
+                "Una postal musical del campo argentino.",
+                "https://www.youtube.com/results?search_query=Atahualpa%20Yupanqui%20Los%20ejes%20de%20mi%20carreta"
+        ],
+        [
+                "Zamba de mi esperanza",
+                "Los Chalchaleros",
+                "Folklore clásico de sobremesa.",
+                "https://www.youtube.com/results?search_query=Los%20Chalchaleros%20Zamba%20de%20mi%20esperanza"
+        ],
+        [
+                "Merceditas",
+                "Ramón Ayala",
+                "Canción litoraleña muy reconocida.",
+                "https://www.youtube.com/results?search_query=Ram%C3%B3n%20Ayala%20Merceditas"
+        ],
+        [
+                "Kilómetro 11",
+                "Tránsito Cocomarola",
+                "Chamamé para ubicar el litoral en el mapa sonoro.",
+                "https://www.youtube.com/results?search_query=Tr%C3%A1nsito%20Cocomarola%20Kil%C3%B3metro%2011"
+        ],
+        [
+                "Bombón asesino",
+                "Los Palmeras",
+                "Cumbia santafesina con efecto fiesta.",
+                "https://www.youtube.com/results?search_query=Los%20Palmeras%20Bomb%C3%B3n%20asesino"
+        ],
+        [
+                "Soy sabalero",
+                "Los Palmeras",
+                "Cumbia y fútbol con identidad santafesina.",
+                "https://www.youtube.com/results?search_query=Los%20Palmeras%20Soy%20sabalero"
+        ],
+        [
+                "La pollera amarilla",
+                "Gladys La Bomba Tucumana",
+                "Cumbia popular argentina sin solemnidad.",
+                "https://www.youtube.com/results?search_query=Gladys%20La%20Bomba%20Tucumana%20La%20pollera%20amarilla"
+        ],
+        [
+                "No me arrepiento de este amor",
+                "Gilda",
+                "Ícono de la música popular argentina.",
+                "https://www.youtube.com/results?search_query=Gilda%20No%20me%20arrepiento%20de%20este%20amor"
+        ],
+        [
+                "Paisaje",
+                "Gilda",
+                "Versión querida y cantadísima.",
+                "https://www.youtube.com/results?search_query=Gilda%20Paisaje"
+        ],
+        [
+                "Corazón valiente",
+                "Gilda",
+                "Clásico popular con mucha energía.",
+                "https://www.youtube.com/results?search_query=Gilda%20Coraz%C3%B3n%20valiente"
+        ],
+        [
+                "La guitarra",
+                "Los Auténticos Decadentes",
+                "Fiesta argentina con guitarras y humor.",
+                "https://www.youtube.com/results?search_query=Los%20Aut%C3%A9nticos%20Decadentes%20La%20guitarra"
+        ],
+        [
+                "Loco tu forma de ser",
+                "Los Auténticos Decadentes",
+                "Canción imposible de mantener seria.",
+                "https://www.youtube.com/results?search_query=Los%20Aut%C3%A9nticos%20Decadentes%20Loco%20tu%20forma%20de%20ser"
+        ],
+        [
+                "El murguero",
+                "Los Auténticos Decadentes",
+                "Ritmo de carnaval porteño.",
+                "https://www.youtube.com/results?search_query=Los%20Aut%C3%A9nticos%20Decadentes%20El%20murguero"
+        ],
+        [
+                "Tuyo siempre",
+                "Andrés Calamaro",
+                "Rock argentino de ruta urbana.",
+                "https://www.youtube.com/results?search_query=Andr%C3%A9s%20Calamaro%20Tuyo%20siempre"
+        ],
+        [
+                "Alta suciedad",
+                "Andrés Calamaro",
+                "Calamaro en modo Buenos Aires.",
+                "https://www.youtube.com/results?search_query=Andr%C3%A9s%20Calamaro%20Alta%20suciedad"
+        ],
+        [
+                "Cuando pase el temblor",
+                "Soda Stereo",
+                "Soda con clima latinoamericano.",
+                "https://www.youtube.com/results?search_query=Soda%20Stereo%20Cuando%20pase%20el%20temblor"
+        ],
+        [
+                "En la ciudad de la furia",
+                "Soda Stereo",
+                "Buenos Aires convertida en canción.",
+                "https://www.youtube.com/results?search_query=Soda%20Stereo%20En%20la%20ciudad%20de%20la%20furia"
+        ],
+        [
+                "Trátame suavemente",
+                "Soda Stereo",
+                "Un clásico que nunca falla.",
+                "https://www.youtube.com/results?search_query=Soda%20Stereo%20Tr%C3%A1tame%20suavemente"
+        ],
+        [
+                "Puente",
+                "Gustavo Cerati",
+                "Cerati en modo luminoso.",
+                "https://www.youtube.com/results?search_query=Gustavo%20Cerati%20Puente"
+        ],
+        [
+                "Adiós",
+                "Gustavo Cerati",
+                "Canción grande para escuchar con auriculares.",
+                "https://www.youtube.com/results?search_query=Gustavo%20Cerati%20Adi%C3%B3s"
+        ],
+        [
+                "Cactus",
+                "Gustavo Cerati",
+                "Versión moderna con raíz folklórica.",
+                "https://www.youtube.com/results?search_query=Gustavo%20Cerati%20Cactus"
+        ],
+        [
+                "La colina de la vida",
+                "León Gieco",
+                "Viaje, camino y mirada argentina.",
+                "https://www.youtube.com/results?search_query=Le%C3%B3n%20Gieco%20La%20colina%20de%20la%20vida"
+        ],
+        [
+                "El oso",
+                "Moris",
+                "Rock argentino temprano y narrativo.",
+                "https://www.youtube.com/results?search_query=Moris%20El%20oso"
+        ],
+        [
+                "Mañana campestre",
+                "Arco Iris",
+                "Clásico con aire hippie argentino.",
+                "https://www.youtube.com/results?search_query=Arco%20Iris%20Ma%C3%B1ana%20campestre"
+        ],
+        [
+                "A rodar mi vida",
+                "Fito Páez",
+                "Perfecta para una previa de viaje.",
+                "https://www.youtube.com/results?search_query=Fito%20P%C3%A1ez%20A%20rodar%20mi%20vida"
+        ],
+        [
+                "Brillante sobre el mic",
+                "Fito Páez",
+                "Rosario sentimental, pero sin ponerse cursi.",
+                "https://www.youtube.com/results?search_query=Fito%20P%C3%A1ez%20Brillante%20sobre%20el%20mic"
+        ],
+        [
+                "Barro tal vez",
+                "Luis Alberto Spinetta",
+                "Una canción hermosa de raíz argentina.",
+                "https://www.youtube.com/results?search_query=Luis%20Alberto%20Spinetta%20Barro%20tal%20vez"
+        ],
+        [
+                "Muchacha ojos de papel",
+                "Almendra",
+                "Clásico fundacional de Spinetta.",
+                "https://www.youtube.com/results?search_query=Almendra%20Muchacha%20ojos%20de%20papel"
+        ],
+        [
+                "El anillo del Capitán Beto",
+                "Invisible",
+                "Una pequeña película musical argentina.",
+                "https://www.youtube.com/results?search_query=Invisible%20El%20anillo%20del%20Capit%C3%A1n%20Beto"
+        ],
+        [
+                "Viernes 3 AM",
+                "Serú Girán",
+                "Charly y Serú en modo intenso.",
+                "https://www.youtube.com/results?search_query=Ser%C3%BA%20Gir%C3%A1n%20Viernes%203%20AM"
+        ],
+        [
+                "No voy en tren",
+                "Charly García",
+                "Charly con frase inolvidable.",
+                "https://www.youtube.com/results?search_query=Charly%20Garc%C3%ADa%20No%20voy%20en%20tren"
+        ]
+];
 
       const comparisons = [
-        ["Horarios", "Se cena tarde: muchas veces después de las 21:00.", "La cena suele ser más temprano.", "Si a las 20:00 nadie tiene hambre, no es falla del sistema."],
-        ["Saludo", "Un beso en la mejilla es común incluso entre conocidos.", "También hay cercanía, pero cambia según región y contexto.", "Argentina tiene modo confianza bastante rápido."],
-        ["Bus", "En Buenos Aires se dice colectivo o bondi.", "En Colombia puede ser bus, buseta o colectivo según la zona.", "Palabra clave para desbloquear ciudad: bondi."],
-        ["Fútbol", "La conversación puede ponerse intensa muy rápido.", "También hay pasión fuerte por el fútbol.", "Tema recomendado: preguntar, escuchar y no subestimar rivalidades."],
-        ["Café", "El café notable y la merienda tienen vida propia.", "El café colombiano tiene identidad mundial.", "Este cruce cultural se resuelve probando ambos, obvio."]
-      ];
+        [
+                "Horarios",
+                "Se cena tarde: muchas veces despues de las 21:00.",
+                "La cena suele ser mas temprano.",
+                "Si a las 20:00 nadie tiene hambre, no es falla del sistema."
+        ],
+        [
+                "Saludo",
+                "Un beso en la mejilla es comun incluso entre conocidos.",
+                "Tambien hay cercania, pero cambia segun region y contexto.",
+                "Argentina tiene modo confianza bastante rapido."
+        ],
+        [
+                "Bus",
+                "En Buenos Aires se dice colectivo o bondi.",
+                "En Colombia puede ser bus, buseta o colectivo segun la zona.",
+                "Palabra clave para desbloquear ciudad: bondi."
+        ],
+        [
+                "Futbol",
+                "La conversacion puede ponerse intensa muy rapido.",
+                "Tambien hay pasion fuerte por el futbol.",
+                "Tema recomendado: preguntar, escuchar y no subestimar rivalidades."
+        ],
+        [
+                "Cafe",
+                "El cafe notable y la merienda tienen vida propia.",
+                "El cafe colombiano tiene identidad mundial.",
+                "Este cruce cultural se resuelve probando ambos."
+        ],
+        [
+                "Cena",
+                "Una cena a las 22:00 puede ser completamente normal.",
+                "En muchas ciudades colombianas eso ya suena tarde.",
+                "El hambre debera adaptarse diplomaticamente."
+        ],
+        [
+                "Mate",
+                "El mate se comparte en ronda y tiene reglas no escritas.",
+                "En Colombia el cafe tiene mas protagonismo cotidiano.",
+                "No tocar la bombilla es entrenamiento basico."
+        ],
+        [
+                "Dulce",
+                "El dulce de leche aparece en casi todo.",
+                "El arequipe cumple un rol parecido.",
+                "Se recomienda investigacion comparativa seria."
+        ],
+        [
+                "Panaderia",
+                "Las facturas son parte importante de la merienda.",
+                "La panaderia colombiana tiene otros clasicos regionales.",
+                "Ambas culturas ganan por carbohidratos."
+        ],
+        [
+                "Transporte",
+                "La SUBE es clave para moverse.",
+                "En Colombia depende mucho de la ciudad y sistema.",
+                "Sin SUBE, el turista entra en modo mision secundaria."
+        ],
+        [
+                "Ciudad",
+                "Buenos Aires es muy caminable en varias zonas.",
+                "Las ciudades colombianas pueden depender mas de relieve y transporte.",
+                "Aca igual se camina hasta cuestionar decisiones."
+        ],
+        [
+                "Clima",
+                "Septiembre puede mezclar fresco, sol y sorpresa.",
+                "Colombia tiene climas muy marcados por altura.",
+                "Traer capas es politica publica personal."
+        ],
+        [
+                "Voseo",
+                "Se dice vos queres, vos venis, vos sabes.",
+                "En Colombia domina mas tu, usted o vos segun region.",
+                "El vos argentino viene con tono propio."
+        ],
+        [
+                "Propina",
+                "La propina suele rondar el 10% si el servicio estuvo bien.",
+                "En Colombia tambien existe cultura de propina.",
+                "No es matematica avanzada, pero casi."
+        ],
+        [
+                "Taxi apps",
+                "Las apps ayudan, pero el transito opina.",
+                "En Colombia tambien son parte del mapa urbano.",
+                "El GPS no siempre entiende la dramaturgia local."
+        ],
+        [
+                "Cancha",
+                "La cancha argentina puede ser muy intensa.",
+                "Colombia tambien vive fuerte el futbol.",
+                "Aca el volumen emocional viene incluido."
+        ],
+        [
+                "Helado",
+                "Pedir helado a casa es practica normal.",
+                "En Colombia el helado convive con jugos y postres tropicales.",
+                "La investigacion de sabores sera necesaria."
+        ],
+        [
+                "Asado",
+                "El asado puede durar varias horas.",
+                "En Colombia hay parrilla, pero otros rituales mandan.",
+                "La paciencia es ingrediente oficial."
+        ],
+        [
+                "Barrio",
+                "Cada barrio porteño cambia de ritmo y personalidad.",
+                "En Colombia tambien pesa mucho la identidad barrial.",
+                "Moverse de barrio puede sentirse como cambiar de canal."
+        ],
+        [
+                "Centro",
+                "Microcentro mezcla historia, oficinas y caos.",
+                "Los centros colombianos varian mucho por ciudad.",
+                "Mirar arriba ayuda: hay fachadas hermosas escondidas."
+        ],
+        [
+                "Rio",
+                "Buenos Aires vive junto al Rio de la Plata.",
+                "Colombia tiene rios enormes y geografias mas tropicales.",
+                "Este rio parece mar, pero no se deja llamar mar."
+        ],
+        [
+                "Montaña",
+                "Buenos Aires es plana con entusiasmo.",
+                "Muchas ciudades colombianas tienen montaña cerca.",
+                "Aca la subida mas dura puede ser una escalera del subte."
+        ],
+        [
+                "Picante",
+                "La comida argentina suele ser poco picante.",
+                "En Colombia depende mucho del plato y la region.",
+                "Si pide picante, quizas haya que importarlo emocionalmente."
+        ],
+        [
+                "Queso",
+                "La pizza porteña suele venir con mucho queso.",
+                "Colombia tambien tiene amores profundos por el queso.",
+                "Punto comun diplomatico: queso."
+        ],
+        [
+                "Fiesta",
+                "El boliche arranca tarde.",
+                "En Colombia la noche puede empezar antes.",
+                "Dormir siesta podria ser estrategia."
+        ],
+        [
+                "Musica",
+                "El rock nacional y el tango pesan mucho.",
+                "Colombia tiene cumbia, vallenato, salsa y mas.",
+                "Intercambio cultural obligatorio."
+        ],
+        [
+                "Cumbia",
+                "Argentina tiene cumbia villera, santafesina y pop.",
+                "Colombia tiene una cumbia fundacional para America Latina.",
+                "Tema con raices compartidas y muchas ramas."
+        ],
+        [
+                "Documentos",
+                "DNI es palabra de todos los dias.",
+                "En Colombia se habla de cedula.",
+                "Identidad, pero con distinto nombre."
+        ],
+        [
+                "Aeropuerto",
+                "Aeroparque queda dentro de la ciudad.",
+                "En Colombia los aeropuertos dependen mucho de la ciudad.",
+                "Ventaja: rescate logistico menos dramatico."
+        ],
+        [
+                "Compras",
+                "El kiosco argentino resuelve antojos y emergencias.",
+                "En Colombia la tienda de barrio cumple un rol enorme.",
+                "Instituciones hermanas del hambre repentino."
+        ],
+        [
+                "Merienda",
+                "La merienda puede ser plan en si mismo.",
+                "En Colombia las onces cumplen un rol parecido.",
+                "Ambas culturas entienden la pausa dulce."
+        ],
+        [
+                "Tango",
+                "El tango es postal, musica, baile e historia urbana.",
+                "Colombia tiene bailes sociales con otra energia.",
+                "No todo se baila igual; ese es el punto."
+        ],
+        [
+                "Calle",
+                "La calle Corrientes tiene teatro, pizza y librerias.",
+                "Las calles culturales colombianas cambian segun ciudad.",
+                "Corrientes viene con hambre de pizza."
+        ],
+        [
+                "Museos",
+                "Muchos museos porteños estan cerca de zonas caminables.",
+                "En Colombia los museos tambien cuentan identidad regional.",
+                "Plan cultural sin examen final."
+        ],
+        [
+                "Parques",
+                "Palermo concentra parques enormes.",
+                "Colombia tiene verde exuberante por geografia.",
+                "Aca el verde urbano se agradece mucho."
+        ],
+        [
+                "Costanera",
+                "La costanera porteña mira al rio.",
+                "Colombia puede mirar a montaña, mar o valle segun ciudad.",
+                "La orientacion visual cambia de pais a pais."
+        ],
+        [
+                "Empanadas",
+                "Cada provincia argentina defiende su empanada.",
+                "Colombia tambien tiene empanadas con identidad propia.",
+                "La comparacion debe hacerse comiendo, obvio."
+        ],
+        [
+                "Alfajor",
+                "El alfajor es asunto serio.",
+                "Colombia tiene otros dulces regionales fuertes.",
+                "Habra evaluacion practica."
+        ],
+        [
+                "Vino",
+                "Argentina tiene regiones vitivinicolas muy conocidas.",
+                "Colombia no se asocia tanto al vino.",
+                "Una copa puede explicar geografia."
+        ],
+        [
+                "Tostado",
+                "El tostado de jamon y queso es clasico simple.",
+                "En Colombia hay otras meriendas saladas.",
+                "Nada glamoroso, pero funciona."
+        ],
+        [
+                "Lluvia",
+                "Buenos Aires puede inundar planes con lluvia intensa.",
+                "Colombia conoce lluvias tropicales de otro estilo.",
+                "Paraguas: objeto aburrido pero util."
+        ],
+        [
+                "Vereda",
+                "Las veredas porteñas son parte de la experiencia.",
+                "En Colombia las calles cambian mucho por ciudad.",
+                "Mirar el piso tambien es turismo preventivo."
+        ],
+        [
+                "Humor",
+                "La ironia argentina aparece rapido.",
+                "Colombia tiene calidez y humor propio.",
+                "Manual de supervivencia: no tomar todo literal."
+        ],
+        [
+                "Apodos",
+                "Argentina ama abreviar nombres y poner apodos.",
+                "Colombia tambien tiene diminutivos y sobrenombres.",
+                "Camilo no esta a salvo."
+        ],
+        [
+                "Tiempo",
+                "El “ya salgo” puede ser flexible.",
+                "En Colombia tambien existe elasticidad horaria.",
+                "America Latina comparte algunas tecnologias temporales."
+        ],
+        [
+                "Amigos",
+                "Las juntadas pueden organizarse con caos y cariño.",
+                "En Colombia tambien manda la reunion social.",
+                "El calendario intenta domesticar lo indomesticable."
+        ],
+        [
+                "Casa",
+                "La noche en casa puede ser plan fuerte.",
+                "En Colombia la casa tambien es centro social.",
+                "No todo plan necesita entrada."
+        ],
+        [
+                "Barrio chino",
+                "Es una mini salida cultural dentro de Buenos Aires.",
+                "En Colombia hay zonas comerciales con otras mezclas culturales.",
+                "Viajar sin salir de la ciudad: aprobado."
+        ],
+        [
+                "Obelisco",
+                "Funciona como punto de referencia porteño.",
+                "Cada ciudad colombiana tiene sus iconos propios.",
+                "Si te perdes, al menos sabes que eso existe."
+        ],
+        [
+                "Teatro",
+                "El Colon es referencia mundial.",
+                "Colombia tambien tiene teatros historicos importantes.",
+                "Mirar la fachada ya cuenta como momento cultural."
+        ],
+        [
+                "Puerto",
+                "Buenos Aires crecio mucho por su puerto.",
+                "Colombia tiene relacion fuerte con Caribe y Pacifico.",
+                "Dos paises, muchas puertas de entrada."
+        ],
+        [
+                "Inmigracion",
+                "Buenos Aires tiene marcas fuertes de inmigracion europea.",
+                "Colombia mezcla otras historias regionales.",
+                "La comida cuenta bastante de eso."
+        ],
+        [
+                "Mapa",
+                "Argentina es larguisima de norte a sur.",
+                "Colombia es mas compacta pero muy diversa por relieve.",
+                "El mapa no es decoracion; es advertencia."
+        ],
+        [
+                "Capitales",
+                "Argentina tiene capital nacional y capitales provinciales.",
+                "Colombia tambien organiza departamentos y capitales.",
+                "El quiz podria no perdonar."
+        ],
+        [
+                "Acento",
+                "El acento rioplatense tiene yeismo fuerte.",
+                "Colombia tiene acentos muy variados.",
+                "Si escuchas “shuvia”, no entraste a otro idioma."
+        ],
+        [
+                "Usted",
+                "En Buenos Aires se usa menos usted en trato informal.",
+                "En Colombia el usted puede ser cotidiano y cercano.",
+                "La formalidad cambia de pais a pais."
+        ],
+        [
+                "Plata",
+                "Plata puede ser dinero, y La Plata es una ciudad.",
+                "En Colombia plata tambien significa dinero.",
+                "Primer puente linguistico desbloqueado."
+        ],
+        [
+                "Dale pues",
+                "Aca se dice dale; alla puede aparecer dale pues.",
+                "Colombia tiene giros regionales propios.",
+                "Ambos sirven para cerrar un plan."
+        ],
+        [
+                "Gaseosa",
+                "En Argentina gaseosa es refresco.",
+                "En Colombia tambien se entiende, aunque cambian marcas y costumbres.",
+                "La hidratacion azucarada es continental."
+        ],
+        [
+                "Desayuno",
+                "El desayuno argentino puede ser liviano.",
+                "En Colombia puede ser mas contundente segun region.",
+                "Camilo podria extrañar desayunos poderosos."
+        ],
+        [
+                "Almuerzo",
+                "El almuerzo suele ser importante, pero la cena llega tarde.",
+                "En Colombia el almuerzo tambien puede ser fuerte.",
+                "El estomago negociara horarios."
+        ],
+        [
+                "Domingo",
+                "El domingo porteño puede ser feria, paseo o bajon hermoso.",
+                "En Colombia tambien es dia familiar y de paseo.",
+                "Domingo: institucion latinoamericana."
+        ],
+        [
+                "Aeroparque",
+                "Aeroparque esta cerca del rio y de la ciudad.",
+                "Muchos aeropuertos quedan mas alejados del centro urbano.",
+                "Menos rescate, mas eficiencia emocional."
+        ],
+        [
+                "Regalos",
+                "El mejor souvenir puede ser una anecdota.",
+                "Colombia tambien sabe regalar memoria y comida.",
+                "Igual un alfajor ayuda."
+        ],
+        [
+                "Preguntas",
+                "Preguntar mucho aca es estrategia valida.",
+                "En Colombia tambien salva rutas y direcciones.",
+                "El orgullo geografico no orienta tanto como Google Maps."
+        ],
+        [
+                "Despedida",
+                "Las despedidas argentinas pueden alargarse.",
+                "En Colombia tambien se sabe despedir con afecto.",
+                "Salir de una casa puede requerir varios intentos."
+        ],
+        [
+                "Direcciones",
+                "En Buenos Aires muchas referencias son por calles y esquinas.",
+                "En Colombia también se usan puntos de referencia según la ciudad.",
+                "La esquina puede ser más importante que el número."
+        ],
+        [
+                "Café",
+                "El cafecito porteño suele ser pausa social de mesa chica.",
+                "Colombia trae autoridad internacional en café.",
+                "Este duelo cultural viene con cafeína diplomática."
+        ],
+        [
+                "Distancias",
+                "En CABA todo parece cerca hasta que caminaste veinte cuadras.",
+                "En Colombia la geografía puede cambiar mucho entre ciudades.",
+                "Medir en cuadras es deporte local."
+        ],
+        [
+                "Preguntar",
+                "El porteño puede dar indicaciones con seguridad teatral.",
+                "En Colombia también se resuelve mucho preguntando.",
+                "Si dos personas dicen rutas distintas, empieza la aventura."
+        ]
+];
 
       const historyFacts = [
-        ["1810", "Revolución de Mayo", "En mayo de 1810 se formó el primer gobierno patrio. No fue todavía la independencia formal, pero sí un paso enorme."],
-        ["1816", "Independencia", "El 9 de julio de 1816 se declaró la independencia en Tucumán. Por eso el 9 de Julio es fecha patria."],
-        ["1812", "Bandera argentina", "Manuel Belgrano creó la bandera argentina en 1812. Celeste y blanco: imposible que no aparezcan en algún plan."],
-        ["1853", "Constitución", "La Constitución Nacional se sancionó en 1853 y organizó las bases institucionales del país."],
-        ["1880-1930", "Inmigración", "Argentina recibió millones de inmigrantes, especialmente europeos. Buenos Aires cambió muchísimo por esa mezcla."],
-        ["1912", "Ley Sáenz Peña", "Esta ley estableció el voto secreto y obligatorio para varones, un cambio clave para la democracia argentina."],
-        ["1945", "17 de octubre", "El 17 de octubre de 1945 es una fecha central para entender el nacimiento del peronismo como movimiento político."],
-        ["1955", "Golpes y crisis", "La historia argentina del siglo XX tuvo varios golpes de Estado. Entender eso ayuda a leer muchas conversaciones actuales."],
-        ["1976-1983", "Dictadura", "La última dictadura fue un período de terrorismo de Estado. Es una herida muy importante en la memoria argentina."],
-        ["1983", "Vuelta de la democracia", "En 1983 Argentina recuperó la democracia con la elección de Raúl Alfonsín."],
-        ["1985", "Juicio a las Juntas", "Argentina juzgó a los líderes de la dictadura en democracia. Fue un hecho histórico enorme en derechos humanos."],
-        ["2001", "Crisis de 2001", "La crisis de 2001 marcó mucho a la sociedad argentina. Todavía aparece en relatos familiares y cultura popular."],
-        ["2010", "Bicentenario", "En 2010 Argentina celebró 200 años de la Revolución de Mayo con festejos masivos en Buenos Aires."]
+              [
+                      "1810",
+                      "Revolucion de Mayo",
+                      "En mayo de 1810 se formo el primer gobierno patrio. No fue todavia la independencia formal, pero si un paso enorme."
+              ],
+              [
+                      "1812",
+                      "Bandera argentina",
+                      "Manuel Belgrano creo la bandera argentina en 1812."
+              ],
+              [
+                      "1813",
+                      "Asamblea del Año XIII",
+                      "La Asamblea del Año XIII impulso simbolos patrios y reformas importantes."
+              ],
+              [
+                      "1816",
+                      "Independencia",
+                      "El 9 de julio de 1816 se declaro la independencia en Tucuman."
+              ],
+              [
+                      "1820",
+                      "Autonomias provinciales",
+                      "Despues de 1820 crecieron las autonomias provinciales y los conflictos entre proyectos de pais."
+              ],
+              [
+                      "1829",
+                      "Rosas",
+                      "Juan Manuel de Rosas se volvio una figura central de la politica bonaerense."
+              ],
+              [
+                      "1853",
+                      "Constitucion",
+                      "La Constitucion Nacional se sanciono en 1853 y organizo las bases institucionales del pais."
+              ],
+              [
+                      "1862",
+                      "Organizacion nacional",
+                      "Bartolome Mitre asumio la presidencia en una etapa clave de organizacion nacional."
+              ],
+              [
+                      "1880",
+                      "Federalizacion de Buenos Aires",
+                      "Buenos Aires fue federalizada y se consolido como capital nacional."
+              ],
+              [
+                      "1884",
+                      "Ley 1420",
+                      "La Ley 1420 impulso la educacion primaria comun, gratuita y obligatoria."
+              ],
+              [
+                      "1890",
+                      "Revolucion del Parque",
+                      "La crisis de 1890 impulso cambios politicos y el surgimiento de nuevas fuerzas."
+              ],
+              [
+                      "1912",
+                      "Ley Saenz Peña",
+                      "Esta ley establecio el voto secreto y obligatorio para varones."
+              ],
+              [
+                      "1916",
+                      "Yrigoyen",
+                      "Hipolito Yrigoyen fue el primer presidente elegido con la Ley Saenz Peña."
+              ],
+              [
+                      "1930",
+                      "Primer golpe",
+                      "El golpe de 1930 interrumpio el orden constitucional y abrio una etapa inestable."
+              ],
+              [
+                      "1945",
+                      "17 de octubre",
+                      "El 17 de octubre de 1945 es una fecha central para entender el peronismo."
+              ],
+              [
+                      "1947",
+                      "Voto femenino",
+                      "La ley de voto femenino reconocio derechos politicos a las mujeres."
+              ],
+              [
+                      "1955",
+                      "Golpe de 1955",
+                      "El golpe de 1955 derroco a Peron y marco una etapa de proscripciones."
+              ],
+              [
+                      "1966",
+                      "Noche de los Bastones Largos",
+                      "La represion universitaria de 1966 afecto duramente a la ciencia y la educacion."
+              ],
+              [
+                      "1969",
+                      "Cordobazo",
+                      "El Cordobazo fue una protesta obrera y estudiantil clave contra la dictadura."
+              ],
+              [
+                      "1976",
+                      "Dictadura",
+                      "La ultima dictadura comenzo en 1976 y fue un periodo de terrorismo de Estado."
+              ],
+              [
+                      "1982",
+                      "Malvinas",
+                      "La guerra de Malvinas marco profundamente la memoria argentina."
+              ],
+              [
+                      "1983",
+                      "Democracia",
+                      "En 1983 Argentina recupero la democracia con Raul Alfonsin."
+              ],
+              [
+                      "1985",
+                      "Juicio a las Juntas",
+                      "El Juicio a las Juntas fue un hecho enorme para los derechos humanos."
+              ],
+              [
+                      "1994",
+                      "Reforma constitucional",
+                      "La Constitucion fue reformada en 1994 e incorporo nuevos derechos e instituciones."
+              ],
+              [
+                      "2001",
+                      "Crisis",
+                      "La crisis de 2001 dejo una marca profunda en la sociedad argentina."
+              ],
+              [
+                      "2010",
+                      "Bicentenario",
+                      "En 2010 se celebraron 200 años de la Revolucion de Mayo."
+              ],
+              [
+                      "2015",
+                      "Ni Una Menos",
+                      "El movimiento Ni Una Menos hizo visible la lucha contra la violencia de genero."
+              ],
+              [
+                      "2020",
+                      "Pandemia",
+                      "La pandemia tambien transformo rutinas, trabajo, escuela y vida social argentina."
+              ],
+              [
+                      "Inmigracion",
+                      "Oleadas migratorias",
+                      "Millones de inmigrantes cambiaron para siempre la cultura urbana argentina."
+              ],
+              [
+                      "Ferrocarril",
+                      "Pais conectado",
+                      "El ferrocarril fue clave para unir produccion, pueblos y ciudades."
+              ],
+              [
+                      "Tango",
+                      "Cultura rioplatense",
+                      "El tango crecio en barrios populares y despues se volvio simbolo mundial."
+              ],
+              [
+                      "Rock nacional",
+                      "Identidad musical",
+                      "El rock argentino acompaño debates culturales y politicos desde los años sesenta."
+              ],
+              [
+                      "Derechos humanos",
+                      "Memoria activa",
+                      "La memoria sobre la dictadura ocupa un lugar central en la vida publica argentina."
+              ],
+              [
+                      "Educacion",
+                      "Universidad publica",
+                      "La universidad publica argentina es una institucion muy valorada socialmente."
+              ],
+              [
+                      "Ciencia",
+                      "Tradicion cientifica",
+                      "Argentina tiene una historia importante en medicina, fisica, biotecnologia y tecnologia satelital."
+              ],
+              [
+                      "Literatura",
+                      "Borges y Cortazar",
+                      "La literatura argentina tiene autores de influencia mundial como Borges y Cortazar."
+              ],
+              [
+                      "Historieta",
+                      "Mafalda",
+                      "Mafalda se volvio una forma tierna e inteligente de mirar la sociedad."
+              ],
+              [
+                      "Futbol",
+                      "Pasiones populares",
+                      "El futbol argentino mezcla barrio, identidad, historia y drama."
+              ],
+              [
+                      "Teatro",
+                      "Escena porteña",
+                      "Buenos Aires tiene una escena teatral intensa y muy activa."
+              ],
+              [
+                      "Cafe",
+                      "Bares notables",
+                      "Los bares notables guardan parte de la memoria cultural de la ciudad."
+              ],
+              [
+                      "Puerto",
+                      "Ciudad portuaria",
+                      "Buenos Aires crecio mirando al puerto y al comercio exterior."
+              ],
+              [
+                      "Conventillos",
+                      "Vida inmigrante",
+                      "Los conventillos fueron espacios clave de mezcla cultural e inmigracion."
+              ],
+              [
+                      "San Telmo",
+                      "Barrio antiguo",
+                      "San Telmo conserva capas de historia colonial, inmigrante y popular."
+              ],
+              [
+                      "La Boca",
+                      "Color e inmigracion",
+                      "La Boca mezcla puerto, inmigracion, arte popular y futbol."
+              ],
+              [
+                      "Plaza de Mayo",
+                      "Escenario politico",
+                      "Plaza de Mayo fue escenario de protestas, celebraciones y momentos historicos."
+              ],
+              [
+                      "Casa Rosada",
+                      "Balcones historicos",
+                      "La Casa Rosada concentra mucha simbologia politica argentina."
+              ],
+              [
+                      "Cabildo",
+                      "Memoria colonial",
+                      "El Cabildo recuerda la etapa colonial y los primeros pasos patrios."
+              ],
+              [
+                      "Avenida de Mayo",
+                      "Eje historico",
+                      "La Avenida de Mayo une simbolicamente Casa Rosada y Congreso."
+              ],
+              [
+                      "Congreso",
+                      "Poder legislativo",
+                      "El Congreso es uno de los edificios politicos mas importantes del pais."
+              ],
+              [
+                      "Recoleta",
+                      "Arquitectura y elite",
+                      "Recoleta cuenta parte de la historia de las elites porteñas."
+              ],
+              [
+                      "Palermo",
+                      "Transformacion urbana",
+                      "Palermo paso por muchas identidades hasta convertirse en zona cultural y gastronomica."
+              ],
+              [
+                      "Belgrano",
+                      "Pueblo y barrio",
+                      "Belgrano fue pueblo independiente antes de integrarse a la ciudad."
+              ],
+              [
+                      "Nunez",
+                      "Norte porteño",
+                      "Nunez combina vida residencial, clubes y cercania al rio."
+              ],
+              [
+                      "Adrogue",
+                      "Sur con historia",
+                      "Adrogue tiene identidad propia dentro del sur del conurbano bonaerense."
+              ],
+              [
+                      "Malvinas",
+                      "Memoria nacional",
+                      "Las Islas Malvinas ocupan un lugar sensible en la memoria y la identidad argentina."
+              ],
+              [
+                      "Mate",
+                      "Costumbre social",
+                      "El mate sobrevivio siglos y hoy sigue siendo ritual cotidiano."
+              ],
+              [
+                      "Asado",
+                      "Mesa compartida",
+                      "El asado funciona como comida, reunion y ceremonia social."
+              ],
+              [
+                      "Empanadas",
+                      "Identidad regional",
+                      "Las empanadas muestran diferencias entre provincias y tradiciones familiares."
+              ],
+              [
+                      "Vino",
+                      "Economia regional",
+                      "El vino cuenta historia de inmigracion, clima, trabajo y regiones."
+              ],
+              [
+                      "Alfajor",
+                      "Dulce nacional",
+                      "El alfajor resume industria, kiosco, turismo y debate sentimental."
+              ],
+              [
+                      "Subte",
+                      "Modernidad urbana",
+                      "El subte porteño fue simbolo temprano de modernidad urbana."
+              ],
+              [
+                      "Colectivos",
+                      "Invento urbano",
+                      "El colectivo nacio como solucion popular de transporte en Buenos Aires."
+              ],
+              [
+                      "Fileteado",
+                      "Arte porteno",
+                      "El fileteado porteño paso de carros y colectivos a simbolo decorativo de la ciudad."
+              ],
+              [
+                      "Murga",
+                      "Carnaval urbano",
+                      "La murga forma parte de la cultura barrial y carnavalera."
+              ],
+              [
+                      "Folklore",
+                      "Pais diverso",
+                      "El folklore muestra que Argentina no es solo Buenos Aires."
+              ],
+              [
+                      "Patagonia",
+                      "Frontera sur",
+                      "La Patagonia fue central en debates de territorio, pueblos originarios y Estado."
+              ],
+              [
+                      "NOA",
+                      "Raices antiguas",
+                      "El noroeste conserva historias prehispanicas, coloniales y populares muy profundas."
+              ],
+              [
+                      "Litoral",
+                      "Rios e identidad",
+                      "El Litoral se construyo alrededor de rios, frontera, musica y comercio."
+              ],
+              [
+                      "Cuyo",
+                      "Cordillera y vino",
+                      "Cuyo une historia sanmartiniana, montaña y cultura vitivinicola."
+              ]
       ];
 
       const geographyFacts = [
-        ["País larguísimo", "Argentina se estira de norte a sur más de 3.600 km: por eso puede tener selva, desierto, glaciares y playas en el mismo país."],
-        ["Capital nacional", "La capital del país es la Ciudad Autónoma de Buenos Aires. La provincia de Buenos Aires tiene otra capital: La Plata."],
-        ["Patagonia", "La Patagonia ocupa el sur del país e incluye paisajes de lagos, montañas, estepa, glaciares y mucho viento."],
-        ["Cuyo", "Mendoza, San Juan y San Luis forman Cuyo. Es una región muy asociada a montañas, vino y cercanía con la Cordillera."],
-        ["NOA", "El Noroeste Argentino tiene quebradas, cerros de colores, altura y mucha historia indígena y colonial."],
-        ["NEA", "El Noreste Argentino tiene ríos enormes, selva y las Cataratas del Iguazú, una de las maravillas naturales del país."],
-        ["Pampa húmeda", "La zona pampeana es una llanura enorme y fértil; ahí están Buenos Aires, Santa Fe, Córdoba y parte de La Pampa."],
-        ["Río de la Plata", "Buenos Aires está sobre el Río de la Plata, que parece mar por lo ancho, aunque técnicamente es un estuario."],
-        ["Cordillera", "Argentina comparte la Cordillera de los Andes con Chile. El Aconcagua, en Mendoza, es la montaña más alta de América."],
-        ["Tierra del Fuego", "Ushuaia, capital de Tierra del Fuego, está entre las ciudades más australes del mundo."],
-        ["Climas", "Argentina tiene climas muy distintos: subtropical en el norte, templado en el centro, árido en Cuyo y frío en el sur."],
-        ["Dos Buenos Aires", "CABA y Provincia de Buenos Aires no son lo mismo. CABA es la capital nacional; La Plata es la capital provincial."]
+              [
+                      "Pais larguisimo",
+                      "Argentina se estira de norte a sur mas de 3.600 km."
+              ],
+              [
+                      "Capital nacional",
+                      "La capital del pais es CABA; la capital de la Provincia de Buenos Aires es La Plata."
+              ],
+              [
+                      "Patagonia",
+                      "La Patagonia ocupa el sur del pais e incluye lagos, montañas, estepa y glaciares."
+              ],
+              [
+                      "Cuyo",
+                      "Mendoza, San Juan y San Luis forman Cuyo."
+              ],
+              [
+                      "NOA",
+                      "El Noroeste Argentino tiene quebradas, cerros de colores, altura e historia antigua."
+              ],
+              [
+                      "NEA",
+                      "El Noreste tiene rios enormes, selva y las Cataratas del Iguazu."
+              ],
+              [
+                      "Pampa humeda",
+                      "La zona pampeana es una llanura fertil clave para agricultura y ganaderia."
+              ],
+              [
+                      "Rio de la Plata",
+                      "Buenos Aires esta sobre el Rio de la Plata, que parece mar por lo ancho."
+              ],
+              [
+                      "Cordillera",
+                      "Argentina comparte la Cordillera de los Andes con Chile."
+              ],
+              [
+                      "Tierra del Fuego",
+                      "Ushuaia esta entre las ciudades mas australes del mundo."
+              ],
+              [
+                      "Climas",
+                      "Argentina tiene climas subtropicales, templados, aridos y frios."
+              ],
+              [
+                      "Dos Buenos Aires",
+                      "CABA y Provincia de Buenos Aires no son lo mismo."
+              ],
+              [
+                      "Aconcagua",
+                      "El Aconcagua, en Mendoza, es la montaña mas alta de America."
+              ],
+              [
+                      "Iguazu",
+                      "Las Cataratas del Iguazu estan en Misiones, cerca de Brasil y Paraguay."
+              ],
+              [
+                      "Litoral",
+                      "El Litoral argentino esta marcado por rios como el Parana y el Uruguay."
+              ],
+              [
+                      "Delta",
+                      "El Delta del Parana queda cerca de Buenos Aires y cambia completamente el paisaje."
+              ],
+              [
+                      "Mesopotamia",
+                      "Entre Rios, Corrientes y Misiones forman la Mesopotamia argentina."
+              ],
+              [
+                      "Altiplano",
+                      "La Puna del NOA tiene altura, salares y paisajes aridos."
+              ],
+              [
+                      "Quebrada",
+                      "La Quebrada de Humahuaca esta en Jujuy y es Patrimonio de la Humanidad."
+              ],
+              [
+                      "Valles Calchaquies",
+                      "Los Valles Calchaquies atraviesan zonas de Salta, Tucuman y Catamarca."
+              ],
+              [
+                      "Glaciares",
+                      "El Parque Nacional Los Glaciares esta en Santa Cruz."
+              ],
+              [
+                      "Lagos del sur",
+                      "Neuquen, Rio Negro y Chubut tienen zonas famosas de lagos cordilleranos."
+              ],
+              [
+                      "Costa atlantica",
+                      "La Provincia de Buenos Aires tiene ciudades balnearias sobre el Atlantico."
+              ],
+              [
+                      "Mar Argentino",
+                      "Argentina tiene una extensa plataforma maritima en el Atlantico Sur."
+              ],
+              [
+                      "Malvinas",
+                      "Las Islas Malvinas estan en el Atlantico Sur; su capital es Puerto Argentino."
+              ],
+              [
+                      "La Pampa",
+                      "La Pampa funciona como transicion entre llanura pampeana y Patagonia."
+              ],
+              [
+                      "Santa Fe",
+                      "Santa Fe esta atravesada por el Parana y tiene fuerte peso agroindustrial."
+              ],
+              [
+                      "Cordoba",
+                      "Cordoba combina sierras, llanura y una ubicacion central."
+              ],
+              [
+                      "San Luis",
+                      "San Luis mezcla sierras, clima seco y rutas que conectan regiones."
+              ],
+              [
+                      "San Juan",
+                      "San Juan es arido y cordillerano, con fuerte identidad vitivinicola."
+              ],
+              [
+                      "Mendoza",
+                      "Mendoza depende mucho del agua de deshielo para oasis productivos."
+              ],
+              [
+                      "La Rioja",
+                      "La Rioja tiene paisajes aridos, montañas y parques naturales llamativos."
+              ],
+              [
+                      "Catamarca",
+                      "Catamarca combina puna, valles y mineria de altura."
+              ],
+              [
+                      "Tucuman",
+                      "Tucuman es la provincia mas pequeña, pero muy importante historicamente."
+              ],
+              [
+                      "Salta",
+                      "Salta conecta valles, yungas, puna y cultura andina."
+              ],
+              [
+                      "Jujuy",
+                      "Jujuy tiene selva de yungas, quebrada y puna dentro de la misma provincia."
+              ],
+              [
+                      "Santiago del Estero",
+                      "Santiago del Estero esta asociado a monte, calor y una historia muy antigua."
+              ],
+              [
+                      "Chaco",
+                      "Chaco forma parte del Gran Chaco, una region boscosa y calida."
+              ],
+              [
+                      "Formosa",
+                      "Formosa esta en el norte, cerca de Paraguay, con humedales y monte."
+              ],
+              [
+                      "Corrientes",
+                      "Corrientes tiene los Esteros del Ibera, uno de los grandes humedales del pais."
+              ],
+              [
+                      "Misiones",
+                      "Misiones tiene selva paranaense y tierra colorada."
+              ],
+              [
+                      "Entre Rios",
+                      "Entre Rios esta entre los rios Parana y Uruguay."
+              ],
+              [
+                      "Buenos Aires provincia",
+                      "La Provincia de Buenos Aires rodea a CABA y es la mas poblada del pais."
+              ],
+              [
+                      "CABA",
+                      "CABA es pequeña en superficie, pero concentra mucha poblacion, servicios y cultura."
+              ],
+              [
+                      "Chubut",
+                      "Chubut combina costa con fauna marina y cordillera con bosques."
+              ],
+              [
+                      "Santa Cruz",
+                      "Santa Cruz es enorme, austral y poco poblada."
+              ],
+              [
+                      "Rio Negro",
+                      "Rio Negro une cordillera, valle productivo y costa atlantica."
+              ],
+              [
+                      "Neuquen",
+                      "Neuquen mezcla cordillera, lagos y produccion energetica."
+              ],
+              [
+                      "Antartida",
+                      "Argentina tiene presencia cientifica historica en la Antartida."
+              ],
+              [
+                      "Fronteras",
+                      "Argentina limita con Chile, Bolivia, Paraguay, Brasil y Uruguay."
+              ],
+              [
+                      "Chile",
+                      "La frontera con Chile es una de las mas largas del mundo."
+              ],
+              [
+                      "Uruguay",
+                      "Buenos Aires y Montevideo se miran a traves del Rio de la Plata."
+              ],
+              [
+                      "Brasil",
+                      "La frontera con Brasil aparece en la zona de Misiones."
+              ],
+              [
+                      "Bolivia",
+                      "El limite con Bolivia esta en el extremo norte."
+              ],
+              [
+                      "Paraguay",
+                      "Paraguay limita con provincias del norte argentino."
+              ],
+              [
+                      "Rutas",
+                      "La Ruta 40 recorre el oeste argentino de norte a sur."
+              ],
+              [
+                      "Ruta 3",
+                      "La Ruta 3 baja por la costa atlantica hacia la Patagonia."
+              ],
+              [
+                      "Humedales",
+                      "Argentina tiene humedales muy importantes, como Ibera y el Delta."
+              ],
+              [
+                      "Yungas",
+                      "Las yungas son selvas de montaña presentes en el noroeste."
+              ],
+              [
+                      "Estepa",
+                      "La estepa patagonica es seca, abierta y ventosa."
+              ],
+              [
+                      "Bosque andino",
+                      "El bosque andino patagonico aparece cerca de la cordillera."
+              ],
+              [
+                      "Monte",
+                      "El monte es una ecorregion arida presente en varias provincias."
+              ],
+              [
+                      "Mar del Plata",
+                      "Mar del Plata es una de las ciudades costeras mas conocidas."
+              ],
+              [
+                      "Rosario",
+                      "Rosario esta en Santa Fe, sobre el rio Parana."
+              ],
+              [
+                      "Bariloche",
+                      "Bariloche esta en Rio Negro y es famosa por lagos y montañas."
+              ],
+              [
+                      "El Calafate",
+                      "El Calafate es puerta de entrada al glaciar Perito Moreno."
+              ],
+              [
+                      "Puerto Madryn",
+                      "Puerto Madryn esta en Chubut y se asocia a ballenas y fauna marina."
+              ],
+              [
+                      "San Martin de los Andes",
+                      "San Martin de los Andes esta en Neuquen, cerca de lagos cordilleranos."
+              ],
+              [
+                      "Mar del Plata no es capital",
+                      "Aunque es famosa, Mar del Plata no es capital provincial: la capital bonaerense es La Plata."
+              ],
+              [
+                      "Rosario no es capital",
+                      "Rosario es enorme, pero la capital de Santa Fe es Santa Fe."
+              ],
+              [
+                      "Bariloche no es capital",
+                      "Bariloche es famosa, pero la capital de Rio Negro es Viedma."
+              ]
       ];
 
       const provinces = [
@@ -1551,201 +4595,768 @@
         }
       ];
 
+      const PHOTO_START = new Date("2026-07-24T00:00:00-03:00");
       const photoItems = [
         {
-          area: "La Boca",
-          title: "Caminito",
-          text: "Colores, conventillos y una de las postales más reconocibles de la ciudad.",
-          image: "https://upload.wikimedia.org/wikipedia/commons/1/1e/El_Caminito_de_La_Boca_-_Buenos-Aires.jpg"
+                "area": "La Boca",
+                "title": "Caminito",
+                "text": "Color, fileteado y una calle que parece armada para salir en todas las fotos.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/El_Caminito_de_La_Boca_-_Buenos-Aires.jpg"
         },
         {
-          area: "Centro",
-          title: "9 de Julio y Obelisco",
-          text: "Una avenida gigante, ritmo de ciudad y una aguja imposible de no mirar.",
-          image: "https://upload.wikimedia.org/wikipedia/commons/1/11/Avenida_9_de_Julio_y_Obelisco.jpg"
+                "area": "Centro",
+                "title": "9 de Julio y Obelisco",
+                "text": "Una avenida enorme, ritmo de ciudad y una aguja imposible de no mirar.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/Avenida_9_de_Julio_y_Obelisco.jpg"
         },
         {
-          area: "Plaza de Mayo",
-          title: "Casa Rosada",
-          text: "Uno de los puntos históricos y políticos más importantes del país.",
-          image: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Casa_Rosada%2C_Buenos_Aires%2C_Argentina.jpg"
+                "area": "Plaza de Mayo",
+                "title": "Casa Rosada",
+                "text": "Balcones, historia argentina y una fachada que vas a reconocer rápido.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Casa_Rosada%2C_Buenos_Aires%2C_Argentina.jpg"
         },
         {
-          area: "San Nicolás",
-          title: "Teatro Colón",
-          text: "Una fachada elegante y una sala famosa por su acústica.",
-          image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg/960px-Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg"
+                "area": "Cultura porteña",
+                "title": "Teatro Colón",
+                "text": "Una fachada de otro siglo y uno de los teatros más famosos del mundo.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg/960px-Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg"
         },
         {
-          area: "Belgrano",
-          title: "Barrio Chino",
-          text: "Arcos, locales, sabores nuevos y una mini vuelta cultural dentro de la ciudad.",
-          image: "https://upload.wikimedia.org/wikipedia/commons/3/38/BarrioChino2.jpg"
+                "area": "Belgrano",
+                "title": "Barrio Chino",
+                "text": "Arcos, colores, sabores nuevos y una vuelta distinta dentro de la ciudad.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/3/38/BarrioChino2.jpg"
+        },
+        {
+                "area": "Puerto Madero",
+                "title": "Puente de la Mujer",
+                "text": "Agua, skyline y una postal moderna al costado del río.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Puente_de_la_Mujer%2C_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Recoleta",
+                "title": "Floralis Genérica",
+                "text": "Una flor gigante de metal en medio de la ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Floralis_Generica_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Planetario",
+                "text": "Una nave espacial quieta en una zona verde de Buenos Aires.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Planetario_Galileo_Galilei_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Rosedal",
+                "text": "Lagos, puentes y una parte más tranquila de la ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rosedal_de_Palermo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "San Telmo",
+                "title": "Calles antiguas",
+                "text": "Adoquines, ferias y una Buenos Aires con otro ritmo.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/San_Telmo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Historia",
+                "title": "Cabildo",
+                "text": "Una pieza clave de la historia argentina en plena Plaza de Mayo.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cabildo_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Centro",
+                "title": "Catedral Metropolitana",
+                "text": "Columnas enormes y mucha historia frente a la plaza.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Catedral_Metropolitana_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Avenida de Mayo",
+                "title": "Palacio Barolo",
+                "text": "Un edificio con referencias literarias y una silueta muy porteña.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Palacio_Barolo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Congreso",
+                "title": "Congreso Nacional",
+                "text": "Cúpula verde, avenida amplia y una postal política de la ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Congreso_de_la_Nacion_Argentina.jpg"
+        },
+        {
+                "area": "Librerías",
+                "title": "El Ateneo Grand Splendid",
+                "text": "Una librería dentro de un teatro: Buenos Aires haciendo de las suyas.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/El_Ateneo_Grand_Splendid.jpg"
+        },
+        {
+                "area": "Belgrano",
+                "title": "Barrancas",
+                "text": "Barrio, árboles y una pausa cerca del norte porteño.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Barrancas_de_Belgrano.jpg"
+        },
+        {
+                "area": "Río de la Plata",
+                "title": "Costanera Norte",
+                "text": "Aviones cerca, río enorme y viento porteño.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Costanera_Norte_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Adrogué",
+                "title": "Base oficial",
+                "text": "La zona desde donde empieza la logística fina del viaje.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Estacion_Adrogue.jpg"
+        },
+        {
+                "area": "Microcentro",
+                "title": "Calle Florida",
+                "text": "Peatonal, movimiento y una dosis intensa de centro.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Calle_Florida_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Galerías",
+                "title": "Galerías Pacífico",
+                "text": "Un edificio hermoso para mirar hacia arriba sin culpa.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Galerias_Pacifico_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Jardines",
+                "title": "Jardín Japonés",
+                "text": "Agua, puentes y una pausa visual distinta en la ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jardin_Japones_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Boca",
+                "title": "Azul y oro",
+                "text": "Una zona donde el fútbol se siente antes de verlo.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/La_Bombonera_Boca_Juniors.jpg"
+        },
+        {
+                "area": "Arte",
+                "title": "Usina del Arte",
+                "text": "Una fachada industrial reciclada para cultura.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Usina_del_Arte_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Naturaleza urbana",
+                "title": "Reserva Ecológica",
+                "text": "Verde, río y ciudad al fondo en la misma escena.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Reserva_Ecologica_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Transporte",
+                "title": "Subte porteño",
+                "text": "Una forma rápida de entender que Buenos Aires se mueve mucho.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Subte_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Comida",
+                "title": "Parrilla argentina",
+                "text": "Humo, brasas y una institución social disfrazada de comida.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Asado_argentino.jpg"
+        },
+        {
+                "area": "Tango",
+                "title": "Milonga",
+                "text": "Una escena de música, pasos y códigos porteños.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tango_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Café",
+                "title": "Café Tortoni",
+                "text": "Café histórico, mesas clásicas y aire de otra época.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cafe_Tortoni_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Fileteado",
+                "title": "Letras porteñas",
+                "text": "Colores, curvas y una estética bien de acá.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Fileteado_porteno.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Murales",
+                "text": "Paredes que también cuentan cosas cuando uno camina atento.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Murales_en_Palermo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Centro",
+                "title": "Diagonal Norte",
+                "text": "Una avenida diagonal que ordena el centro con geometría porteña.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/El_Caminito_de_La_Boca_-_Buenos-Aires.jpg"
+        },
+        {
+                "area": "Monserrat",
+                "title": "Avenida de Mayo",
+                "text": "Cúpulas, cafés y edificios que parecen guardar conversaciones viejas.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/Avenida_9_de_Julio_y_Obelisco.jpg"
+        },
+        {
+                "area": "Retiro",
+                "title": "Estación Retiro",
+                "text": "Trenes, movimiento y una de las entradas clásicas a la ciudad.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Casa_Rosada%2C_Buenos_Aires%2C_Argentina.jpg"
+        },
+        {
+                "area": "Recoleta",
+                "title": "Plaza Francia",
+                "text": "Verde, feria y una zona perfecta para mirar sin apuro.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg/960px-Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Bosques de Palermo",
+                "text": "Árboles, lagos y una pausa enorme dentro del mapa urbano.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/3/38/BarrioChino2.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Plaza Serrano",
+                "text": "Bares, diseño y una energía más de noche que de manual.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Puente_de_la_Mujer%2C_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Chacarita",
+                "title": "Calles de barrio",
+                "text": "Una Buenos Aires menos postal pero muy real.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Floralis_Generica_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Villa Crespo",
+                "title": "Murales y esquinas",
+                "text": "Arte urbano, cafés y movimiento de barrio.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Planetario_Galileo_Galilei_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Núñez",
+                "title": "Zona norte",
+                "text": "Una parada al norte con otro pulso de ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rosedal_de_Palermo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Belgrano",
+                "title": "Calles de Belgrano",
+                "text": "Barrio amplio, árboles y mezcla de casas con avenidas.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/San_Telmo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Puerto",
+                "title": "Reserva y skyline",
+                "text": "Ciudad y naturaleza conviviendo como si fuera normal.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cabildo_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Costanera",
+                "title": "Río de la Plata",
+                "text": "Un río tan ancho que se gana el derecho a confundir.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Catedral_Metropolitana_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Gastronomía",
+                "title": "Pizzería porteña",
+                "text": "Mucha muzzarella y una discusión seria sobre porciones.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Palacio_Barolo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Gastronomía",
+                "title": "Helado argentino",
+                "text": "Postre con estatus institucional.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Congreso_de_la_Nacion_Argentina.jpg"
+        },
+        {
+                "area": "Gastronomía",
+                "title": "Alfajores",
+                "text": "Capas dulces, análisis técnico y posible torneo mundial.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/El_Ateneo_Grand_Splendid.jpg"
+        },
+        {
+                "area": "Casa",
+                "title": "Asado con amigos",
+                "text": "Humo, mesa larga y paciencia obligatoria.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Barrancas_de_Belgrano.jpg"
+        },
+        {
+                "area": "Cultura",
+                "title": "Tango de noche",
+                "text": "La ciudad diciendo cosas sin hablar demasiado.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Costanera_Norte_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Cultura",
+                "title": "Fileteado",
+                "text": "Líneas, flores y color porteño aplicado a casi todo.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Estacion_Adrogue.jpg"
+        },
+        {
+                "area": "Transporte",
+                "title": "Colectivos",
+                "text": "Colores, líneas y una ciencia urbana propia.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Calle_Florida_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Transporte",
+                "title": "Subte",
+                "text": "Una forma práctica de moverse bajo el caos.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Galerias_Pacifico_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Aeroparque",
+                "title": "Llegada al río",
+                "text": "La primera postal puede venir con aviones y costanera.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jardin_Japones_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Adrogué",
+                "title": "Punto base",
+                "text": "El campamento oficial para descansar entre aventuras.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/La_Bombonera_Boca_Juniors.jpg"
+        },
+        {
+                "area": "Buenos Aires",
+                "title": "Atardecer porteño",
+                "text": "La ciudad se pone más linda cuando baja la luz.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Usina_del_Arte_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Buenos Aires",
+                "title": "Skyline",
+                "text": "Edificios, río y escala de ciudad grande.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Reserva_Ecologica_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Centro",
+                "title": "Microcentro",
+                "text": "Oficinas, historia y gente caminando con misión.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Subte_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "San Telmo",
+                "title": "Mercado de San Telmo",
+                "text": "Sabores, antigüedades y domingo en modo ciudad vieja.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Asado_argentino.jpg"
+        },
+        {
+                "area": "La Boca",
+                "title": "Colores de Caminito",
+                "text": "Una calle que decidió no pasar desapercibida.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tango_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Plaza de Mayo",
+                "title": "Balcones históricos",
+                "text": "Un lugar donde pasaron demasiadas cosas para una sola plaza.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cafe_Tortoni_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Teatro",
+                "title": "Fachadas porteñas",
+                "text": "Buenos Aires tiene edificios que piden segunda mirada.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Fileteado_porteno.jpg"
+        },
+        {
+                "area": "Belgrano",
+                "title": "Arcos y sabores",
+                "text": "Una mini escapada cultural sin salir de la ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Murales_en_Palermo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Jardines y lagos",
+                "text": "La versión más verde del caos porteño.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/El_Caminito_de_La_Boca_-_Buenos-Aires.jpg"
+        },
+        {
+                "area": "Recoleta",
+                "title": "Arquitectura",
+                "text": "Detalles franceses, avenidas amplias y mucho mirar hacia arriba.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/Avenida_9_de_Julio_y_Obelisco.jpg"
+        },
+        {
+                "area": "Centro",
+                "title": "Obelisco de lejos",
+                "text": "Ese punto que aparece aunque no lo estés buscando.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Casa_Rosada%2C_Buenos_Aires%2C_Argentina.jpg"
+        },
+        {
+                "area": "Puerto Madero",
+                "title": "Docks reciclados",
+                "text": "La parte moderna que mira al agua.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg/960px-Fachada_del_Teatro_Col%C3%B3n_en_Buenos_Aires%2C_Argentina.jpg"
+        },
+        {
+                "area": "Cultura",
+                "title": "Noche de Buenos Aires",
+                "text": "Luces, movimiento y planes que empiezan tarde.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/3/38/BarrioChino2.jpg"
+        },
+        {
+                "area": "Amigos",
+                "title": "Mesa argentina",
+                "text": "La cultura local explicada entre comida, chistes y sobremesa.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Puente_de_la_Mujer%2C_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Dulce",
+                "title": "Mundial de alfajores",
+                "text": "Competencia seria, criterios dudosos y alta felicidad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Floralis_Generica_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Vino",
+                "title": "Copas argentinas",
+                "text": "Una vuelta por sabores con acento mendocino.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Planetario_Galileo_Galilei_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Juego",
+                "title": "Bowling",
+                "text": "Zapatos raros, diez esperando caer y orgullo en riesgo.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rosedal_de_Palermo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Experiencia",
+                "title": "Pantallas y escena",
+                "text": "Un plan inmersivo para cambiar de mundo por un rato.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/San_Telmo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Fútbol",
+                "title": "Pasión azul y oro",
+                "text": "Cuando una cancha también funciona como idioma.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cabildo_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Centro",
+                "title": "Avenida gigante",
+                "text": "La ciudad demostrando que también puede exagerar en ancho.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Catedral_Metropolitana_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Historia",
+                "title": "Piedra antigua",
+                "text": "El pasado argentino escondido entre edificios actuales.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Palacio_Barolo_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Buenos Aires",
+                "title": "Postal de caminata",
+                "text": "Una de esas imágenes que explican por qué conviene caminar.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Congreso_de_la_Nacion_Argentina.jpg"
+        },
+        {
+                "area": "Río",
+                "title": "Viento porteño",
+                "text": "El clima recordando que el río está cerca.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/El_Ateneo_Grand_Splendid.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Verde urbano",
+                "text": "Un descanso visual antes de volver al ruido.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Barrancas_de_Belgrano.jpg"
+        },
+        {
+                "area": "Belgrano",
+                "title": "Barrio con capas",
+                "text": "Calles tranquilas y sorpresas cerca.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Costanera_Norte_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Adrogué",
+                "title": "Vuelta a casa",
+                "text": "La base de operaciones después del día largo.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Estacion_Adrogue.jpg"
+        },
+        {
+                "area": "Argentina",
+                "title": "Celeste y blanco",
+                "text": "Una paleta que aparece en banderas, camisetas y clima de viaje.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Calle_Florida_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Buenos Aires",
+                "title": "Ciudad para mirar",
+                "text": "Cada postal viene con una pista cultural escondida.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Galerias_Pacifico_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Centro",
+                "title": "Diagonal Norte 2",
+                "text": "Una avenida diagonal que ordena el centro con geometría porteña.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jardin_Japones_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Monserrat",
+                "title": "Avenida de Mayo 2",
+                "text": "Cúpulas, cafés y edificios que parecen guardar conversaciones viejas.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/La_Bombonera_Boca_Juniors.jpg"
+        },
+        {
+                "area": "Retiro",
+                "title": "Estación Retiro 2",
+                "text": "Trenes, movimiento y una de las entradas clásicas a la ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Usina_del_Arte_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Recoleta",
+                "title": "Plaza Francia 2",
+                "text": "Verde, feria y una zona perfecta para mirar sin apuro.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Reserva_Ecologica_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Bosques de Palermo 2",
+                "text": "Árboles, lagos y una pausa enorme dentro del mapa urbano.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Subte_de_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Palermo",
+                "title": "Plaza Serrano 2",
+                "text": "Bares, diseño y una energía más de noche que de manual.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Asado_argentino.jpg"
+        },
+        {
+                "area": "Chacarita",
+                "title": "Calles de barrio 2",
+                "text": "Una Buenos Aires menos postal pero muy real.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tango_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Villa Crespo",
+                "title": "Murales y esquinas 2",
+                "text": "Arte urbano, cafés y movimiento de barrio.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cafe_Tortoni_Buenos_Aires.jpg"
+        },
+        {
+                "area": "Núñez",
+                "title": "Zona norte 2",
+                "text": "Una parada al norte con otro pulso de ciudad.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Fileteado_porteno.jpg"
+        },
+        {
+                "area": "Belgrano",
+                "title": "Calles de Belgrano 2",
+                "text": "Barrio amplio, árboles y mezcla de casas con avenidas.",
+                "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Murales_en_Palermo_Buenos_Aires.jpg"
         }
-      ];
+];
 
       const eggs = [
         {
-          id: "azul-oro",
-          title: "La casa de dos colores",
-          mode: "answer",
-          riddle: "Hay una casa que no vive en silencio: tiembla, canta y se viste con dos colores. No es un museo cualquiera, pero guarda pasión como si fuera historia.",
-          hint: "Dos colores, mucha voz y una energía que no entra en una foto.",
-          answers: ["bombonera", "la bombonera", "boca", "boca juniors"],
-          unlockAt: "2026-07-20T09:00:00-03:00",
-          reward: "Bien. Hay una parada futbolera con mucho volumen emocional."
+                "id": "azul-oro",
+                "title": "La casa de dos colores",
+                "mode": "answer",
+                "riddle": "Hay una casa que no vive en silencio: tiembla, canta y se viste con dos colores. No es un museo cualquiera, pero guarda pasión como si fuera historia.",
+                "hint": "Dos colores, mucha voz y una energía que no entra en una foto.",
+                "answers": [
+                        "bombonera",
+                        "la bombonera",
+                        "boca",
+                        "boca juniors"
+                ],
+                "unlockAt": "2026-07-20T09:00:00-03:00",
+                "reward": "Pista resuelta. Hay pasión azul y oro en el mapa."
         },
         {
-          id: "cultura-argentina",
-          title: "Manual secreto de supervivencia",
-          mode: "think",
-          riddle: "Antes de salir a conquistar la ciudad, hay que aprender sus códigos: palabras raras, costumbres, comida, fútbol y pequeñas reglas no escritas.",
-          hint: "No es una salida: es una mini inducción para entender mejor dónde aterrizaste.",
-          answers: [],
-          unlockAt: "2026-07-23T09:00:00-03:00",
-          reward: "Teoría guardada. Este plan viene con modo Argentina intensivo."
+                "id": "cultura-argentina",
+                "title": "Manual secreto de supervivencia",
+                "mode": "think",
+                "riddle": "Antes de salir a conquistar una ciudad, a veces conviene recibir una guía no solicitada sobre costumbres, palabras, comida, fútbol y códigos locales.",
+                "hint": "No es una clase oficial, pero podría salvarte de mirar todo con cara de signo de pregunta.",
+                "answers": [],
+                "unlockAt": "2026-07-23T09:00:00-03:00",
+                "reward": "Teoría guardada. El manual argentino existe y puede tener diapositivas, solemnidad falsa y datos necesarios."
         },
         {
-          id: "aguja-blanca",
-          title: "La aguja quieta",
-          mode: "answer",
-          riddle: "No marca la hora, pero todos la usan para ubicarse. Está parada en una avenida enorme y mira pasar la ciudad sin moverse.",
-          hint: "No es una estatua común: funciona como punto de encuentro y brújula urbana.",
-          answers: ["obelisco", "el obelisco"],
-          unlockAt: "2026-07-26T09:00:00-03:00",
-          reward: "Exacto. Hay un clásico de Buenos Aires en el mapa."
+                "id": "aguja-blanca",
+                "title": "La aguja quieta",
+                "mode": "answer",
+                "riddle": "No cose, no pincha y no se mueve, pero aparece en casi todas las postales cuando alguien quiere probar que estuvo en la ciudad.",
+                "hint": "Está en una avenida gigante y mira todo desde el centro.",
+                "answers": [
+                        "obelisco",
+                        "el obelisco"
+                ],
+                "unlockAt": "2026-07-27T09:00:00-03:00",
+                "reward": "Correcto. La aguja quieta ya marcó un punto del recorrido."
         },
         {
-          id: "plaza-memoria",
-          title: "El tablero donde empezó mucho",
-          mode: "think",
-          riddle: "Una plaza, una casa de color imposible, un edificio antiguo y mucha historia junta. No es una sola parada: es como mirar varias capas del país al mismo tiempo.",
-          hint: "Pensá en historia, balcones, decisiones grandes y muchas capas del país.",
-          answers: [],
-          unlockAt: "2026-07-29T09:00:00-03:00",
-          reward: "Teoría guardada. Este día viene con historia argentina concentrada."
+                "id": "plaza-memoria",
+                "title": "El tablero donde empezó mucho",
+                "mode": "answer",
+                "riddle": "Un espacio abierto, palomas con exceso de confianza y edificios que escucharon demasiada historia argentina.",
+                "hint": "Hay una casa de color particular, piedra antigua y decisiones importantes alrededor.",
+                "answers": [
+                        "plaza de mayo",
+                        "casa rosada",
+                        "cabildo"
+                ],
+                "unlockAt": "2026-07-31T09:00:00-03:00",
+                "reward": "Bien. Esta pista abre una zona donde la historia no está precisamente callada."
         },
         {
-          id: "fachada-canta",
-          title: "La fachada que canta",
-          mode: "answer",
-          riddle: "Por fuera parece un palacio. Por dentro, dicen que una sola voz puede llenar toda la sala. Capaz no entremos, pero igual merece mirar hacia arriba.",
-          hint: "No todo teatro es cualquier teatro.",
-          answers: ["teatro colon", "teatro colón", "colon", "colón"],
-          unlockAt: "2026-08-01T09:00:00-03:00",
-          reward: "Sí. Hay una joya de la ciudad esperando ser vista."
+                "id": "fachada-canta",
+                "title": "La fachada que canta",
+                "mode": "answer",
+                "riddle": "Por fuera parece palacio. Por dentro, una sola voz puede llenar la sala sin pedir permiso.",
+                "hint": "No hace falta entrar para entender que ahí la música se toma en serio.",
+                "answers": [
+                        "teatro colon",
+                        "teatro colón",
+                        "colon",
+                        "colón"
+                ],
+                "unlockAt": "2026-08-04T09:00:00-03:00",
+                "reward": "Exacto. Hay una fachada famosa esperando mirada de turista atento."
         },
         {
-          id: "portal-sabores",
-          title: "El portal de colores",
-          mode: "answer",
-          riddle: "Sin salir de Buenos Aires, cruzamos una puerta simbólica. Hay arcos, colores, sabores nuevos y una sensación de mini viaje dentro del viaje.",
-          hint: "Hay una puerta simbólica, colores fuertes y sabores que parecen cambiar de continente.",
-          answers: ["barrio chino", "chinatown", "belgrano"],
-          unlockAt: "2026-08-04T09:00:00-03:00",
-          reward: "Correcto. Ese paseo viene con cambio de mundo incluido."
+                "id": "ocho-compases",
+                "title": "Ocho pasos sin decirlo",
+                "mode": "answer",
+                "riddle": "No hace falta hablar para contar una historia. Dos personas, algunos pasos y una ciudad que aprendió a moverse con drama elegante.",
+                "hint": "La respuesta se baila más de lo que se explica.",
+                "answers": [
+                        "tango",
+                        "milonga",
+                        "show de tango"
+                ],
+                "unlockAt": "2026-08-08T09:00:00-03:00",
+                "reward": "Muy bien. La ciudad acaba de subir el volumen del 2x4."
         },
         {
-          id: "norte-rio",
-          title: "Una coordenada al norte",
-          mode: "think",
-          riddle: "No todo Buenos Aires es centro. A veces hay que subir un poco en el mapa, acercarse al río y dejar que la ciudad cambie de ritmo.",
-          hint: "El norte también tiene sus propias coordenadas y una visita pendiente.",
-          answers: [],
-          unlockAt: "2026-08-07T09:00:00-03:00",
-          reward: "Teoría guardada. Hay una parada porteña más al norte."
+                "id": "mapa-pan",
+                "title": "El mapa entre dos panes",
+                "mode": "answer",
+                "riddle": "En este lugar se viaja sin pasaporte: cada opción parece tener bandera, nombre de país y ganas de ensuciarse las manos.",
+                "hint": "La brújula apunta a hambre.",
+                "answers": [
+                        "danke",
+                        "hamburguesa",
+                        "hamburgueseria",
+                        "hamburguesería"
+                ],
+                "unlockAt": "2026-08-12T09:00:00-03:00",
+                "reward": "Correcto. Hay una escala internacional entre panes."
         },
         {
-          id: "mapa-pan",
-          title: "El mapa entre dos panes",
-          mode: "answer",
-          riddle: "No hace falta pasaporte para elegir país. Esta vez el viaje puede venir con papas, salsa y nombres internacionales entre dos panes.",
-          hint: "Una pista: el nombre suena a agradecimiento, pero el plan se come.",
-          answers: ["danke", "hamburgueseria danke", "hamburguesería danke"],
-          unlockAt: "2026-08-10T09:00:00-03:00",
-          reward: "Eso. Hay una hamburguesa viajera en el futuro cercano."
+                "id": "frio-palito",
+                "title": "El frío prometido",
+                "mode": "answer",
+                "riddle": "No es nieve, no es invierno y no exige abrigo. Es dulce, aparece después de comer y ya estaba medio prometido.",
+                "hint": "Puede venir en palito, cucurucho o pote, según el nivel de compromiso.",
+                "answers": [
+                        "helado",
+                        "luccianos",
+                        "lucciano's",
+                        "lucciano"
+                ],
+                "unlockAt": "2026-08-16T09:00:00-03:00",
+                "reward": "Sí. El frío dulce también forma parte del itinerario emocional."
         },
         {
-          id: "frio-palito",
-          title: "El frío prometido",
-          mode: "answer",
-          riddle: "Ya te dijeron que esto iba a pasar, así que no cuenta como spoiler total. Puede venir en palito, puede venir bañado, y suele mejorar cualquier caminata.",
-          hint: "Frío, dulce y prometido. No hace falta decir mucho más.",
-          answers: ["helado", "luccianos", "lucciano's", "lucciano"],
-          unlockAt: "2026-08-13T09:00:00-03:00",
-          reward: "Sí. Esa promesa dulce sigue en pie."
+                "id": "diez-caen",
+                "title": "Diez esperando caer",
+                "mode": "answer",
+                "riddle": "Hay una pista, zapatos raros y diez objetivos que parecen muy tranquilos hasta que alguien decide tirarles algo pesado.",
+                "hint": "No requiere saber bailar, pero sí aceptar el ridículo con dignidad.",
+                "answers": [
+                        "bowling",
+                        "bolos",
+                        "bowlin"
+                ],
+                "unlockAt": "2026-08-20T09:00:00-03:00",
+                "reward": "Bien. Se desbloqueó una actividad con puntería y posible orgullo herido."
         },
         {
-          id: "ocho-compases",
-          title: "Ocho compases sin nombrarlo",
-          mode: "answer",
-          riddle: "Dos personas se entienden sin explicar nada. Una ciudad respira lento, el piso se vuelve escenario y la historia se cuenta con pasos.",
-          hint: "No lo digo en el título porque sería demasiado fácil.",
-          answers: ["tango", "milonga", "show de tango", "bailar tango"],
-          unlockAt: "2026-08-16T09:00:00-03:00",
-          reward: "Ajá. La ciudad también se escucha con los pies."
+                "id": "brasas-amigos",
+                "title": "Humo con buena fama",
+                "mode": "answer",
+                "riddle": "Empieza con fuego, sigue con paciencia y termina con gente quedándose más tiempo del previsto alrededor de una mesa.",
+                "hint": "En Argentina no es solo comida: es evento social.",
+                "answers": [
+                        "asado",
+                        "parrilla",
+                        "brasas"
+                ],
+                "unlockAt": "2026-08-24T09:00:00-03:00",
+                "reward": "Correcto. Hay humo bueno y amigos cerca."
         },
         {
-          id: "mesa-celeste",
-          title: "La mesa celeste y blanca",
-          mode: "think",
-          riddle: "Hay reuniones que no son solo reuniones. Esta tiene colores, guiños locales y gente lista para convertir una noche en bienvenida.",
-          hint: "No es salida turística: es plan con personas.",
-          answers: [],
-          unlockAt: "2026-08-19T09:00:00-03:00",
-          reward: "Teoría guardada. Esta sorpresa tiene bastante Argentina encima."
+                "id": "uvas-copa",
+                "title": "Uvas con protocolo",
+                "mode": "answer",
+                "riddle": "No se mastican como fruta, pero vienen de uvas. Se sirven en copa y pueden sonar sofisticadas aunque todos estemos aprendiendo.",
+                "hint": "Mendoza podría estar espiritualmente involucrada.",
+                "answers": [
+                        "vino",
+                        "vinos",
+                        "cata de vinos",
+                        "probar vinos"
+                ],
+                "unlockAt": "2026-08-28T09:00:00-03:00",
+                "reward": "Exacto. Se desbloquea investigación seria en copa."
         },
         {
-          id: "capas-dulces",
-          title: "Mundial de círculos",
-          mode: "answer",
-          riddle: "No se juega con pelota, pero hay competencia. Hay capas, dulce, chocolate, debate serio y una misión: probar para decidir.",
-          hint: "Redondos, argentinos y peligrosamente adictivos.",
-          answers: ["alfajor", "alfajores", "mundial de alfajores"],
-          unlockAt: "2026-08-22T09:00:00-03:00",
-          reward: "Correcto. Se viene una competencia dulce muy importante."
+                "id": "otra-escena",
+                "title": "Entrar en otra escena",
+                "mode": "think",
+                "riddle": "A veces una historia no se mira desde una silla: te rodea, te cambia la luz y te hace sentir adentro de otra cosa.",
+                "hint": "Puede ser cine, puede ser experiencia, puede ser plan raro en buen sentido.",
+                "answers": [],
+                "unlockAt": "2026-09-01T09:00:00-03:00",
+                "reward": "Teoría guardada. Hay una escena distinta preparando su entrada."
         },
         {
-          id: "uvas-copa",
-          title: "Geografía en una copa",
-          mode: "answer",
-          riddle: "Un país también se puede probar de a sorbos. A veces aparece Mendoza, a veces aparece el sur, y de pronto una copa cuenta paisaje.",
-          hint: "Uvas, charla y brindis.",
-          answers: ["vino", "vinos", "cata de vinos", "probar vinos"],
-          unlockAt: "2026-08-25T09:00:00-03:00",
-          reward: "Sí. Habrá copas con acento argentino."
+                "id": "mesa-celeste",
+                "title": "La mesa celeste y blanca",
+                "mode": "think",
+                "riddle": "No es partido oficial, pero puede haber colores, costumbres, comida, amigos y una cantidad innecesaria de argentinidad concentrada.",
+                "hint": "El comité cultural podría estar involucrado.",
+                "answers": [],
+                "unlockAt": "2026-09-04T09:00:00-03:00",
+                "reward": "Teoría guardada. La mesa tiene intención temática, claramente."
         },
         {
-          id: "brasas-amigos",
-          title: "Humo bueno",
-          mode: "answer",
-          riddle: "Si ves humo, no siempre hay problema. A veces hay amigos, fuego, paciencia y una mesa que tarda porque así debe ser.",
-          hint: "Plan clásico argentino con parrilla.",
-          answers: ["asado", "parrilla", "asadito"],
-          unlockAt: "2026-08-28T09:00:00-03:00",
-          reward: "Exacto. Hay brasas y amigos cerca."
+                "id": "capas-dulces",
+                "title": "Copa de capas dulces",
+                "mode": "answer",
+                "riddle": "No se juega en una cancha, pero habrá competencia. Redondos, dulces, rellenos y con potencial de debate nacional.",
+                "hint": "Hay dulce de leche muy probablemente involucrado.",
+                "answers": [
+                        "alfajor",
+                        "alfajores",
+                        "mundial de alfajores"
+                ],
+                "unlockAt": "2026-09-06T09:00:00-03:00",
+                "reward": "Correcto. Se desbloqueó una competencia de altísima seriedad dulce."
         },
         {
-          id: "diez-caen",
-          title: "Diez esperando caer",
-          mode: "answer",
-          riddle: "Hay una pista, pero no es de adivinanza. Hay zapatos raros, una bola pesada y diez que esperan su destino al fondo.",
-          hint: "Ruido satisfactorio cuando sale bien.",
-          answers: ["bowling", "bolos", "jugar bowling"],
-          unlockAt: "2026-08-31T09:00:00-03:00",
-          reward: "Sí. Se viene puntería y posible humillación amistosa."
+                "id": "portal-sabores",
+                "title": "El portal de colores",
+                "mode": "answer",
+                "riddle": "Vamos a cruzar un arco y viajar un poco sin salir de Buenos Aires: colores, sabores y calles con otro ritmo.",
+                "hint": "Está dentro de la ciudad, pero apunta culturalmente mucho más lejos.",
+                "answers": [
+                        "barrio chino",
+                        "chinatown",
+                        "belgrano"
+                ],
+                "unlockAt": "2026-09-08T09:00:00-03:00",
+                "reward": "Sí. El portal de sabores ya está marcado."
         },
         {
-          id: "otra-escena",
-          title: "Entrar en otra escena",
-          mode: "think",
-          riddle: "A veces no mirás algo: entrás. Las paredes, la luz y el sonido pueden hacer que un plan parezca otro mundo por un rato.",
-          hint: "No es cine normal, no es museo normal.",
-          answers: [],
-          unlockAt: "2026-09-03T09:00:00-03:00",
-          reward: "Teoría guardada. Tal vez haya una experiencia para meterse adentro."
+                "id": "norte-rio",
+                "title": "Una coordenada al norte",
+                "mode": "answer",
+                "riddle": "No es el norte del país, pero sí una zona porteña hacia arriba en el mapa, cerca de río, avenidas y planes posibles.",
+                "hint": "Suena corto, con tilde mental incluida.",
+                "answers": [
+                        "nuñez",
+                        "núñez",
+                        "nunez"
+                ],
+                "unlockAt": "2026-09-10T09:00:00-03:00",
+                "reward": "Correcto. Hay una coordenada al norte esperando."
         }
-      ];
+];
 
       function normalize(text) {
         return text
@@ -1754,6 +5365,12 @@
           .trim()
           .toLowerCase()
           .replace(/\s+/g, " ");
+      }
+
+      const MS_DAY = 86400000;
+
+      function currentBA() {
+        return new Date(`${dayKey()}T12:00:00-03:00`);
       }
 
       function dayKey(date = new Date()) {
@@ -1767,7 +5384,7 @@
 
       function dayIndex() {
         const today = new Date(`${dayKey()}T00:00:00-03:00`);
-        return Math.max(0, Math.floor((today - CONTENT_START) / 86400000));
+        return Math.max(0, Math.floor((today - CONTENT_START) / MS_DAY));
       }
 
       function formatDate(dateString) {
@@ -1860,11 +5477,12 @@
 
       function renderDailyCulture() {
         const index = dayIndex();
-        const quote = quotes[index % quotes.length];
-        const fact = facts[index % facts.length];
-        const word = lunfardo[index % lunfardo.length];
-        const song = songs[index % songs.length];
-        const comparison = comparisons[index % comparisons.length];
+        const dailyItem = (items) => items[Math.min(index, items.length - 1)];
+        const quote = dailyItem(quotes);
+        const fact = dailyItem(facts);
+        const word = dailyItem(lunfardo);
+        const song = dailyItem(songs);
+        const comparison = dailyItem(comparisons);
 
         document.getElementById("quoteTitle").textContent = quote[0];
         document.getElementById("quoteText").textContent = quote[1];
@@ -1883,7 +5501,7 @@
       }
 
       function renderQuiz() {
-        const current = quiz[dayIndex() % quiz.length];
+        const current = quiz[Math.min(dayIndex(), quiz.length - 1)];
         const answers = document.getElementById("quizAnswers");
         const result = document.getElementById("quizResult");
         document.getElementById("quizQuestion").textContent = current.q;
@@ -1906,14 +5524,14 @@
       }
 
       function renderHistory() {
-        const current = historyFacts[dayIndex() % historyFacts.length];
+        const current = historyFacts[Math.min(dayIndex(), historyFacts.length - 1)];
         document.getElementById("historyEra").textContent = current[0];
         document.getElementById("historyTitle").textContent = current[1];
         document.getElementById("historyText").textContent = current[2];
       }
 
       function renderGeography() {
-        const current = geographyFacts[dayIndex() % geographyFacts.length];
+        const current = geographyFacts[Math.min(dayIndex(), geographyFacts.length - 1)];
         document.getElementById("geoFactTitle").textContent = current[0];
         document.getElementById("geoFactText").textContent = current[1];
         document.getElementById("geoMapBoard").innerHTML = provinceRegions
@@ -2130,8 +5748,9 @@
 
       function renderPhotos() {
         const grid = document.getElementById("photoGrid");
-        const start = dayIndex() % photoItems.length;
-        const selected = Array.from({ length: 3 }, (_, index) => photoItems[(start + index) % photoItems.length]);
+        const photoDay = Math.max(0, Math.floor((currentBA().getTime() - PHOTO_START.getTime()) / MS_DAY));
+        const firstPhoto = Math.min(photoDay * 3, Math.max(photoItems.length - 3, 0));
+        const selected = photoItems.slice(firstPhoto, firstPhoto + 3);
         grid.innerHTML = "";
 
         selected.forEach((photo) => {
@@ -2144,10 +5763,10 @@
           img.loading = "lazy";
           img.referrerPolicy = "no-referrer";
           img.addEventListener("error", () => {
-            img.replaceWith(Object.assign(document.createElement("div"), {
-              className: "photo-fallback",
-              textContent: "🇦🇷"
-            }));
+            const fallback = document.createElement("div");
+            fallback.className = "photo-fallback";
+            fallback.innerHTML = `<span>🇦🇷</span>${photo.title}`;
+            img.replaceWith(fallback);
           });
 
           const body = document.createElement("div");
