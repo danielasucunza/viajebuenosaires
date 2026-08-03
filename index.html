@@ -9,17 +9,20 @@
     <link rel="manifest" href="manifest.webmanifest" />
     <style>
       :root {
-        --cream: #f4fbff;
+        --cream: #fff3f1;
         --paper: #ffffff;
-        --sky: #73c5ea;
-        --sky-soft: #dff4ff;
+        --sky: #f06a64;
+        --sky-soft: #ffe1dd;
         --yellow: #f7c948;
         --navy: #102a56;
         --ink: #26324a;
-        --red: #d45b55;
+        --red: #d71920;
+        --alert-red: #e11922;
+        --alert-deep: #8f0710;
+        --alert-soft: #ffe1dd;
         --green: #8fd0ad;
-        --line: rgba(20, 33, 61, 0.13);
-        --shadow: 0 18px 48px rgba(20, 33, 61, 0.12);
+        --line: rgba(143, 7, 16, 0.15);
+        --shadow: 0 18px 48px rgba(143, 7, 16, 0.14);
       }
 
       * {
@@ -34,13 +37,26 @@
         margin: 0;
         min-height: 100vh;
         background:
-          linear-gradient(180deg, rgba(223, 244, 255, 0.92), rgba(255, 255, 255, 0.64) 28rem),
-          linear-gradient(135deg, rgba(115, 197, 234, 0.22), transparent 34rem),
-          radial-gradient(circle at 92% 2%, rgba(247, 201, 72, 0.2), transparent 18rem),
+          linear-gradient(180deg, rgba(255, 189, 184, 0.98), rgba(255, 232, 229, 0.9) 30rem),
+          linear-gradient(135deg, rgba(215, 25, 32, 0.34), transparent 34rem),
+          radial-gradient(circle at 90% 4%, rgba(215, 25, 32, 0.44), transparent 20rem),
+          radial-gradient(circle at 8% 20%, rgba(143, 7, 16, 0.26), transparent 18rem),
+          radial-gradient(circle at 70% 88%, rgba(215, 25, 32, 0.2), transparent 22rem),
           var(--cream);
         color: var(--ink);
         font-family:
           Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(215, 25, 32, 0.08), transparent 18%, rgba(215, 25, 32, 0.08) 36%, transparent 54%),
+          repeating-linear-gradient(135deg, rgba(143, 7, 16, 0.035) 0 10px, transparent 10px 24px);
       }
 
       a {
@@ -68,8 +84,10 @@
       .panel,
       .card,
       .day-card {
-        border: 1px solid rgba(255, 255, 255, 0.78);
-        background: rgba(255, 253, 247, 0.84);
+        border: 1px solid rgba(255, 213, 209, 0.94);
+        background:
+          linear-gradient(180deg, rgba(255, 250, 249, 0.94), rgba(255, 237, 235, 0.9)),
+          white;
         box-shadow: var(--shadow);
       }
 
@@ -155,9 +173,9 @@
         gap: 8px;
         min-height: 34px;
         border-radius: 999px;
-        background: rgba(115, 197, 234, 0.28);
+        background: rgba(215, 25, 32, 0.12);
         padding: 0 13px;
-        color: var(--navy);
+        color: var(--alert-deep);
         font-size: 13px;
         font-weight: 900;
       }
@@ -202,15 +220,18 @@
         gap: 8px;
         margin-top: 22px;
         border-radius: 24px;
-        background: var(--navy);
+        background:
+          linear-gradient(135deg, var(--alert-deep), var(--alert-red)),
+          var(--alert-deep);
         padding: 10px;
         color: white;
+        box-shadow: 0 18px 38px rgba(143, 7, 16, 0.24);
       }
 
       .unit {
         min-height: 78px;
         border-radius: 18px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.14);
         display: grid;
         place-items: center;
         text-align: center;
@@ -236,14 +257,14 @@
         margin-top: 18px;
         overflow: hidden;
         border-radius: 999px;
-        background: rgba(20, 33, 61, 0.1);
+        background: rgba(143, 7, 16, 0.14);
       }
 
       .bar {
         height: 12px;
         width: 0;
         border-radius: inherit;
-        background: linear-gradient(90deg, var(--sky), #ffffff, var(--yellow));
+        background: linear-gradient(90deg, var(--alert-deep), var(--alert-red), var(--yellow));
         transition: width 0.4s ease;
       }
 
@@ -264,9 +285,9 @@
         align-items: center;
         min-height: 30px;
         border-radius: 999px;
-        background: rgba(115, 197, 234, 0.24);
+        background: rgba(215, 25, 32, 0.14);
         padding: 0 11px;
-        color: var(--navy);
+        color: var(--alert-deep);
         font-size: 12px;
         font-weight: 950;
       }
@@ -289,7 +310,9 @@
         border-radius: 26px;
         padding: 18px;
         margin-bottom: 18px;
-        background: rgba(255, 255, 255, 0.47);
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 224, 221, 0.56)),
+          rgba(255, 255, 255, 0.64);
       }
 
       .day-head {
@@ -317,10 +340,12 @@
       .plan,
       .egg {
         border-radius: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.82);
-        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(255, 213, 209, 0.9);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 239, 237, 0.86)),
+          white;
         padding: 20px;
-        box-shadow: 0 10px 28px rgba(20, 33, 61, 0.08);
+        box-shadow: 0 10px 28px rgba(143, 7, 16, 0.1);
       }
 
       .plan h3,
@@ -336,7 +361,7 @@
       }
 
       .locked {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.83), rgba(185, 222, 242, 0.34));
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 192, 187, 0.38));
       }
 
       .chips {
@@ -351,10 +376,11 @@
         align-items: center;
         min-height: 31px;
         border-radius: 999px;
-        background: rgba(115, 197, 234, 0.22);
+        background: rgba(215, 25, 32, 0.12);
         padding: 0 11px;
         font-size: 13px;
         font-weight: 850;
+        color: var(--alert-deep);
       }
 
       .chip.yellow {
@@ -368,18 +394,19 @@
         min-height: 42px;
         border: 0;
         border-radius: 999px;
-        background: var(--navy);
+        background: linear-gradient(135deg, var(--alert-deep), var(--alert-red));
         padding: 0 16px;
         color: white;
         cursor: pointer;
         font-size: 14px;
         font-weight: 900;
         text-decoration: none;
+        box-shadow: 0 12px 26px rgba(215, 25, 32, 0.2);
       }
 
       .button.secondary {
         background: white;
-        color: var(--navy);
+        color: var(--alert-deep);
         box-shadow: inset 0 0 0 1px var(--line);
       }
 
@@ -788,8 +815,8 @@
         gap: 8px;
         margin: 0 -16px 16px;
         overflow-x: auto;
-        border-bottom: 1px solid rgba(16, 42, 86, 0.08);
-        background: rgba(244, 251, 255, 0.92);
+        border-bottom: 1px solid rgba(143, 7, 16, 0.12);
+        background: rgba(255, 237, 235, 0.94);
         padding: 10px 16px;
         backdrop-filter: blur(16px);
       }
@@ -814,9 +841,9 @@
 
       .tab-button.active,
       .nav button.active {
-        background: var(--navy);
+        background: linear-gradient(135deg, var(--alert-deep), var(--alert-red));
         color: white;
-        box-shadow: 0 10px 24px rgba(16, 42, 86, 0.16);
+        box-shadow: 0 10px 24px rgba(215, 25, 32, 0.22);
       }
 
       .tab-section {
@@ -900,6 +927,185 @@
         box-shadow: inset 0 0 0 1px var(--line);
       }
 
+      .affection-alert {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        background:
+          radial-gradient(circle at 50% 0%, rgba(247, 201, 72, 0.22), transparent 22rem),
+          linear-gradient(135deg, rgba(97, 0, 8, 0.82), rgba(215, 25, 32, 0.66));
+        backdrop-filter: blur(12px) saturate(1.2);
+      }
+
+      .affection-alert[hidden] {
+        display: none;
+      }
+
+      .alert-dialog {
+        position: relative;
+        width: min(560px, 100%);
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(255, 235, 232, 0.99), rgba(255, 255, 255, 0.99)),
+          white;
+        box-shadow:
+          0 0 0 5px rgba(215, 25, 32, 0.32),
+          0 0 48px rgba(215, 25, 32, 0.62),
+          0 30px 90px rgba(72, 0, 8, 0.44);
+        animation: alertPulse 1.35s ease-in-out infinite;
+      }
+
+      .alert-dialog::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 9px;
+        background: repeating-linear-gradient(
+          90deg,
+          #d71920 0 22px,
+          #ff4a4f 22px 44px,
+          #ffd166 44px 66px
+        );
+      }
+
+      .alert-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background:
+          linear-gradient(135deg, rgba(143, 7, 16, 0.98), rgba(215, 25, 32, 0.95)),
+          var(--alert-red);
+        padding: 24px 20px 18px;
+      }
+
+      .alert-icon {
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border: 3px solid rgba(255, 255, 255, 0.94);
+        border-radius: 18px;
+        background:
+          radial-gradient(circle at 50% 35%, #fffbfb, #ffb6b2 44%, #d71920 46%),
+          #d71920;
+        color: white;
+        font-size: 28px;
+        box-shadow:
+          0 0 0 8px rgba(255, 255, 255, 0.12),
+          0 12px 26px rgba(72, 0, 8, 0.34);
+        animation: sirenFlash 0.72s linear infinite;
+      }
+
+      .alert-title {
+        margin: 0;
+        color: white;
+        font-size: 22px;
+        line-height: 1.12;
+        text-transform: uppercase;
+      }
+
+      .alert-subtitle {
+        margin: 4px 0 0;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .alert-body {
+        display: grid;
+        gap: 14px;
+        padding: 20px;
+      }
+
+      .alert-body p {
+        margin: 0;
+        color: rgba(38, 50, 74, 0.84);
+        font-size: 15px;
+        line-height: 1.58;
+      }
+
+      .implosion-box {
+        display: grid;
+        gap: 8px;
+        border: 2px solid rgba(215, 25, 32, 0.28);
+        border-radius: 22px;
+        background:
+          linear-gradient(135deg, rgba(215, 25, 32, 0.16), rgba(247, 201, 72, 0.18)),
+          white;
+        padding: 16px;
+        text-align: center;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+      }
+
+      .implosion-label {
+        color: rgba(38, 50, 74, 0.72);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .implosion-countdown {
+        color: var(--alert-deep);
+        font-size: clamp(34px, 11vw, 54px);
+        font-weight: 950;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        text-shadow: 0 8px 22px rgba(215, 25, 32, 0.18);
+      }
+
+      .alert-status {
+        border-radius: 18px;
+        background: rgba(215, 25, 32, 0.12);
+        padding: 12px 14px;
+        color: var(--alert-deep);
+        font-weight: 900;
+      }
+
+      .alert-actions {
+        display: grid;
+        gap: 10px;
+        padding: 0 20px 20px;
+      }
+
+      .alert-actions .button {
+        width: 100%;
+      }
+
+      @keyframes sirenFlash {
+        0%,
+        100% {
+          filter: brightness(1);
+          transform: scale(1);
+        }
+        50% {
+          filter: brightness(1.35);
+          transform: scale(1.06);
+        }
+      }
+
+      @keyframes alertPulse {
+        0%,
+        100% {
+          box-shadow:
+            0 0 0 5px rgba(215, 25, 32, 0.26),
+            0 0 42px rgba(215, 25, 32, 0.52),
+            0 30px 90px rgba(72, 0, 8, 0.44);
+        }
+        50% {
+          box-shadow:
+            0 0 0 8px rgba(215, 25, 32, 0.38),
+            0 0 72px rgba(215, 25, 32, 0.72),
+            0 30px 90px rgba(72, 0, 8, 0.5);
+        }
+      }
+
       .flag-band {
         display: flex;
         flex-wrap: wrap;
@@ -939,10 +1145,12 @@
         overflow-x: auto;
         border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 22px;
-        background: rgba(20, 33, 61, 0.96);
+        background:
+          linear-gradient(135deg, rgba(143, 7, 16, 0.98), rgba(215, 25, 32, 0.94)),
+          var(--alert-deep);
         padding: 8px;
         color: white;
-        box-shadow: 0 18px 48px rgba(20, 33, 61, 0.22);
+        box-shadow: 0 18px 48px rgba(143, 7, 16, 0.34);
       }
 
       .nav button {
@@ -1038,6 +1246,10 @@
 
         .three {
           grid-template-columns: repeat(3, 1fr);
+        }
+
+        .alert-actions {
+          grid-template-columns: 1fr 1fr;
         }
 
         .nav {
@@ -1345,6 +1557,41 @@
       <button type="button" data-tab="fotos">Fotos</button>
       <button type="button" data-tab="mensaje">Mensaje</button>
     </nav>
+
+    <div class="affection-alert" id="affectionAlert" role="dialog" aria-modal="true" aria-labelledby="affectionAlertTitle">
+      <article class="alert-dialog">
+        <header class="alert-header">
+          <span class="alert-icon" aria-hidden="true">🚨</span>
+          <div>
+            <h2 class="alert-title" id="affectionAlertTitle">Alerta crítica del Sistema Afectivo</h2>
+            <p class="alert-subtitle">Camiloneta BA · nivel de riesgo: implosión inminente</p>
+          </div>
+        </header>
+        <div class="alert-body">
+          <p>
+            El sistema operativo de <strong>Camiloneta BA</strong> ha detectado una disminución preocupante
+            en el envío de mensajes de este aplicativo para Dani.
+          </p>
+          <p>
+            Según los registros internos, esta situación ya había sido previamente advertida.
+          </p>
+          <p>
+            Para evitar la pronta implosión de la aplicación en cualquier segundo, se recomienda revertir
+            la situación a la brevedad mediante el envío de un mensaje lindo, amable y mínimamente cariñoso
+            respecto a lo aprendido durante los últimos días en la aplicación, ya que su objetivo es de uso diario.
+          </p>
+          <div class="alert-status">Estado actual: falta de afecto operativa detectada.</div>
+          <div class="implosion-box" aria-live="polite">
+            <span class="implosion-label">Tiempo estimado antes de implosión</span>
+            <strong class="implosion-countdown" id="implosionCountdown">12:00:00</strong>
+          </div>
+        </div>
+        <div class="alert-actions">
+          <button class="button" id="alertGoMessage" type="button">Ir a Mensaje</button>
+          <button class="button secondary" id="alertDismiss" type="button">Entendido, asumo el riesgo</button>
+        </div>
+      </article>
+    </div>
 
     <script>
       // ============================================================
@@ -5781,7 +6028,12 @@
         });
       }
 
-      function setActiveTab(tabId, updateHash = true) {
+      function showAffectionAlert() {
+        const alert = document.getElementById("affectionAlert");
+        if (alert) alert.hidden = false;
+      }
+
+      function setActiveTab(tabId, updateHash = true, suppressAlert = false) {
         const target = document.getElementById(tabId) ? tabId : "inicio";
         document.querySelectorAll(".tab-section").forEach((section) => {
           section.classList.toggle("active", section.id === target);
@@ -5793,6 +6045,9 @@
           history.replaceState(null, "", `#${target}`);
         }
         window.scrollTo({ top: 0, behavior: "smooth" });
+        if (!suppressAlert && target !== "mensaje") {
+          showAffectionAlert();
+        }
       }
 
       function setupTabs() {
@@ -5802,7 +6057,7 @@
 
         const initialTab = window.location.hash.replace("#", "");
         if (initialTab) {
-          setActiveTab(initialTab, false);
+          setActiveTab(initialTab, false, true);
         }
       }
 
@@ -5852,6 +6107,38 @@
         });
       }
 
+      function setupAffectionAlert() {
+        const alert = document.getElementById("affectionAlert");
+        const countdown = document.getElementById("implosionCountdown");
+        const goMessage = document.getElementById("alertGoMessage");
+        const dismiss = document.getElementById("alertDismiss");
+        if (!alert || !countdown || !goMessage || !dismiss) return;
+
+        const implosionAt = Date.now() + 12 * 60 * 60 * 1000;
+
+        const updateImplosionCountdown = () => {
+          const remaining = Math.max(0, implosionAt - Date.now());
+          const hours = Math.floor(remaining / 3600000);
+          const minutes = Math.floor((remaining % 3600000) / 60000);
+          const seconds = Math.floor((remaining % 60000) / 1000);
+          countdown.textContent = [hours, minutes, seconds]
+            .map((value) => String(value).padStart(2, "0"))
+            .join(":");
+        };
+
+        goMessage.addEventListener("click", () => {
+          alert.hidden = true;
+          setActiveTab("mensaje", true, true);
+        });
+
+        dismiss.addEventListener("click", () => {
+          alert.hidden = true;
+        });
+
+        updateImplosionCountdown();
+        setInterval(updateImplosionCountdown, 1000);
+      }
+
       setupTabs();
       renderDailyCulture();
       renderQuiz();
@@ -5863,6 +6150,7 @@
       renderCalendar();
       renderPhotos();
       setupMessageBox();
+      setupAffectionAlert();
       updateCountdown();
       setInterval(updateCountdown, 1000);
     </script>
