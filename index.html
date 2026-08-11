@@ -9,17 +9,17 @@
     <link rel="manifest" href="manifest.webmanifest" />
     <style>
       :root {
-        --cream: #fff3f1;
-        --paper: #ffffff;
-        --sky: #f06a64;
-        --sky-soft: #ffe1dd;
+        --cream: #fff0ee;
+        --paper: #fff8f7;
+        --sky: #ef3f46;
+        --sky-soft: #ffd6d2;
         --yellow: #f7c948;
-        --navy: #102a56;
-        --ink: #26324a;
+        --navy: #5f0710;
+        --ink: #3f1c24;
         --red: #d71920;
         --alert-red: #e11922;
-        --alert-deep: #8f0710;
-        --alert-soft: #ffe1dd;
+        --alert-deep: #78040b;
+        --alert-soft: #ffd2ce;
         --green: #8fd0ad;
         --line: rgba(143, 7, 16, 0.15);
         --shadow: 0 18px 48px rgba(143, 7, 16, 0.14);
@@ -37,11 +37,11 @@
         margin: 0;
         min-height: 100vh;
         background:
-          linear-gradient(180deg, rgba(255, 189, 184, 0.98), rgba(255, 232, 229, 0.9) 30rem),
-          linear-gradient(135deg, rgba(215, 25, 32, 0.34), transparent 34rem),
-          radial-gradient(circle at 90% 4%, rgba(215, 25, 32, 0.44), transparent 20rem),
-          radial-gradient(circle at 8% 20%, rgba(143, 7, 16, 0.26), transparent 18rem),
-          radial-gradient(circle at 70% 88%, rgba(215, 25, 32, 0.2), transparent 22rem),
+          linear-gradient(180deg, rgba(255, 142, 136, 0.98), rgba(255, 219, 216, 0.96) 28rem, rgba(255, 243, 241, 0.98)),
+          linear-gradient(135deg, rgba(215, 25, 32, 0.52), transparent 32rem),
+          radial-gradient(circle at 90% 4%, rgba(215, 25, 32, 0.68), transparent 22rem),
+          radial-gradient(circle at 8% 20%, rgba(143, 7, 16, 0.42), transparent 20rem),
+          radial-gradient(circle at 70% 88%, rgba(215, 25, 32, 0.34), transparent 24rem),
           var(--cream);
         color: var(--ink);
         font-family:
@@ -55,8 +55,8 @@
         z-index: -1;
         pointer-events: none;
         background:
-          linear-gradient(90deg, rgba(215, 25, 32, 0.08), transparent 18%, rgba(215, 25, 32, 0.08) 36%, transparent 54%),
-          repeating-linear-gradient(135deg, rgba(143, 7, 16, 0.035) 0 10px, transparent 10px 24px);
+          linear-gradient(90deg, rgba(215, 25, 32, 0.14), transparent 16%, rgba(215, 25, 32, 0.16) 34%, transparent 52%),
+          repeating-linear-gradient(135deg, rgba(143, 7, 16, 0.06) 0 10px, transparent 10px 23px);
       }
 
       a {
@@ -84,10 +84,10 @@
       .panel,
       .card,
       .day-card {
-        border: 1px solid rgba(255, 213, 209, 0.94);
+        border: 1px solid rgba(255, 170, 164, 0.98);
         background:
-          linear-gradient(180deg, rgba(255, 250, 249, 0.94), rgba(255, 237, 235, 0.9)),
-          white;
+          linear-gradient(180deg, rgba(255, 250, 249, 0.96), rgba(255, 222, 219, 0.94)),
+          var(--paper);
         box-shadow: var(--shadow);
       }
 
@@ -144,7 +144,7 @@
       .hero-mascot span {
         display: block;
         margin-top: 4px;
-        color: rgba(20, 33, 61, 0.76);
+        color: rgba(120, 4, 11, 0.76);
         font-size: 10px;
         font-weight: 950;
         text-align: center;
@@ -210,7 +210,7 @@
       .subtitle {
         max-width: 640px;
         margin: 18px 0 0;
-        color: rgba(38, 50, 74, 0.76);
+        color: rgba(63, 28, 36, 0.76);
         font-size: 18px;
       }
 
@@ -461,7 +461,7 @@
       .result {
         margin-top: 12px;
         border-radius: 16px;
-        background: rgba(115, 197, 234, 0.18);
+        background: rgba(215, 25, 32, 0.12);
         padding: 12px;
         font-size: 14px;
         font-weight: 850;
@@ -477,8 +477,8 @@
       .month-card {
         margin-top: 18px;
         background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(244, 251, 255, 0.86)),
-          radial-gradient(circle at 100% 0, rgba(115, 197, 234, 0.24), transparent 18rem);
+          linear-gradient(135deg, rgba(255, 249, 248, 0.96), rgba(255, 224, 221, 0.88)),
+          radial-gradient(circle at 100% 0, rgba(215, 25, 32, 0.24), transparent 18rem);
       }
 
       .month-head,
@@ -490,7 +490,7 @@
 
       .month-head {
         margin-bottom: 7px;
-        color: rgba(38, 50, 74, 0.58);
+        color: rgba(120, 4, 11, 0.56);
         font-size: 11px;
         font-weight: 950;
         text-align: center;
@@ -500,11 +500,11 @@
       .month-day {
         min-height: 68px;
         border-radius: 15px;
-        border: 1px solid rgba(20, 33, 61, 0.08);
-        background: rgba(255, 255, 255, 0.62);
+        border: 1px solid rgba(143, 7, 16, 0.16);
+        background: rgba(255, 247, 246, 0.74);
         overflow: hidden;
         padding: 7px 4px;
-        color: rgba(38, 50, 74, 0.58);
+        color: rgba(120, 4, 11, 0.58);
         font-size: 12px;
         font-weight: 900;
       }
@@ -522,12 +522,12 @@
       }
 
       .month-day.away {
-        background: rgba(115, 197, 234, 0.14);
-        color: rgba(38, 50, 74, 0.44);
+        background: rgba(215, 25, 32, 0.08);
+        color: rgba(120, 4, 11, 0.42);
       }
 
       .month-day.locked-day {
-        background: rgba(16, 42, 86, 0.1);
+        background: rgba(143, 7, 16, 0.16);
         color: var(--navy);
       }
 
@@ -573,7 +573,7 @@
         gap: 14px;
         margin-top: 14px;
         border-radius: 22px;
-        background: rgba(115, 197, 234, 0.14);
+        background: rgba(215, 25, 32, 0.12);
         padding: 12px;
       }
 
@@ -604,8 +604,8 @@
         margin-bottom: 18px;
         border-radius: 28px;
         background:
-          linear-gradient(180deg, rgba(115, 197, 234, 0.24), rgba(255, 255, 255, 0.84)),
-          white;
+          linear-gradient(180deg, rgba(215, 25, 32, 0.18), rgba(255, 250, 249, 0.9)),
+          var(--paper);
         padding: 14px;
       }
 
@@ -614,9 +614,9 @@
         width: min(620px, 100%);
         margin: 0 auto;
         border-radius: 22px;
-        background: white;
+        background: #fff8f7;
         padding: 10px;
-        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(143, 7, 16, 0.18), 0 18px 45px rgba(143, 7, 16, 0.14);
       }
 
       .map-visual img {
@@ -635,15 +635,15 @@
         display: grid;
         gap: 5px;
         max-width: 150px;
-        border: 1px solid rgba(16, 42, 86, 0.16);
+        border: 1px solid rgba(143, 7, 16, 0.22);
         border-radius: 18px;
-        background: rgba(223, 244, 255, 0.94);
+        background: rgba(255, 219, 216, 0.96);
         padding: 8px 10px;
         color: var(--navy);
         font-size: 11px;
         font-weight: 950;
         line-height: 1.2;
-        box-shadow: 0 10px 24px rgba(16, 42, 86, 0.12);
+        box-shadow: 0 10px 24px rgba(143, 7, 16, 0.16);
       }
 
       .malvinas-islands {
@@ -670,7 +670,7 @@
 
       .map-error {
         display: none;
-        border: 1px dashed rgba(16, 42, 86, 0.22);
+        border: 1px dashed rgba(143, 7, 16, 0.26);
         border-radius: 18px;
         background: rgba(255, 255, 255, 0.8);
         padding: 18px;
@@ -682,7 +682,7 @@
       .map-note {
         margin: 12px auto 0;
         width: min(620px, 100%);
-        color: rgba(38, 50, 74, 0.68);
+        color: rgba(63, 28, 36, 0.68);
         font-size: 13px;
         line-height: 1.45;
       }
@@ -693,19 +693,19 @@
       }
 
       .geo-zone {
-        border: 1px solid rgba(16, 42, 86, 0.1);
+        border: 1px solid rgba(143, 7, 16, 0.14);
         border-radius: 24px;
         background:
-          linear-gradient(135deg, rgba(115, 197, 234, 0.22), rgba(255, 255, 255, 0.82)),
-          white;
+          linear-gradient(135deg, rgba(215, 25, 32, 0.14), rgba(255, 249, 248, 0.86)),
+          var(--paper);
         padding: 14px;
-        box-shadow: 0 12px 30px rgba(16, 42, 86, 0.08);
+        box-shadow: 0 12px 30px rgba(143, 7, 16, 0.1);
       }
 
       .geo-zone:nth-child(2n) {
         background:
-          linear-gradient(135deg, rgba(247, 201, 72, 0.24), rgba(255, 255, 255, 0.84)),
-          white;
+          linear-gradient(135deg, rgba(215, 25, 32, 0.2), rgba(255, 246, 245, 0.88)),
+          var(--paper);
       }
 
       .geo-zone-title {
@@ -725,7 +725,7 @@
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.72);
         padding: 5px 9px;
-        color: rgba(16, 42, 86, 0.72);
+        color: rgba(120, 4, 11, 0.72);
         font-size: 11px;
         font-weight: 950;
       }
@@ -740,7 +740,7 @@
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.74);
         padding: 10px 11px;
-        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(143, 7, 16, 0.14);
       }
 
       .geo-province strong {
@@ -753,7 +753,7 @@
       .geo-province span {
         display: block;
         margin-top: 4px;
-        color: rgba(38, 50, 74, 0.68);
+        color: rgba(63, 28, 36, 0.68);
         font-size: 12px;
         font-weight: 850;
         line-height: 1.25;
@@ -764,8 +764,8 @@
         gap: 8px;
         border-radius: 28px;
         background:
-          linear-gradient(90deg, rgba(115, 197, 234, 0.2), rgba(255, 255, 255, 0.74), rgba(115, 197, 234, 0.2)),
-          white;
+          linear-gradient(90deg, rgba(215, 25, 32, 0.14), rgba(255, 250, 249, 0.78), rgba(215, 25, 32, 0.14)),
+          var(--paper);
         padding: 18px;
       }
 
@@ -773,12 +773,12 @@
         display: grid;
         align-content: center;
         min-height: 64px;
-        border: 1px solid rgba(16, 42, 86, 0.1);
+        border: 1px solid rgba(143, 7, 16, 0.16);
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.78);
         padding: 10px 14px;
         color: var(--navy);
-        box-shadow: 0 10px 26px rgba(16, 42, 86, 0.08);
+        box-shadow: 0 10px 26px rgba(143, 7, 16, 0.1);
       }
 
       .map-region strong,
@@ -789,7 +789,7 @@
 
       .map-region span,
       .province-item span {
-        color: rgba(38, 50, 74, 0.66);
+        color: rgba(63, 28, 36, 0.66);
         font-size: 12px;
         font-weight: 800;
       }
@@ -815,8 +815,10 @@
         gap: 8px;
         margin: 0 -16px 16px;
         overflow-x: auto;
-        border-bottom: 1px solid rgba(143, 7, 16, 0.12);
-        background: rgba(255, 237, 235, 0.94);
+        border-bottom: 1px solid rgba(143, 7, 16, 0.22);
+        background:
+          linear-gradient(135deg, rgba(255, 219, 216, 0.96), rgba(255, 239, 237, 0.96)),
+          rgba(255, 237, 235, 0.98);
         padding: 10px 16px;
         backdrop-filter: blur(16px);
       }
@@ -825,12 +827,12 @@
       .nav button {
         border: 0;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.74);
-        color: rgba(16, 42, 86, 0.7);
+        background: rgba(255, 248, 247, 0.82);
+        color: rgba(120, 4, 11, 0.72);
         cursor: pointer;
         font-weight: 950;
         white-space: nowrap;
-        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(143, 7, 16, 0.16);
       }
 
       .tab-button {
@@ -870,8 +872,8 @@
       .photo-card {
         overflow: hidden;
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.82);
-        background: white;
+        border: 1px solid rgba(255, 170, 164, 0.72);
+        background: var(--paper);
         box-shadow: var(--shadow);
       }
 
@@ -880,7 +882,7 @@
         width: 100%;
         aspect-ratio: 4 / 3;
         object-fit: cover;
-        background: var(--sky-soft);
+        background: var(--alert-soft);
       }
 
       .photo-card div {
@@ -889,7 +891,7 @@
 
       .photo-card p {
         margin: 10px 0 0;
-        color: rgba(38, 50, 74, 0.68);
+        color: rgba(63, 28, 36, 0.68);
         font-size: 14px;
       }
 
@@ -899,8 +901,8 @@
         min-height: 210px;
         aspect-ratio: 4 / 3;
         background:
-          linear-gradient(180deg, rgba(115, 197, 234, 0.42), rgba(255, 255, 255, 0.76)),
-          linear-gradient(90deg, #73c5ea 0 33%, white 33% 66%, #73c5ea 66% 100%);
+          linear-gradient(180deg, rgba(215, 25, 32, 0.32), rgba(255, 255, 255, 0.78)),
+          linear-gradient(90deg, #d71920 0 33%, white 33% 66%, #d71920 66% 100%);
         color: var(--navy);
         padding: 22px;
         font-size: 18px;
@@ -935,8 +937,9 @@
         place-items: center;
         padding: 18px;
         background:
-          radial-gradient(circle at 50% 0%, rgba(247, 201, 72, 0.22), transparent 22rem),
-          linear-gradient(135deg, rgba(97, 0, 8, 0.82), rgba(215, 25, 32, 0.66));
+          radial-gradient(circle at 50% 0%, rgba(247, 201, 72, 0.28), transparent 22rem),
+          radial-gradient(circle at 20% 85%, rgba(215, 25, 32, 0.68), transparent 22rem),
+          linear-gradient(135deg, rgba(97, 0, 8, 0.9), rgba(215, 25, 32, 0.82));
         backdrop-filter: blur(12px) saturate(1.2);
       }
 
@@ -952,7 +955,7 @@
         border: 2px solid rgba(255, 255, 255, 0.9);
         border-radius: 28px;
         background:
-          linear-gradient(180deg, rgba(255, 235, 232, 0.99), rgba(255, 255, 255, 0.99)),
+          linear-gradient(180deg, rgba(255, 221, 217, 0.99), rgba(255, 247, 246, 0.99)),
           white;
         box-shadow:
           0 0 0 5px rgba(215, 25, 32, 0.32),
@@ -1029,7 +1032,7 @@
 
       .alert-body p {
         margin: 0;
-        color: rgba(38, 50, 74, 0.84);
+        color: rgba(63, 28, 36, 0.84);
         font-size: 15px;
         line-height: 1.58;
       }
@@ -1210,7 +1213,7 @@
         height: 28px;
         border-radius: 8px;
         background: linear-gradient(180deg, #73c5ea 0 33%, #ffffff 33% 66%, #73c5ea 66% 100%);
-        box-shadow: inset 0 0 0 1px rgba(16, 42, 86, 0.08), 0 8px 18px rgba(16, 42, 86, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(143, 7, 16, 0.18), 0 8px 18px rgba(143, 7, 16, 0.12);
         color: #f7c948;
         font-size: 12px;
         font-weight: 950;
@@ -1233,7 +1236,7 @@
         display: flex;
         gap: 4px;
         overflow-x: auto;
-        border: 1px solid rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 212, 208, 0.9);
         border-radius: 22px;
         background:
           linear-gradient(135deg, rgba(143, 7, 16, 0.98), rgba(215, 25, 32, 0.94)),
@@ -1258,7 +1261,7 @@
       }
 
       .nav button.active {
-        background: white;
+        background: #fff8f7;
         color: var(--navy);
       }
 
@@ -1351,7 +1354,7 @@
           margin-left: 0;
           border: 1px solid rgba(255, 255, 255, 0.72);
           border-radius: 999px;
-          box-shadow: 0 14px 32px rgba(16, 42, 86, 0.08);
+          box-shadow: 0 14px 32px rgba(143, 7, 16, 0.16);
         }
 
         .photo-grid {
@@ -6205,7 +6208,7 @@
         const dismiss = document.getElementById("alertDismiss");
         if (!alert || !countdown || !goMessage || !dismiss) return;
 
-        const implosionAt = Date.now() + 12 * 60 * 60 * 1000;
+        const implosionAt = new Date("2026-08-12T00:00:00-03:00").getTime();
 
         const updateImplosionCountdown = () => {
           const remaining = Math.max(0, implosionAt - Date.now());
